@@ -9,6 +9,9 @@ export default function ArticleId({ article }) {
       <p className={styles.publishedAt}>
         {article.publishedAt}
       </p>
+      <p className={styles.category}>
+        {blog.category && `${article.category.name}`}
+      </p>
       <div
         className={styles.post}
         dangerouslySetInnerHTML={{
