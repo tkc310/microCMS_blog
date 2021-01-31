@@ -23,14 +23,15 @@ export const getStaticProps = async ({
   const key = {
     headers: {'X-API-KEY': process.env.API_KEY},
   };
-  const data = await fetch('https://tkc310.microcms.io/api/v1/articles', key)
+  let data = await fetch('https://tkc310.microcms.io/api/v1/articles', key)
     .then(res => res.json())
     .catch(() => null);
 
-  // プレビュー時は draft のコンテンツを追加
   if (preview) {
-    const draftUrl =  `${process.env.END_POINT}blogs/${previewData.id}?draftKey=${previewData.draftKey}`;
-    const draftRes = await axios.get(draftUrl, key)
+    const draftUrl = `https://tkc310.microcms.io/api/v1/articles/${previewData.id}?draftKey=${previewData.draftKey}`;
+    const draftData = await fetch(draftUrl, key)
+      .then(res => res.json())
+      .catch(() => null);
     data.unshift(await draftRes.data)
   }
 
