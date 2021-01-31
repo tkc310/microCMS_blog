@@ -5,8 +5,12 @@ export default async (req, res) => {
     return res.status(404).end();
   }
   const content = await fetch(
-    `https://tkc310.microcms.io/api/v1/articles/${req.query.slug}?fields=id&draftKey=${req.query.draftKey}`,
-    { headers: { 'X-API-KEY': process.env.apiKey || '' } }
+    `https://tkc310.microcms.io/api/v1/articles/${
+      req.query.slug
+    }?fields=id&draftKey=${
+      req.query.draftKey
+    }`,
+    { headers: { 'X-API-KEY': process.env.API_KEY } }
   )
   .then(res => res.json()).catch(error => null);
 
