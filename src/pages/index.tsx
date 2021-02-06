@@ -11,9 +11,7 @@ export const Home = ({ articles }: Props) => {
       <ul>
         {articles.map((article) => (
           <li key={article.id}>
-            <Link href={`articles/${article.id}`}>
-              <p>{article.title}</p>
-            </Link>
+            <Link href={`articles/${article.id}`}>{article.title}</Link>
           </li>
         ))}
       </ul>
