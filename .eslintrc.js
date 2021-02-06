@@ -40,6 +40,7 @@ module.exports = {
       },
     ],
     'react/jsx-props-no-spreading': 0,
+    // アクセシビリティはwarningにしておく
     'jsx-a11y/anchor-is-valid': 1,
   },
   settings: {
