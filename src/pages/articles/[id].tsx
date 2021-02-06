@@ -1,6 +1,6 @@
-import styles from 'styles/Home.module.scss';
+import styles from '@styles/Home.module.scss';
 import ErrorPage from 'next/error';
-import { TArticle } from 'src/types';
+import { TArticle } from '@/types';
 
 export type Props = {
   article: TArticle;

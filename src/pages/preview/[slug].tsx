@@ -1,4 +1,4 @@
-import Preview from 'pages/articles/[id]';
+import Preview from '@pages/articles/[id]';
 
 export default Preview;
 

@@ -1,43 +1,55 @@
 import Link from 'next/link';
-import { TArticle } from 'src/types';
+import { TArticle, TConfig } from '@/types';
+import Pagination from '@components/molecules/Pagination';
+import fetchConfig from '@utils/fetchConfig';
 
 type Props = {
   articles: Array<TArticle>;
+  totalCount: number;
+  config: TConfig;
 };
 
-export const Home = ({ articles }: Props) => {
+export const Home = ({ articles, totalCount, config }: Props) => {
+  const { perPage } = config;
+
   return (
-    <div>
-      <ul>
-        {articles.map((article) => (
-          <li key={article.id}>
-            <Link href={`articles/${article.id}`}>{article.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div>
+        <ul>
+          {articles.map((article) => (
+            <li key={article.id}>
+              <Link href={`articles/${article.id}`}>{article.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <Pagination totalCount={totalCount} perPage={perPage} />
+    </>
   );
 };
 
-export const getStaticProps = async ({ preview, previewData }) => {
+export const getStaticProps = async () => {
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
-  const data = await fetch('https://tkc310.microcms.io/api/v1/articles', key)
+  const config = await fetchConfig();
+  const { perPage } = config;
+
+  const endPoint = 'https://tkc310.microcms.io/api/v1/articles';
+  const pagingParams = [`offset=${0}`, `limit=${perPage}`];
+  const params = pagingParams.join('&');
+  const url = `${endPoint}?${params}`;
+
+  const data = await fetch(url, key)
     .then((res) => res.json())
     .catch(() => null);
-
-  if (preview) {
-    const draftUrl = `https://tkc310.microcms.io/api/v1/articles/${previewData.id}?draftKey=${previewData.draftKey}`;
-    const draftRes = await fetch(draftUrl, key)
-      .then((res) => res.json())
-      .catch(() => null);
-    data.unshift(await draftRes.data);
-  }
+  const { contents: articles, totalCount } = data;
 
   return {
     props: {
-      articles: data.contents,
+      articles,
+      totalCount,
+      config,
     },
   };
 };
