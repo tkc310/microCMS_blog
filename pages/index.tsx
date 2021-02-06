@@ -1,10 +1,15 @@
-import Link from 'next/link';
+import Link from "next/link";
+import { TArticle } from "../../types";
 
-export default function Home({ articles }) {
+type THome = {
+  articles: Array<TArticle>;
+};
+
+export const Home = ({ articles }: THome) => {
   return (
     <div>
       <ul>
-        {articles.map(article => (
+        {articles.map((article) => (
           <li key={article.id}>
             <Link href={`articles/${article.id}`}>
               <a>{article.title}</a>
@@ -14,25 +19,22 @@ export default function Home({ articles }) {
       </ul>
     </div>
   );
-}
+};
 
-export const getStaticProps = async ({
-  preview,
-  previewData
-}) => {
+export const getStaticProps = async ({ preview, previewData }) => {
   const key = {
-    headers: {'X-API-KEY': process.env.API_KEY},
+    headers: { "X-API-KEY": process.env.API_KEY },
   };
-  let data = await fetch('https://tkc310.microcms.io/api/v1/articles', key)
-    .then(res => res.json())
+  let data = await fetch("https://tkc310.microcms.io/api/v1/articles", key)
+    .then((res) => res.json())
     .catch(() => null);
 
   if (preview) {
     const draftUrl = `https://tkc310.microcms.io/api/v1/articles/${previewData.id}?draftKey=${previewData.draftKey}`;
     const draftData = await fetch(draftUrl, key)
-      .then(res => res.json())
+      .then((res) => res.json())
       .catch(() => null);
-    data.unshift(await draftRes.data)
+    data.unshift(await draftRes.data);
   }
 
   return {
@@ -41,3 +43,5 @@ export const getStaticProps = async ({
     },
   };
 };
+
+export default Home;
