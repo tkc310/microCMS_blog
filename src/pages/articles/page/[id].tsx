@@ -17,7 +17,7 @@ export const ArticlePageId = ({ articles, totalCount, config }: Props) => {
       <ul>
         {articles.map((article) => (
           <li key={article.id}>
-            <Link href={`articles/${article.id}`}>{article.title}</Link>
+            <Link href={`/articles/${article.id}`}>{article.title}</Link>
           </li>
         ))}
       </ul>
