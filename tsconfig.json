@@ -3,10 +3,11 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "styles/*": ["src/styles/*"],
-      "pages/*": ["src/pages/*"],
-      "types/*": ["src/types/*"],
-      "components/*": ["src/components/*"]
+      "@styles/*": ["src/styles/*"],
+      "@pages/*": ["src/pages/*"],
+      "@types/*": ["src/types/*"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
