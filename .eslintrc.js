@@ -28,10 +28,10 @@ module.exports = {
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
     // SSGのため除外
-    'react/no-danger': 'off',
+    'react/no-danger': 0,
     // 自動で読み込まれるため除外
-    'react/react-in-jsx-scope': 'off',
-    'prettier/prettier': 'off',
+    'react/react-in-jsx-scope': 0,
+    'prettier/prettier': 0,
     'import/no-extraneous-dependencies': [
       'error',
       {
@@ -39,7 +39,8 @@ module.exports = {
         optionalDependencies: false,
       },
     ],
-    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-props-no-spreading': 0,
+    'jsx-a11y/anchor-is-valid': 1,
   },
   settings: {
     react: {
