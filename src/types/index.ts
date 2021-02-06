@@ -1,17 +1,17 @@
-export type TArticle = {
+export type TCategory = {
   id: string;
-  title: string;
-  body: string;
-  category: TCategory;
+  name: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   revisedAt: string;
 };
 
-export type TCategory = {
+export type TArticle = {
   id: string;
-  name: string;
+  title: string;
+  body: string;
+  category: TCategory;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

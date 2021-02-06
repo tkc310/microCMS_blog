@@ -1,6 +1,6 @@
-import styles from "../../styles/Home.module.scss";
-import ErrorPage from "next/error";
-import { TArticle } from "../../types";
+import styles from 'styles/Home.module.scss';
+import ErrorPage from 'next/error';
+import { TArticle } from 'src/types';
 
 export type Props = {
   article: TArticle;
@@ -28,9 +28,9 @@ export const ArticleDetail = ({ article }: Props) => {
 
 export const getStaticPaths = async () => {
   const key = {
-    headers: { "X-API-KEY": process.env.API_KEY },
+    headers: { 'X-API-KEY': process.env.API_KEY },
   };
-  const data = await fetch("https://tkc310.microcms.io/api/v1/articles", key)
+  const data = await fetch('https://tkc310.microcms.io/api/v1/articles', key)
     .then((res) => res.json())
     .catch(() => null);
   const paths = data.contents.map((content) => `/articles/${content.id}`);
@@ -40,7 +40,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params, preview, previewData }) => {
   const id = params?.id;
   const key = {
-    headers: { "X-API-KEY": process.env.API_KEY },
+    headers: { 'X-API-KEY': process.env.API_KEY },
   };
   let url = `https://tkc310.microcms.io/api/v1/articles/${id}`;
   if (preview) {
