@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     'airbnb',
+    'airbnb/hooks',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
     'prettier/react',
@@ -18,7 +19,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['@typescript-eslint'],
   rules: {
     'import/order': 0,
     '@typescript-eslint/no-unused-vars': 0,
