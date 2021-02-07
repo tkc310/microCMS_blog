@@ -2,7 +2,9 @@ import ErrorPage from 'next/error';
 import LayoutPost from '@/components/layouts/LayoutPost';
 import fetchConfig from '@utils/fetchConfig';
 import getExcerpt from '@utils/getExcerpt';
-import styles from '@styles/Home.module.scss';
+import toHilight from '@utils/toHighlight';
+import styles from '@styles/ArticleDetail.module.scss';
+import 'highlight.js/styles/stackoverflow-dark.css';
 import { TArticle, TConfig } from '@/types';
 
 export type Props = {
@@ -90,6 +92,9 @@ export const getStaticPropsFactory = () => {
     const article = await fetch(url, key)
       .then((res) => res.json())
       .catch(() => null);
+
+    // シンタックスハイライトの付与
+    article.body = toHilight(article.body);
 
     return {
       props: {
