@@ -47,29 +47,40 @@ export const JsonLdMeta = ({
   const keywords = _keywords ? _keywords.join(',') : siteKeywords.join(',');
   const image = _image || siteImageUrl;
 
-  let settingJson = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    mainEntityOfPage,
-    headline,
-    keywords,
-    author,
-    image,
-    description,
-  };
+  // let settingJson = {
+  //   '@context': 'https://schema.org',
+  //   '@type': 'BlogPosting',
+  //   mainEntityOfPage,
+  //   headline,
+  //   keywords,
+  //   author,
+  //   image,
+  //   description,
+  // };
 
-  if (date) {
-    settingJson = {
-      ...settingJson,
-      datePublished: formatISO(date),
-    };
-  }
+  // if (date) {
+  //   settingJson = {
+  //     ...settingJson,
+  //     ...{ datePublished: formatISO(date) },
+  //   };
+  // }
 
-  console.log('JsonLdMeta--------------');
+  // console.log('JsonLdMeta--------------');
 
   return (
     <Head>
-      <script {...jsonLdScriptProps<BlogPosting>(settingJson)} />
+      <script
+        {...jsonLdScriptProps<BlogPosting>({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          mainEntityOfPage,
+          headline,
+          keywords,
+          author,
+          image,
+          description,
+        })}
+      />
     </Head>
   );
 };
