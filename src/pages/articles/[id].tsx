@@ -1,26 +1,41 @@
-import styles from '@styles/Home.module.scss';
 import ErrorPage from 'next/error';
-import { TArticle } from '@/types';
+import LayoutPost from '@/components/layouts/LayoutPost';
+import fetchConfig from '@utils/fetchConfig';
+import getExcerpt from '@utils/getExcerpt';
+import styles from '@styles/Home.module.scss';
+import { TArticle, TConfig } from '@/types';
 
 export type Props = {
   article: TArticle;
+  config: TConfig;
 };
 
-export const ArticleDetail = ({ article }: Props) => {
-  const { id, title, body, category, publishedAt } = article;
+export const ArticleDetail = ({ article, config }: Props) => {
+  const { id, title, body, category, tags, publishedAt } = article;
 
   return id ? (
-    <main className={styles.main}>
-      <h1 className={styles.title}>{title}</h1>
-      <p className={styles.publishedAt}>{publishedAt}</p>
-      <p className={styles.category}>{category && category.name}</p>
-      <div
-        className={styles.post}
-        dangerouslySetInnerHTML={{
-          __html: `${body}`,
-        }}
-      />
-    </main>
+    <LayoutPost
+      url={`${config.host}/articles/${id}`}
+      title={title}
+      description={getExcerpt(body)}
+      keywords={tags}
+      date={new Date(publishedAt)}
+      tags={tags || []}
+      category={category}
+      config={config}
+    >
+      <main className={styles.main}>
+        <h1 className={styles.title}>{title}</h1>
+        <p className={styles.publishedAt}>{publishedAt}</p>
+        <p className={styles.category}>{category && category.name}</p>
+        <div
+          className={styles.post}
+          dangerouslySetInnerHTML={{
+            __html: `${body}`,
+          }}
+        />
+      </main>
+    </LayoutPost>
   ) : (
     <ErrorPage statusCode={404} />
   );
@@ -42,6 +57,7 @@ export const getStaticProps = async ({ params, preview, previewData }) => {
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
+
   let url = `https://tkc310.microcms.io/api/v1/articles/${id}`;
   if (preview) {
     url += `?draftKey=${previewData.draftKey}`;
@@ -49,10 +65,12 @@ export const getStaticProps = async ({ params, preview, previewData }) => {
   const data = await fetch(url, key)
     .then((res) => res.json())
     .catch(() => null);
+  const config = await fetchConfig();
 
   return {
     props: {
       article: data || {},
+      config,
     },
   };
 };

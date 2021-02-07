@@ -33,9 +33,9 @@ export const getStaticProps = async () => {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
   const config = await fetchConfig();
-  const { perPage } = config;
+  const { perPage, apiHost } = config;
 
-  const endPoint = 'https://tkc310.microcms.io/api/v1/articles';
+  const endPoint = `${apiHost}articles`;
   const pagingParams = [`offset=${0}`, `limit=${perPage}`];
   const params = pagingParams.join('&');
   const url = `${endPoint}?${params}`;
