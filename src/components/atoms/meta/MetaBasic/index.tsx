@@ -16,7 +16,7 @@ const defaultProps = {
   keywords: [],
 };
 
-export const BasicMeta = ({
+export const MetaBasic = ({
   title: _title,
   description: _description,
   keywords: _keywords,
@@ -27,8 +27,6 @@ export const BasicMeta = ({
   const title = _title ? [_title, siteTitle].join(' | ') : siteTitle;
   const description = _description || siteDescription;
   const keywords = _keywords ? _keywords.join(',') : siteKeywords.join(',');
-
-  console.log('BasicMeta--------------');
 
   return (
     <Head>
@@ -41,6 +39,6 @@ export const BasicMeta = ({
   );
 };
 
-BasicMeta.defaultProps = defaultProps;
+MetaBasic.defaultProps = defaultProps;
 
-export default BasicMeta;
+export default MetaBasic;

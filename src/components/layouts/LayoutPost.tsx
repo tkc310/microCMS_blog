@@ -2,11 +2,12 @@ import { ReactNode } from 'react';
 import LayoutBase from '@/components/layouts/LayoutBase';
 import TagButton from '@components/atoms/buttons/ButtonTag';
 import TextDate from '@components/atoms/texts/TextDate';
-import { TCategory, TTag, TConfig } from '@/types';
+import { TCategory, TTag, TConfig, TImage } from '@/types';
 
 type Props = {
   children: ReactNode;
   url: string;
+  image?: TImage;
   title: string;
   description: string;
   keywords: string[];
@@ -16,9 +17,14 @@ type Props = {
   config: TConfig;
 };
 
+const defaultProps = {
+  image: {},
+};
+
 export const LayoutPost = ({
   children,
   url,
+  image,
   title,
   description,
   keywords,
@@ -33,6 +39,7 @@ export const LayoutPost = ({
   return (
     <LayoutBase
       url={url}
+      image={image}
       title={title}
       description={description}
       keywords={keywords}
@@ -65,5 +72,7 @@ export const LayoutPost = ({
     </LayoutBase>
   );
 };
+
+LayoutPost.defaultProps = defaultProps;
 
 export default LayoutPost;

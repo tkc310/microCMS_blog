@@ -17,8 +17,15 @@ export type TTag = {
   name: string;
 } & TDateCommon;
 
+export type TImage = {
+  url: string;
+  width: number;
+  height: number;
+};
+
 export type TArticle = {
   id: string;
+  image: TImage;
   title: string;
   body: string;
   category: TCategory;
@@ -27,6 +34,8 @@ export type TArticle = {
 
 export type TProfile = {
   name: string;
+  fullName: string;
+  description: string;
   githubAccountName: string;
   twitterAccountName: string;
 };
@@ -38,6 +47,6 @@ export type TConfig = {
   siteTitle: string;
   siteDescription: string;
   siteKeywords: string[];
-  siteImageUrl: string;
+  siteImage: TImage;
   profile: TProfile;
 } & TDateCommon;

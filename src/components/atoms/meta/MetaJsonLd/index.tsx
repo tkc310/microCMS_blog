@@ -2,41 +2,41 @@ import Head from 'next/head';
 import { BlogPosting } from 'schema-dts';
 import { jsonLdScriptProps } from 'react-schemaorg';
 import { formatISO } from 'date-fns';
-import { TConfig } from '@/types';
+import { TConfig, TImage } from '@/types';
 
 type Props = {
   url?: string;
+  image?: TImage;
   title?: string;
   description?: string;
   keywords?: string[];
   date?: Date;
-  image?: string;
   config: TConfig;
 };
 
 const defaultProps = {
   url: '',
+  image: {},
   title: '',
   description: '',
   keywords: [],
   date: '',
-  image: '',
 };
 
-export const JsonLdMeta = ({
+export const MetaJsonLd = ({
   url,
+  image: _image,
   title,
   description: _description,
   keywords: _keywords,
   date,
-  image: _image,
   config,
 }: Props) => {
   const {
     siteTitle,
     siteDescription,
     siteKeywords,
-    siteImageUrl,
+    siteImage,
     host,
     profile,
   } = config;
@@ -45,27 +45,8 @@ export const JsonLdMeta = ({
   const headline = title || siteTitle;
   const description = _description || siteDescription;
   const keywords = _keywords ? _keywords.join(',') : siteKeywords.join(',');
-  const image = _image || siteImageUrl;
-
-  // let settingJson = {
-  //   '@context': 'https://schema.org',
-  //   '@type': 'BlogPosting',
-  //   mainEntityOfPage,
-  //   headline,
-  //   keywords,
-  //   author,
-  //   image,
-  //   description,
-  // };
-
-  // if (date) {
-  //   settingJson = {
-  //     ...settingJson,
-  //     ...{ datePublished: formatISO(date) },
-  //   };
-  // }
-
-  // console.log('JsonLdMeta--------------');
+  const image = _image?.url || siteImage.url;
+  const datePublished = formatISO(date);
 
   return (
     <Head>
@@ -79,12 +60,13 @@ export const JsonLdMeta = ({
           author,
           image,
           description,
+          datePublished,
         })}
       />
     </Head>
   );
 };
 
-JsonLdMeta.defaultProps = defaultProps;
+MetaJsonLd.defaultProps = defaultProps;
 
-export default JsonLdMeta;
+export default MetaJsonLd;
