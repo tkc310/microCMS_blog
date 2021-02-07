@@ -23,7 +23,7 @@ const defaultProps = {
   title: '',
   description: '',
   keywords: [],
-  date: '',
+  date: new Date(),
 };
 
 export const LayoutBase = ({

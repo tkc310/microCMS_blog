@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { TArticle, TConfig } from '@/types';
 import Pagination from '@components/molecules/Pagination';
+import LayoutBase from '@components/layouts/LayoutBase';
 import fetchConfig from '@utils/fetchConfig';
 
 type Props = {
@@ -13,7 +14,7 @@ export const Home = ({ articles, totalCount, config }: Props) => {
   const { perPage } = config;
 
   return (
-    <>
+    <LayoutBase config={config}>
       <div>
         <ul>
           {articles.map((article) => (
@@ -24,7 +25,7 @@ export const Home = ({ articles, totalCount, config }: Props) => {
         </ul>
       </div>
       <Pagination totalCount={totalCount} perPage={perPage} />
-    </>
+    </LayoutBase>
   );
 };
 
