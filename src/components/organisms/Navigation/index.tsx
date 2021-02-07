@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 // import Burger from "./Burger";
 import {
   Menu,
@@ -18,12 +17,13 @@ import {
 } from '@chakra-ui/icons';
 
 export const Navigation = () => {
-  const router = useRouter();
-  const [active, setActive] = useState(false);
-
   return (
-    <nav>
-      <Menu>
+    <nav className="l-header">
+      <Link href="/">
+        <div className="l-header_logo">tkc310_log</div>
+      </Link>
+
+      {/* <Menu>
         <MenuButton
           as={IconButton}
           aria-label="Options"
@@ -47,14 +47,13 @@ export const Navigation = () => {
           </MenuItem>
         </MenuList>
       </Menu>
-
       <div className={`container ${active ? 'active' : ''}`}>
         <ul>
-          {/* <li>
+          <li>
             <Link href="/">
               <a className={router.pathname === '/' ? 'active' : null}>about</a>
             </Link>
-          </li> */}
+          </li>
           <li>
             <Link href="/">
               <a className={router.pathname.startsWith('/') ? 'active' : null}>
@@ -63,7 +62,8 @@ export const Navigation = () => {
             </Link>
           </li>
         </ul>
-      </div>
+      </div >
+    */}
     </nav>
   );
 };

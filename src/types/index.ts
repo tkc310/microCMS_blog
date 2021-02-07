@@ -38,6 +38,7 @@ export type TProfile = {
   description: string;
   githubAccountName: string;
   twitterAccountName: string;
+  image: TImage;
 };
 
 export type TConfig = {

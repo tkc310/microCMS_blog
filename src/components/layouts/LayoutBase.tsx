@@ -68,7 +68,7 @@ export const LayoutBase = ({
         config={config}
       />
 
-      <div className="container">
+      <div className="l-content">
         <article>{children}</article>
       </div>
     </LayoutRoot>

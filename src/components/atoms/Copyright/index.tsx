@@ -7,7 +7,7 @@ export const Copyright = ({ name }: Props) => {
 
   return (
     <>
-      <p>
+      <p className="l-footer_copyright">
         Copyright {year} {name}
       </p>
     </>

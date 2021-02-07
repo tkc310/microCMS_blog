@@ -10,6 +10,7 @@ export const LinkGithub = ({ accountName }: Props) => (
     title="GitHub"
     href={`https://github.com/${accountName}`}
     rel="noopener"
+    style={{ fontSize: '1.5rem' }}
     isExternal
   >
     <Icon as={FaGithubAlt} />

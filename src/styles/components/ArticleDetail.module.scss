@@ -1,0 +1,31 @@
+// 本文のスタイル
+.article_body {
+  // typography
+  h1 {
+    font-size: 2.6rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+  p code {
+    margin: 0 2px;
+    border: 1px solid #cecece;
+    background-color: #fff;
+    color: #ff357f;
+    font-size: 0.9rem;
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+
+  // list
+  ul,
+  ol {
+    padding: revert;
+  }
+}

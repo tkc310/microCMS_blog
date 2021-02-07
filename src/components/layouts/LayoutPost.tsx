@@ -46,28 +46,26 @@ export const LayoutPost = ({
       date={date}
       config={config}
     >
-      <div>
-        <section>
+      <div className="article">
+        <section className="article-meta">
           <h1>{title}</h1>
           <div>
             <TextDate date={date} />
           </div>
           <div>{category?.name}</div>
-        </section>
 
-        <section>{children}</section>
-
-        {tags.length && (
-          <section>
+          {tags.length && (
             <ul className="tag-list">
               {tags.map((tag) => (
-                <li key={tag.id}>
+                <li className="tag-item" key={tag.id}>
                   <TagButton tag={tag} />
                 </li>
               ))}
             </ul>
-          </section>
-        )}
+          )}
+        </section>
+
+        <section className="article-contents">{children}</section>
       </div>
     </LayoutBase>
   );

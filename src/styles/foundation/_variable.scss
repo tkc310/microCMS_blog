@@ -1,0 +1,59 @@
+// variable
+
+// color
+$color-font-base: #292929;
+$color-font-date: #757575;
+$color-font-title: #474747;
+$color-font-excerpt: #898f94;
+$color-font-link: $color-font-base;
+$color-font-heading-section: #afafaf;
+$color-font-heading-a: #333333;
+$color-font-heading-b: #353535;
+
+// bg-color
+$bg-color-base: #fff;
+$bg-color-header: $bg-color-base;
+$bg-color-footer: #1a1a1a;
+$bg-color-item: #1a1a1a;
+$bg-color-heading: #f8f8f8;
+$bg-color-menu: #1a1a1a;
+
+// border-color
+$border-color-base: #e5e9eb;
+$border-color-header: $color-font-base;
+$border-color-list: $border-color-base;
+$border-color-heading: #414141;
+
+// font-family
+$font-family-base: 'Noto Serif JP', sans-serif !important;
+$font-family-ja: $font-family-base;
+$font-family-en: sans-serif;
+
+// FontSize
+$font_size_base: 1rem;
+$font_size_m: $font_size_base;
+$font_size_s1: $font_size_base - 0.4;
+$font_size_s2: $font_size_base - 0.3;
+$font_size_s3: $font_size_base - 0.2;
+$font_size_s4: $font_size_base - 0.1;
+$font_size_l1: $font_size_base + 0.1;
+$font_size_l2: $font_size_base + 0.25;
+$font_size_l3: $font_size_base + 0.5;
+$font_size_l4: $font_size_base + 1;
+$font_size_l5: $font_size_base + 1.5;
+$font_size_l6: $font_size_base + 2;
+// $font_size_xl1: $font_size_base + 10;
+// クラス生成用の配列
+$font_size_s_arr: $font_size_s1, $font_size_s2, $font_size_s3, $font_size_s4;
+$font_size_l_arr: $font_size_l1, $font_size_l2, $font_size_l3, $font_size_l4;
+
+// z-index
+$zindex-0: 0;
+$zindex-1: 1;
+$zindex-2: 10;
+$zindex-3: 100;
+$zindex-4: 1000;
+$zindex-5: 10000; // 以降はユーザの操作を中断するUIに利用
+$zindex-6: 100000;
+$zindex-7: 1000000;
+$zindex-minus: -1; // どうしても解決出来ない場合のみ利用

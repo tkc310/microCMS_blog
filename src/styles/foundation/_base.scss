@@ -1,0 +1,32 @@
+@import '@styles/foundation/_variable.scss';
+@import '@styles/foundation/_mixin.scss';
+
+html,
+body {
+  background: $bg-color-base;
+
+  font-family: $font-family-base;
+  color: $color-font-base;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 18px;
+  @include mobile {
+    font-size: 1rem;
+  }
+}
+
+a {
+  color: $color-font-base;
+  text-decoration: underline;
+}
+
+p {
+  letter-spacing: 0.035rem;
+}
+
+ul {
+  font-size: 0;
+  li {
+    font-size: 1rem;
+  }
+}

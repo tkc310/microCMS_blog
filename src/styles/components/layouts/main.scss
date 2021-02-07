@@ -1,0 +1,133 @@
+@import '@styles/foundation/_variable.scss';
+@import '@styles/foundation/_mixin.scss';
+
+$height-header-pc: 72px;
+
+.l-container {
+}
+
+.l-header {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  background: $bg-color-header;
+  height: $height-header-pc;
+  padding: 0 64px;
+  border-bottom: 1px solid $border-color-header;
+  box-sizing: border-box;
+  transition: background-color 300ms linear;
+
+  &_logo {
+    font-size: 1.3rem;
+    font-family: 'Noto Serif JP';
+    cursor: pointer;
+    img {
+      width: 120px;
+      height: 20px;
+    }
+    &-link {
+      text-decoration: none;
+    }
+  }
+  &_menu {
+    &-wrap {
+      margin-left: auto;
+    }
+    &-btn {
+    }
+  }
+  @include mobile {
+    padding: 0 16px;
+  }
+}
+
+.l-footer {
+  padding: 8px 16px;
+  background: $bg-color-footer;
+  &_profile {
+    width: 480px;
+    margin: 0 auto;
+    padding-bottom: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.54);
+  }
+  &_icon {
+    img {
+      margin: 0 auto;
+    }
+  }
+  &_text {
+    font-size: 0.8rem;
+  }
+  &_name {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.98);
+  }
+  &_sns {
+    margin: 8px 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.98);
+  }
+  &_copyright {
+    font-family: $font-family-en;
+    font-size: 0.75rem;
+    letter-spacing: 0.3rem;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    @include mobile {
+      transform: scale(0.85) translateX(-32px);
+    }
+  }
+  &_btn-top {
+    margin-left: auto;
+    color: #fff;
+    @include mobile {
+      position: fixed;
+      z-index: 100;
+      bottom: 24px;
+      right: 16px;
+      width: 48px;
+      height: 48px;
+      background: $bg-color-footer !important;
+    }
+    &-icon {
+    }
+    &-text {
+      font-family: $font-family-en;
+      @include mobile {
+        display: none !important;
+      }
+    }
+  }
+  &_body {
+  }
+  &_link {
+    color: #fff;
+    font-size: 0.75rem;
+    @include mobile {
+      font-size: 0.6rem;
+    }
+  }
+}
+
+.l-content {
+  overflow: hidden;
+  width: 680px;
+  min-height: calc(100vh - 32px);
+  padding: ($height-header-pc + 32px) 0 56px;
+  margin: 0 auto;
+  text-align: left;
+  @include mobile {
+    width: 100%;
+    padding: ($height-header-pc + 16px) 0 32px;
+  }
+  @include mobile {
+    padding: ($height-header-pc + 16px) 16px 32px;
+  }
+}

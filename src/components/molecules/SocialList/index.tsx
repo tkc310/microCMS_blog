@@ -1,5 +1,5 @@
 import LinkGithub from '@/components/atoms/links/LinkGithub';
-import LinkTwitter from '@/components/atoms/links/LinkTwitter';
+// import LinkTwitter from '@/components/atoms/links/LinkTwitter';
 
 type Props = {
   githubAccountName: string;
@@ -13,7 +13,7 @@ export const SocialList = ({
   return (
     <>
       <LinkGithub accountName={githubAccountName} />
-      <LinkTwitter accountName={twitterAccountName} />
+      {/* <LinkTwitter accountName={twitterAccountName} /> */}
     </>
   );
 };

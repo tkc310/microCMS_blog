@@ -3,7 +3,7 @@ import LayoutPost from '@/components/layouts/LayoutPost';
 import fetchConfig from '@utils/fetchConfig';
 import getExcerpt from '@utils/getExcerpt';
 import toHilight from '@utils/toHighlight';
-import styles from '@styles/ArticleDetail.module.scss';
+import styles from '@styles/components/ArticleDetail.module.scss';
 import 'highlight.js/styles/stackoverflow-dark.css';
 import { TArticle, TConfig } from '@/types';
 
@@ -28,17 +28,12 @@ export const ArticleDetail = ({ article, config, isPreview }: Props) => {
       category={category}
       config={config}
     >
-      <main className={styles.main}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.publishedAt}>{publishedAt}</p>
-        <p className={styles.category}>{category && category.name}</p>
-        <div
-          className={styles.post}
-          dangerouslySetInnerHTML={{
-            __html: `${body}`,
-          }}
-        />
-      </main>
+      <div
+        className={styles.article_body}
+        dangerouslySetInnerHTML={{
+          __html: `${body}`,
+        }}
+      />
     </LayoutPost>
   ) : (
     <ErrorPage statusCode={404} />
