@@ -23,6 +23,10 @@ export type TImage = {
   height: number;
 };
 
+export type TimageOption = {
+  fontColor: string;
+};
+
 export type TArticle = {
   id: string;
   image: TImage;
@@ -30,6 +34,7 @@ export type TArticle = {
   body: string;
   category: TCategory;
   tags: TTag[];
+  imageOption: TimageOption | null;
 } & TDateCommon;
 
 export type TProfile = {

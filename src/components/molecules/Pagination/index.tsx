@@ -1,25 +1,55 @@
-import Link from 'next/link';
+import { Link } from '@chakra-ui/react';
 
 type Props = {
   totalCount: number;
   perPage: number;
+  pageNum?: number;
 };
 
-export const Pagination = ({ totalCount, perPage }: Props) => {
+const defaultProps = {
+  pageNum: undefined,
+};
+
+export const Pagination = ({ totalCount, perPage, pageNum }: Props) => {
   const range = (start, end) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
 
+  const totalPage = Math.ceil(totalCount / perPage);
+  const isPrev = pageNum && pageNum > 1;
+  const isNext = !pageNum || totalPage > pageNum;
+
   return (
-    <ul>
-      {range(1, Math.ceil(totalCount / perPage)).map((number) => (
-        <li key={number}>
-          <Link href={`/articles/page/${number}`}>
-            <a>{number}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div
+      style={{ display: 'flex', justifyContent: 'center', fontSize: '1.3rem' }}
+    >
+      {isPrev && (
+        <Link
+          href={`/articles/page/${pageNum - 1}`}
+          style={{ marginRight: 16 }}
+        >
+          <span>Prev</span>
+        </Link>
+      )}
+      <ul
+        style={{ listStyle: 'none', display: 'flex', justifyContent: 'center' }}
+      >
+        {range(1, totalPage).map((number) => (
+          <li key={number} style={{ marginRight: 16 }}>
+            <Link href={`/articles/page/${number}`}>
+              <span style={{ fontSize: '1.3rem' }}>{number}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      {isNext && (
+        <Link href={`/articles/page/${pageNum > 1 ? pageNum + 1 : 2}`}>
+          <span>Next</span>
+        </Link>
+      )}
+    </div>
   );
 };
+
+Pagination.defaultProps = defaultProps;
 
 export default Pagination;

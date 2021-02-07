@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import ArticleList from '@components/molecules/ArticleList';
 import { TArticle, TConfig } from '@/types';
 import Pagination from '@components/molecules/Pagination';
 import LayoutBase from '@components/layouts/LayoutBase';
@@ -15,15 +15,7 @@ export const Home = ({ articles, totalCount, config }: Props) => {
 
   return (
     <LayoutBase config={config}>
-      <div>
-        <ul>
-          {articles.map((article) => (
-            <li key={article.id}>
-              <Link href={`/articles/${article.id}`}>{article.title}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ArticleList articles={articles} />
       <Pagination totalCount={totalCount} perPage={perPage} />
     </LayoutBase>
   );

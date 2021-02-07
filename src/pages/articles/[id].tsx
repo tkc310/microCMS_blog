@@ -14,12 +14,22 @@ export type Props = {
 };
 
 export const ArticleDetail = ({ article, config, isPreview }: Props) => {
-  const { id, image, title, body, category, tags, publishedAt } = article;
+  const {
+    id,
+    image,
+    imageOption,
+    title,
+    body,
+    category,
+    tags,
+    publishedAt,
+  } = article;
 
   return id ? (
     <LayoutPost
       url={`${config.host}articles/${id}`}
       image={image}
+      imageOption={imageOption || undefined}
       title={title}
       description={getExcerpt(body)}
       keywords={tags.map((item) => item.name)}

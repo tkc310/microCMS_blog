@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { TArticle, TConfig } from '@/types';
+import ArticleList from '@components/molecules/ArticleList';
 import { Pagination } from '@components/molecules/Pagination';
 import LayoutBase from '@components/layouts/LayoutBase';
 import fetchConfig from '@utils/fetchConfig';
@@ -21,16 +21,8 @@ export const ArticlePageId = ({
 
   return (
     <LayoutBase url={`${config.host}articles/page/${pageNum}`} config={config}>
-      <>
-        <ul>
-          {articles.map((article) => (
-            <li key={article.id}>
-              <Link href={`/articles/${article.id}`}>{article.title}</Link>
-            </li>
-          ))}
-        </ul>
-        <Pagination totalCount={totalCount} perPage={perPage} />
-      </>
+      <ArticleList articles={articles} />
+      <Pagination totalCount={totalCount} perPage={perPage} pageNum={pageNum} />
     </LayoutBase>
   );
 };

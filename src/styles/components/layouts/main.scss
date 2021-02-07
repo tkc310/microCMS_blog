@@ -2,6 +2,7 @@
 @import '@styles/foundation/_mixin.scss';
 
 $height-header-pc: 72px;
+$height-header-sp: 56px;
 
 .l-container {
 }
@@ -19,6 +20,10 @@ $height-header-pc: 72px;
   border-bottom: 1px solid $border-color-header;
   box-sizing: border-box;
   transition: background-color 300ms linear;
+
+  @include mobile {
+    height: $height-header-sp;
+  }
 
   &_logo {
     font-size: 1.3rem;
@@ -53,6 +58,10 @@ $height-header-pc: 72px;
     padding-bottom: 16px;
     color: rgba(255, 255, 255, 0.7);
     border-bottom: 1px solid rgba(255, 255, 255, 0.54);
+
+    @include mobile {
+      width: 100%;
+    }
   }
   &_icon {
     img {
