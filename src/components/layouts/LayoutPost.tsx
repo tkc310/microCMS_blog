@@ -11,7 +11,7 @@ type Props = {
   description: string;
   keywords: string[];
   date: Date;
-  tags: TTag[] | [];
+  tags: TTag[];
   category: TCategory;
   config: TConfig;
 };
@@ -22,11 +22,14 @@ export const LayoutPost = ({
   title,
   description,
   keywords,
-  date,
+  date: _date,
   tags,
   category,
   config,
 }: Props) => {
+  // publishedAtが存在しないケースがあるための対策
+  const date = Number.isNaN(_date.getTime()) ? new Date() : _date;
+
   return (
     <LayoutBase
       url={url}
