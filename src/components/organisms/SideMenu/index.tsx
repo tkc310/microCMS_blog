@@ -18,8 +18,6 @@ type Props = {
 };
 
 export const SideMenu = ({ onClose, isOpen, tags, categories }: Props) => {
-  console.log('SideMenu', categories, tags);
-
   return (
     <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay>
