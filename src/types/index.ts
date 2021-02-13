@@ -9,12 +9,14 @@ export type TCategory = {
   id: string;
   slug: string;
   name: string;
+  color: string;
 } & TDateCommon;
 
 export type TTag = {
   id: string;
   slug: string;
   name: string;
+  color: string;
 } & TDateCommon;
 
 export type TImage = {

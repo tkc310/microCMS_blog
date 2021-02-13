@@ -1,5 +1,11 @@
 // variable
 
+// width
+$width-content-pc: 680px;
+
+$color-accent: #ffc017;
+$color-dark: rgba(0, 0, 0, 0.9);
+
 // color
 $color-font-base: #292929;
 $color-font-date: #757575;
@@ -13,7 +19,8 @@ $color-font-heading-b: #353535;
 // bg-color
 $bg-color-base: #fff;
 $bg-color-header: $bg-color-base;
-$bg-color-footer: rgba(0, 0, 0, 0.9);
+$bg-color-header-accent: $color-accent;
+$bg-color-footer: $color-dark;
 $bg-color-item: #1a1a1a;
 $bg-color-heading: #f8f8f8;
 $bg-color-menu: #1a1a1a;

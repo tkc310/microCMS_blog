@@ -1,39 +1,97 @@
-import Link from 'next/link';
+import {
+  Heading,
+  Text,
+  VStack,
+  StackDivider,
+  Flex,
+  Box,
+  LinkBox,
+  LinkOverlay,
+} from '@chakra-ui/react';
+import ButtonTag from '@components/atoms/buttons/ButtonTag';
+import ButtonCategory from '@components/atoms/buttons/ButtonCategory';
+import TextDate from '@components/atoms/texts/TextDate';
 import getExcerpt from '@utils/getExcerpt';
+import multiLineTextStyle from '@utils/multiLineTextStyle';
+import getSafeDate from '@utils/getSafeDate';
 import { TArticle } from '@/types';
-import { Heading, Flex, Box, Square, Center } from '@chakra-ui/react';
+import styles from '@styles/components/ArticleList.module.scss';
 
 type Props = {
   articles: TArticle[];
 };
 
+const dynamicStyles = {
+  elipsisLine2: multiLineTextStyle(2),
+};
+
 export const ArticleList = ({ articles }: Props) => {
   return (
-    <ul style={{ marginBottom: 36 }}>
-      {articles.map((article) => (
-        <li key={article.id} style={{ marginBottom: 24 }}>
-          <Link href={`/articles/${article.id}`}>
-            <Flex style={{ cursor: 'pointer' }}>
-              <Center
-                w="160px"
-                style={{ alignItems: 'baseline', marginRight: 24 }}
+    <VStack
+      divider={<StackDivider borderColor="gray.200" />}
+      spacing={4}
+      mb="5"
+      align="stretch"
+    >
+      {articles.map((article, idx) => (
+        <Box key={article.id}>
+          <LinkBox mb="3">
+            <LinkOverlay href={`/articles/${article.id}`}>
+              <Flex
+                px={{ base: '0', md: '3' }}
+                direction={{ base: 'column-reverse', md: 'row' }}
+                className={styles.inner_link}
               >
-                <img
-                  src={article?.image?.url || '/logo480.png'}
-                  alt={article.title}
-                />
-              </Center>
-              <Box style={{ wordBreak: 'break-all' }}>
-                <Heading as="h2" size="lg">
-                  {article.title}
-                </Heading>
-                <p>{getExcerpt(article.body)}</p>
-              </Box>
-            </Flex>
-          </Link>
-        </li>
+                <Box
+                  flex="1"
+                  mr={{ base: '0', md: '3' }}
+                  style={{ wordBreak: 'break-all' }}
+                >
+                  <Text mb="1">
+                    <TextDate date={getSafeDate(article?.publishedAt)} />
+                  </Text>
+                  <Heading
+                    as="h2"
+                    size="md"
+                    mb="1"
+                    style={dynamicStyles.elipsisLine2}
+                  >
+                    {article.title}
+                  </Heading>
+                  <Text>{getExcerpt(article.body)}</Text>
+                </Box>
+                <Box className={styles.image}>
+                  <img
+                    src={article?.image?.url || `/neko_${(idx % 2) + 1}.png`}
+                    alt={article.title}
+                  />
+                </Box>
+              </Flex>
+            </LinkOverlay>
+          </LinkBox>
+
+          <Box px={{ base: '0', md: '3' }} className={styles.meta}>
+            <div className={styles.category}>
+              <span className={styles.category_label}>Category:</span>
+              <ButtonCategory category={article.category} />
+            </div>
+
+            {article.tags.length && (
+              <div className={styles.tag}>
+                <div className={styles.tag_label}>Tags:</div>
+                <ul className={styles.tag_list}>
+                  {article.tags.map((tag) => (
+                    <li className={styles.tag_item} key={tag.id}>
+                      <ButtonTag tag={tag} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </Box>
+        </Box>
       ))}
-    </ul>
+    </VStack>
   );
 };
 

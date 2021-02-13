@@ -1,5 +1,5 @@
-@import '@styles/foundation/_variable.scss';
-@import '@styles/foundation/_mixin.scss';
+@import '@styles/foundation/variable';
+@import '@styles/foundation/mixin';
 
 $height-header-pc: 72px;
 $height-header-sp: 56px;
@@ -14,12 +14,18 @@ $height-header-sp: 56px;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  background: $bg-color-header;
   height: $height-header-pc;
   padding: 0 64px;
   border-bottom: 1px solid $border-color-header;
   box-sizing: border-box;
   transition: background-color 300ms linear;
+  background: $color-dark;
+  color: #fff;
+
+  &.is-scrolled {
+    background: $bg-color-header;
+    color: $color-font-base;
+  }
 
   @include mobile {
     height: $height-header-sp;
@@ -125,18 +131,32 @@ $height-header-sp: 56px;
   }
 }
 
-.l-content {
+@mixin l-content {
   overflow: hidden;
-  width: 680px;
   min-height: calc(100vh - 32px);
-  padding: ($height-header-pc + 32px) 0 56px;
   margin: 0 auto;
   text-align: left;
+
   @include mobile {
     width: 100%;
-    padding: ($height-header-pc + 16px) 0 32px;
   }
+}
+
+.l-content {
+  @include l-content;
+  padding: ($height-header-pc + 32px) 0 56px;
+  width: $width-content-pc;
+
   @include mobile {
-    padding: ($height-header-pc + 16px) 16px 32px;
+    padding: ($height-header-sp + 16px) 16px 32px;
+  }
+
+  &--article {
+    @include l-content;
+    padding: $height-header-pc 0 56px;
+
+    @include mobile {
+      padding: $height-header-sp 0 32px;
+    }
   }
 }

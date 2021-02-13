@@ -1,18 +1,24 @@
-import Link from 'next/link';
 import { TCategory } from '@/types';
-import { Tag, TagLabel } from '@chakra-ui/react';
+import { Tag, TagLabel, LinkBox, LinkOverlay } from '@chakra-ui/react';
 
 type Props = {
   category: TCategory;
 };
 
 export const ButtonCategory = ({ category }: Props) => {
+  let { color } = category;
+  if (typeof category.color !== 'string') {
+    color = 'gray';
+  }
+
   return (
-    <Link href={`/articles/categories/${category.slug}`}>
-      <Tag size="sm" key={category.id} variant="outline" colorScheme="blue">
-        <TagLabel>{category?.name}</TagLabel>
-      </Tag>
-    </Link>
+    <LinkBox>
+      <LinkOverlay href={`/articles/categories/${category.slug}`}>
+        <Tag size="md" key={category.id} variant="outline" colorScheme={color}>
+          <TagLabel>{category?.name}</TagLabel>
+        </Tag>
+      </LinkOverlay>
+    </LinkBox>
   );
 };
 

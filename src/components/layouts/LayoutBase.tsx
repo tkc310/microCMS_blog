@@ -1,9 +1,6 @@
 import { ReactNode } from 'react';
 import LayoutRoot from '@/components/layouts/LayoutRoot';
-import MetaBasic from '@/components/atoms/meta/MetaBasic';
-import MetaJsonLd from '@/components/atoms/meta/MetaJsonLd';
-import MetaOpenGraph from '@components/atoms/meta/MetaOpenGraph';
-import MetaTwitterCard from '@components/atoms/meta/MetaTwitterCard';
+import MetaGroup from '@components/molecules/MetaGroup';
 import { TConfig, TImage } from '@/types';
 
 type Props = {
@@ -38,39 +35,17 @@ export const LayoutBase = ({
 }: Props) => {
   return (
     <LayoutRoot config={config}>
-      <MetaBasic
-        url={url}
-        title={title}
-        keywords={keywords}
-        description={description}
-        config={config}
-      />
-      <MetaJsonLd
+      <MetaGroup
         url={url}
         image={image}
         title={title}
-        keywords={keywords}
         description={description}
+        keywords={keywords}
         date={date}
         config={config}
       />
-      <MetaOpenGraph
-        url={url}
-        image={image}
-        title={title}
-        description={description}
-        config={config}
-      />
-      <MetaTwitterCard
-        url={url}
-        title={title}
-        description={description}
-        config={config}
-      />
 
-      <div className="l-content">
-        <article>{children}</article>
-      </div>
+      <div className="l-content">{children}</div>
     </LayoutRoot>
   );
 };

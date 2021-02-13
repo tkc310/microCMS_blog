@@ -1,9 +1,9 @@
-@import '@styles/foundation/_variable.scss';
-@import '@styles/foundation/_mixin.scss';
+@import '@styles/foundation/variable';
+@import '@styles/foundation/mixin';
 
 html,
 body {
-  background: $bg-color-base;
+  background: $color-dark;
 
   font-family: $font-family-base;
   color: $color-font-base;

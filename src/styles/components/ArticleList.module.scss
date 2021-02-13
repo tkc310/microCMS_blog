@@ -1,0 +1,73 @@
+@import '@styles/foundation/variable';
+@import '@styles/foundation/mixin';
+
+.inner_link {
+  cursor: 'pointer';
+}
+
+.image {
+  width: 240px;
+  align-items: baseline;
+  max-height: 160px;
+  overflow: hidden;
+  img {
+    max-height: inherit;
+    margin: 0 auto;
+  }
+
+  @include mobile {
+    width: 100%;
+    max-height: inherit;
+    margin-bottom: 8px;
+    img {
+      margin: 0;
+    }
+  }
+}
+
+.meta {
+  display: flex;
+
+  @include mobile {
+    display: block;
+  }
+}
+
+.category {
+  display: flex;
+  align-items: start;
+  font-size: 0.9rem;
+  margin-right: 24px;
+
+  &_label {
+    margin-right: 8px;
+  }
+
+  @include mobile {
+    margin-bottom: 16px;
+  }
+}
+
+.tag {
+  display: flex;
+  align-items: start;
+  font-size: 0.9rem;
+
+  @include mobile {
+    align-items: start;
+  }
+
+  &_label {
+    margin-right: 8px;
+  }
+
+  &_list {
+    list-style: none;
+  }
+
+  &_item {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+}

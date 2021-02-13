@@ -3,9 +3,8 @@ import LayoutPost from '@/components/layouts/LayoutPost';
 import fetchConfig from '@utils/fetchConfig';
 import getExcerpt from '@utils/getExcerpt';
 import toHilight from '@utils/toHighlight';
-import styles from '@styles/components/ArticleDetail.module.scss';
-import 'highlight.js/styles/stackoverflow-dark.css';
 import { TArticle, TConfig } from '@/types';
+import 'highlight.js/styles/stackoverflow-dark.css';
 
 export type Props = {
   article: TArticle;
@@ -39,7 +38,6 @@ export const ArticleDetail = ({ article, config, isPreview }: Props) => {
       config={config}
     >
       <div
-        className={styles.article_body}
         dangerouslySetInnerHTML={{
           __html: `${body}`,
         }}

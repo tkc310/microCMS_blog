@@ -1,10 +1,13 @@
 import { ReactNode } from 'react';
-import LayoutBase from '@/components/layouts/LayoutBase';
+import LayoutRoot from '@/components/layouts/LayoutRoot';
+import MetaGroup from '@components/molecules/MetaGroup';
 import ButtonTag from '@components/atoms/buttons/ButtonTag';
 import ButtonCategory from '@components/atoms/buttons/ButtonCategory';
 import TextDate from '@components/atoms/texts/TextDate';
 import { TCategory, TTag, TConfig, TImage, TimageOption } from '@/types';
 import styles from '@styles/components/ArticleDetail.module.scss';
+import getSafeDate from '@utils/getSafeDate';
+import getImageParam from '@utils/getImageParam';
 
 type Props = {
   children: ReactNode;
@@ -33,69 +36,67 @@ export const LayoutPost = ({
   title,
   description,
   keywords,
-  date: _date,
+  date,
   tags,
   category,
   config,
 }: Props) => {
-  // publishedAtが存在しないケースがあるための対策
-  const date = Number.isNaN(_date.getTime()) ? new Date() : _date;
-  const imgParams = [
-    `txt=${title}`,
-    `txt-size=${100}`,
-    `txt-color=${imageOption.fontColor || '292929'}`,
-    `txt-align=bottom,left`,
-    `txt-pad=56`,
-    `txt-fit=max`,
-    `txt-font=Futura%20Condensed%20Medium`,
-    `w=1360`,
-  ].join('&');
+  const safeDate = getSafeDate(date);
+  const imgParams = getImageParam({
+    txt: '',
+    color: imageOption.fontColor,
+  });
 
   return (
-    <LayoutBase
-      url={url}
-      image={image}
-      title={title}
-      description={description}
-      keywords={keywords}
-      date={date}
-      config={config}
-    >
-      <div className={styles.article}>
-        <section style={{ marginBottom: 24 }}>
-          <div className={styles.capture}>
-            <img src={`${image.url}?${imgParams}`} alt={title} />
-            <h1 className={styles.title}>{title}</h1>
-          </div>
+    <LayoutRoot config={config}>
+      <MetaGroup
+        url={url}
+        image={image}
+        title={title}
+        description={description}
+        keywords={keywords}
+        date={date}
+        config={config}
+      />
 
-          <div style={{ marginBottom: 8 }}>
-            <div>
-              <TextDate date={date} />
-            </div>
-          </div>
-          <div style={{ display: 'flex' }}>
-            <div style={{ fontSize: '.9rem', margin: '0 24px 8px 0' }}>
-              <span style={{ marginRight: 8 }}>Category:</span>
-              <ButtonCategory category={category} />
-            </div>
-            {tags.length && (
-              <div style={{ display: 'flex', fontSize: '.9rem' }}>
-                <div style={{ marginRight: 8 }}>Tags:</div>
-                <ul className={styles.tag_list}>
-                  {tags.map((tag) => (
-                    <li className={styles.tag_list} key={tag.id}>
-                      <ButtonTag tag={tag} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+      <article className="l-content--article">
+        <section className={styles.article_header}>
+          <div
+            className={styles.capture}
+            style={{
+              backgroundImage: `url(${
+                image.url || config.siteImage.url
+              }?${imgParams})`,
+            }}
+          />
+          <h1 className={styles.title}>{title}</h1>
+          <div className={styles.date}>
+            <TextDate date={safeDate} />
           </div>
         </section>
 
-        <section className="article-contents">{children}</section>
-      </div>
-    </LayoutBase>
+        <section className={styles.article_meta}>
+          <div className={styles.category}>
+            <span className={styles.category_label}>Category:</span>
+            <ButtonCategory category={category} />
+          </div>
+          {tags.length && (
+            <div className={styles.tag}>
+              <div className={styles.tag_label}>Tags:</div>
+              <ul className={styles.tag_list}>
+                {tags.map((tag) => (
+                  <li className={styles.tag_item} key={tag.id}>
+                    <ButtonTag tag={tag} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+
+        <section className={styles.article_body}>{children}</section>
+      </article>
+    </LayoutRoot>
   );
 };
 

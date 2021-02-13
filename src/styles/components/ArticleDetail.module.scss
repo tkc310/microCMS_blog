@@ -1,17 +1,118 @@
+@import '@styles/foundation/variable';
+@import '@styles/foundation/mixin';
+
+.article_header {
+  position: relative;
+  height: 320px;
+  margin-bottom: 24px;
+  color: #fff;
+
+  @include mobile {
+    height: 240px;
+    margin-bottom: 16px;
+  }
+}
+
 .capture {
+  height: 100%;
   margin-bottom: 16px;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .title {
-  display: none;
+  position: absolute;
+  bottom: 0;
+  padding: 48px 24px;
+  font-size: 1.7rem;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 1px rgb(0 0 0 / 70%);
+  word-break: break-all;
+
+  @include mobile {
+    padding: 16px;
+    font-size: 1.6rem;
+    line-height: 1.1;
+  }
 }
 
-.tag_list {
-  list-style: none;
+.date {
+  position: absolute;
+  bottom: 0;
+  padding: 16px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgb(0 0 0 / 70%);
+  letter-spacing: 0.05rem;
+  font-family: sans-serif;
+}
+
+.article_meta {
+  display: flex;
+  width: $width-content-pc;
+  margin: 0 auto 24px;
+
+  @include mobile {
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+}
+
+.category {
+  display: flex;
+  align-items: start;
+  font-size: 0.9rem;
+  margin-right: 24px;
+
+  &_label {
+    margin-right: 8px;
+  }
+
+  @include mobile {
+    margin-bottom: 16px;
+  }
+}
+
+.tag {
+  display: flex;
+  align-items: start;
+  font-size: 0.9rem;
+
+  @include mobile {
+    align-items: start;
+  }
+
+  &_label {
+    margin-right: 8px;
+  }
+
+  &_list {
+    list-style: none;
+  }
+
+  &_item {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
 }
 
 // 本文のスタイル
 .article_body {
+  width: $width-content-pc;
+  margin: 0 auto;
+
+  @include mobile {
+    width: 100%;
+    padding: 0 16px;
+  }
+
   // typography
   h1 {
     font-size: 2.6rem;

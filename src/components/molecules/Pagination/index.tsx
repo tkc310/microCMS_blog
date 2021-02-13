@@ -35,9 +35,16 @@ export const Pagination = ({ totalCount, perPage, pageNum }: Props) => {
       >
         {range(1, totalPage).map((number) => (
           <li key={number} style={{ marginRight: 16 }}>
-            <Link href={`/articles/page/${number}`}>
-              <span style={{ fontSize: '1.3rem' }}>{number}</span>
-            </Link>
+            {(!pageNum && String(number) === '1') ||
+            String(pageNum) === String(number) ? (
+              <span style={{ fontSize: '1.3rem', color: 'gray' }}>
+                {number}
+              </span>
+            ) : (
+              <Link href={`/articles/page/${number}`}>
+                <span style={{ fontSize: '1.3rem' }}>{number}</span>
+              </Link>
+            )}
           </li>
         ))}
       </ul>

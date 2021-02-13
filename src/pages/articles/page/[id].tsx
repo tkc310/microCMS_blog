@@ -11,7 +11,7 @@ type Props = {
   config: TConfig;
 };
 
-export const ArticlePageId = ({
+export const ArticlePages = ({
   articles,
   totalCount,
   pageNum,
@@ -76,4 +76,4 @@ export const getStaticProps = async (context) => {
   };
 };
 
-export default ArticlePageId;
+export default ArticlePages;
