@@ -3,10 +3,12 @@ import ArticleDetail, {
   getStaticPathsFactory,
   getStaticPropsFactory,
 } from '@pages/articles/[id]';
-import { TArticle, TConfig } from '@/types';
+import { TArticle, TCategory, TTag, TConfig } from '@/types';
 
 export type Props = {
   article: TArticle;
+  categories: TCategory[];
+  tags: TTag[];
   config: TConfig;
 };
 

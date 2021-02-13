@@ -4,23 +4,33 @@ import ArticleList from '@components/molecules/ArticleList';
 import LayoutBase from '@components/layouts/LayoutBase';
 import getStaticPathsFactory from '@utils/getStaticPathsFactory/tagCategory';
 import getStaticPropsFactory from '@utils/getStaticPropsFactory/tagCategory';
-import { TArticle, TConfig, TCategory } from '@/types';
+import { TArticle, TConfig, TCategory, TTag } from '@/types';
 
 type Props = {
   articles: Array<TArticle>;
   category: TCategory | null;
+  categories: TCategory[];
+  tags: TTag[];
   config: TConfig;
 };
 
-export const ArticleCategories = ({ articles, category, config }: Props) => {
+export const ArticleCategories = ({
+  articles,
+  category,
+  categories,
+  tags,
+  config,
+}: Props) => {
   return !category || !articles.length ? (
-    <ErrorPage config={config} />
+    <ErrorPage categories={categories} tags={tags} config={config} />
   ) : (
     <LayoutBase
       url={`${config.host}articles/categories/${category.slug}`}
       title={category.name}
       description={`${category.name}の記事一覧`}
       keywords={[category.name]}
+      categories={categories}
+      tags={tags}
       config={config}
     >
       <Heading

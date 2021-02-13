@@ -12,6 +12,9 @@ export const getStaticPropsFactory = (type: 'tag' | 'category') => {
     };
 
     const config = await fetchConfig();
+    const categories = await fetchCategories();
+    const tags = await fetchTags();
+
     const typeResult = isTag
       ? await fetchTags(slug)
       : await fetchCategories(slug);
@@ -28,6 +31,8 @@ export const getStaticPropsFactory = (type: 'tag' | 'category') => {
     const { contents: articles } = data;
     const props = {
       articles,
+      categories,
+      tags,
       config,
     };
 

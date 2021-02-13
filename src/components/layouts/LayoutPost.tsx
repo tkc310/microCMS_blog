@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Heading, Text } from '@chakra-ui/react';
 import LayoutRoot from '@/components/layouts/LayoutRoot';
 import MetaGroup from '@components/molecules/MetaGroup';
 import ButtonTag from '@components/atoms/buttons/ButtonTag';
@@ -20,6 +21,8 @@ type Props = {
   date: Date;
   tags: TTag[];
   category: TCategory;
+  tagsAtMenu: TTag[];
+  categoriesAtMenu: TCategory[];
   config: TConfig;
 };
 
@@ -39,6 +42,8 @@ export const LayoutPost = ({
   date,
   tags,
   category,
+  tagsAtMenu,
+  categoriesAtMenu,
   config,
 }: Props) => {
   const safeDate = getSafeDate(date);
@@ -47,8 +52,12 @@ export const LayoutPost = ({
     color: imageOption.fontColor,
   });
 
+  const black = '#292929';
+  const color = imageOption.fontColor || black;
+  const isDark = color === black;
+
   return (
-    <LayoutRoot config={config}>
+    <LayoutRoot categories={categoriesAtMenu} tags={tagsAtMenu} config={config}>
       <MetaGroup
         url={url}
         image={image}
@@ -65,14 +74,23 @@ export const LayoutPost = ({
             className={styles.capture}
             style={{
               backgroundImage: `url(${
-                image.url || config.siteImage.url
+                image.url || '/neko_2.png'
               }?${imgParams})`,
             }}
           />
-          <h1 className={styles.title}>{title}</h1>
-          <div className={styles.date}>
+          <Heading
+            as="h1"
+            className={isDark ? styles.title_dark : styles.title_light}
+            color={color}
+          >
+            {title}
+          </Heading>
+          <Text
+            color={color}
+            className={isDark ? styles.date_dark : styles.date_light}
+          >
             <TextDate date={safeDate} />
-          </div>
+          </Text>
         </section>
 
         <section className={styles.article_meta}>

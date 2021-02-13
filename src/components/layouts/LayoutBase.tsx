@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import LayoutRoot from '@/components/layouts/LayoutRoot';
 import MetaGroup from '@components/molecules/MetaGroup';
-import { TConfig, TImage } from '@/types';
+import { TCategory, TConfig, TTag, TImage } from '@/types';
 
 type Props = {
   url?: string;
@@ -10,6 +10,8 @@ type Props = {
   description?: string;
   keywords?: string[];
   date?: Date;
+  categories: TCategory[];
+  tags: TTag[];
   config: TConfig;
   children: ReactNode;
 };
@@ -31,10 +33,12 @@ export const LayoutBase = ({
   description,
   keywords,
   date,
+  categories,
+  tags,
   config,
 }: Props) => {
   return (
-    <LayoutRoot config={config}>
+    <LayoutRoot categories={categories} tags={tags} config={config}>
       <MetaGroup
         url={url}
         image={image}

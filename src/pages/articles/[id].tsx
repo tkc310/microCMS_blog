@@ -1,18 +1,28 @@
-import ErrorPage from 'next/error';
+import ErrorPage from '@pages/404';
 import LayoutPost from '@/components/layouts/LayoutPost';
 import fetchConfig from '@utils/fetchConfig';
 import getExcerpt from '@utils/getExcerpt';
 import toHilight from '@utils/toHighlight';
-import { TArticle, TConfig } from '@/types';
+import { TArticle, TCategory, TTag, TConfig } from '@/types';
+import fetchTags from '@/utils/fetchTags';
+import fetchCategories from '@/utils/fetchCategories';
 import 'highlight.js/styles/stackoverflow-dark.css';
 
 export type Props = {
   article: TArticle;
+  categories: TCategory[];
+  tags: TTag[];
   config: TConfig;
   isPreview?: boolean;
 };
 
-export const ArticleDetail = ({ article, config, isPreview }: Props) => {
+export const ArticleDetail = ({
+  article,
+  categories: categoriesAtMenu,
+  tags: tagsAtMenu,
+  config,
+  isPreview,
+}: Props) => {
   const {
     id,
     image,
@@ -35,6 +45,8 @@ export const ArticleDetail = ({ article, config, isPreview }: Props) => {
       date={isPreview ? new Date() : new Date(publishedAt)}
       tags={tags || []}
       category={category}
+      categoriesAtMenu={categoriesAtMenu}
+      tagsAtMenu={tagsAtMenu}
       config={config}
     >
       <div
@@ -44,7 +56,11 @@ export const ArticleDetail = ({ article, config, isPreview }: Props) => {
       />
     </LayoutPost>
   ) : (
-    <ErrorPage statusCode={404} />
+    <ErrorPage
+      config={config}
+      categories={categoriesAtMenu}
+      tags={tagsAtMenu}
+    />
   );
 };
 
@@ -81,7 +97,10 @@ export const getStaticPropsFactory = () => {
         'X-API-KEY': process.env.API_KEY,
       },
     };
+
     const config = await fetchConfig();
+    const tags = await fetchTags();
+    const categories = await fetchCategories();
     let url = `${config.apiHost}articles/${id}`;
 
     if (preview) {
@@ -102,6 +121,8 @@ export const getStaticPropsFactory = () => {
     return {
       props: {
         article,
+        tags,
+        categories,
         config,
       },
     };

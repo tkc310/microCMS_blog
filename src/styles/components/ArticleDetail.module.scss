@@ -5,7 +5,6 @@
   position: relative;
   height: 320px;
   margin-bottom: 24px;
-  color: #fff;
 
   @include mobile {
     height: 240px;
@@ -19,6 +18,8 @@
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  // background-position: top;
+  // background-size: contain;
   background-repeat: no-repeat;
 }
 
@@ -30,14 +31,20 @@
   font-weight: bold;
   line-height: 1.2;
   letter-spacing: 1px;
-  text-shadow: 1px 1px 1px rgb(0 0 0 / 70%);
   word-break: break-all;
 
   @include mobile {
-    padding: 16px;
     font-size: 1.6rem;
     line-height: 1.1;
   }
+}
+.title_dark {
+  @extend .title;
+  text-shadow: 2px 2px 2px rgb(255 255 255 / 75%);
+}
+.title_light {
+  @extend .title;
+  text-shadow: 2px 2px 2px rgb(0 0 0 / 75%);
 }
 
 .date {
@@ -46,9 +53,16 @@
   padding: 16px 24px;
   font-size: 1rem;
   font-weight: bold;
-  text-shadow: 1px 1px 1px rgb(0 0 0 / 70%);
   letter-spacing: 0.05rem;
   font-family: sans-serif;
+}
+.date_dark {
+  @extend .date;
+  text-shadow: 2px 2px 2px rgb(255 255 255 / 75%);
+}
+.date_light {
+  @extend .date;
+  text-shadow: 2px 2px 2px rgb(0 0 0 / 75%);
 }
 
 .article_meta {

@@ -1,0 +1,32 @@
+@import '@styles/foundation/variable';
+@import '@styles/foundation/mixin';
+
+.category {
+  margin-bottom: 24px;
+  &_title {
+    margin-bottom: 16px;
+  }
+  &_list {
+    list-style: none;
+  }
+  &_item {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+.tag {
+  margin-bottom: 24px;
+  &_title {
+    margin-bottom: 16px;
+  }
+  &_list {
+    list-style: none;
+  }
+  &_item {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+}

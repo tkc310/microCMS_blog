@@ -1,13 +1,17 @@
-import { TArticle, TConfig } from '@/types';
+import { TArticle, TCategory, TTag, TConfig } from '@/types';
 import ArticleList from '@components/molecules/ArticleList';
 import { Pagination } from '@components/molecules/Pagination';
 import LayoutBase from '@components/layouts/LayoutBase';
 import fetchConfig from '@utils/fetchConfig';
+import fetchCategories from '@/utils/fetchCategories';
+import fetchTags from '@/utils/fetchTags';
 
 type Props = {
   articles: Array<TArticle>;
   totalCount: number;
   pageNum: number;
+  categories: TCategory[];
+  tags: TTag[];
   config: TConfig;
 };
 
@@ -15,12 +19,19 @@ export const ArticlePages = ({
   articles,
   totalCount,
   pageNum,
+  categories,
+  tags,
   config,
 }: Props) => {
   const { perPage } = config;
 
   return (
-    <LayoutBase url={`${config.host}articles/page/${pageNum}`} config={config}>
+    <LayoutBase
+      url={`${config.host}articles/page/${pageNum}`}
+      config={config}
+      categories={categories}
+      tags={tags}
+    >
       <ArticleList articles={articles} />
       <Pagination totalCount={totalCount} perPage={perPage} pageNum={pageNum} />
     </LayoutBase>
@@ -57,6 +68,8 @@ export const getStaticProps = async (context) => {
 
   const config = await fetchConfig();
   const { perPage } = config;
+  const categories = await fetchCategories();
+  const tags = await fetchTags();
 
   const offset = (pageNum - 1) * perPage;
   const url = `${config.apiHost}articles`;
@@ -71,6 +84,8 @@ export const getStaticProps = async (context) => {
       articles,
       totalCount,
       pageNum,
+      categories,
+      tags,
       config,
     },
   };

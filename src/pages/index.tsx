@@ -1,20 +1,30 @@
 import ArticleList from '@components/molecules/ArticleList';
-import { TArticle, TConfig } from '@/types';
+import { TArticle, TCategory, TTag, TConfig } from '@/types';
 import Pagination from '@components/molecules/Pagination';
 import LayoutBase from '@components/layouts/LayoutBase';
 import fetchConfig from '@utils/fetchConfig';
+import fetchCategories from '@/utils/fetchCategories';
+import fetchTags from '@/utils/fetchTags';
 
 type Props = {
   articles: Array<TArticle>;
   totalCount: number;
+  categories: TCategory[];
+  tags: TTag[];
   config: TConfig;
 };
 
-export const Home = ({ articles, totalCount, config }: Props) => {
+export const Home = ({
+  articles,
+  totalCount,
+  categories,
+  tags,
+  config,
+}: Props) => {
   const { perPage } = config;
 
   return (
-    <LayoutBase config={config}>
+    <LayoutBase categories={categories} tags={tags} config={config}>
       <ArticleList articles={articles} />
       <Pagination totalCount={totalCount} perPage={perPage} />
     </LayoutBase>
@@ -27,6 +37,8 @@ export const getStaticProps = async () => {
   };
   const config = await fetchConfig();
   const { perPage, apiHost } = config;
+  const categories = await fetchCategories();
+  const tags = await fetchTags();
 
   const endPoint = `${apiHost}articles`;
   const pagingParams = [`offset=${0}`, `limit=${perPage}`];
@@ -42,6 +54,8 @@ export const getStaticProps = async () => {
     props: {
       articles,
       totalCount,
+      categories,
+      tags,
       config,
     },
   };

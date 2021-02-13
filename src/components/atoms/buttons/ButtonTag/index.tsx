@@ -5,7 +5,7 @@ type Props = {
   tag: TTag;
 };
 
-export default function TagButton({ tag }: Props) {
+export const ButtonTag = ({ tag }: Props) => {
   return (
     <LinkBox>
       <LinkOverlay href={`/articles/tags/${tag.slug}`}>
@@ -21,4 +21,6 @@ export default function TagButton({ tag }: Props) {
       </LinkOverlay>
     </LinkBox>
   );
-}
+};
+
+export default ButtonTag;
