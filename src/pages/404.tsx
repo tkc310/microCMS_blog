@@ -2,6 +2,8 @@ import { Heading, Text, Box } from '@chakra-ui/react';
 import LayoutRoot from '@components/layouts/LayoutRoot';
 import fetchConfig from '@utils/fetchConfig';
 import { TCategory, TConfig, TTag } from '@/types';
+import fetchCategories from '@/utils/fetchCategories';
+import fetchTags from '@/utils/fetchTags';
 
 type Props = {
   categories: TCategory[];
@@ -22,8 +24,13 @@ export const Custom404 = ({ categories, tags, config }: Props) => (
 
 export const getStaticProps = async () => {
   const config = await fetchConfig();
+  const categories = await fetchCategories();
+  const tags = await fetchTags();
+
   return {
     props: {
+      categories,
+      tags,
       config,
     },
   };

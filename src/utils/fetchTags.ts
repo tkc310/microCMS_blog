@@ -1,8 +1,4 @@
-import { TTag } from '@/types';
-
-type TRet = TTag[] | TTag;
-
-export const fetchTags = async (slug?: string): TRet => {
+export const fetchTags = async (slug?: string) => {
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };

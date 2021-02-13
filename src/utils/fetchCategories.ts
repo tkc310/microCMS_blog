@@ -1,8 +1,4 @@
-import { TCategory } from '@/types';
-
-type TRet = TCategory[] | TCategory;
-
-export const fetchCategories = async (slug?: string): TRet => {
+export const fetchCategories = async (slug?: string) => {
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };

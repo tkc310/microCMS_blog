@@ -11,7 +11,7 @@ export const Profile = ({ profile }: Props) => {
     description,
     image,
     githubAccountName,
-    twitterAccountName,
+    // twitterAccountName,
   } = profile;
 
   return (
@@ -32,7 +32,7 @@ export const Profile = ({ profile }: Props) => {
       <div className="l-footer_sns">
         <SocialList
           githubAccountName={githubAccountName}
-          twitterAccountName={twitterAccountName}
+          // twitterAccountName={twitterAccountName}
         />
       </div>
     </div>
