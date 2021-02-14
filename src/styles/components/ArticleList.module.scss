@@ -35,7 +35,7 @@
 
 .category {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   font-size: 0.9rem;
   margin-right: 24px;
 
@@ -50,11 +50,11 @@
 
 .tag {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   font-size: 0.9rem;
 
   @include mobile {
-    align-items: start;
+    align-items: flex-start;
   }
 
   &_label {
