@@ -4,9 +4,11 @@ import ArticleDetail, {
   getStaticPropsFactory,
 } from '@pages/articles/[id]';
 import { TArticle, TCategory, TTag, TConfig } from '@/types';
+import { MdxRemote } from 'next-mdx-remote/types';
 
 export type Props = {
   article: TArticle;
+  mdxSource: MdxRemote.Source;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
