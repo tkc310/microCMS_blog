@@ -9,7 +9,6 @@ export const Profile = ({ profile }: Props) => {
   const {
     name,
     description,
-    image,
     githubAccountName,
     // twitterAccountName,
   } = profile;
