@@ -36,9 +36,10 @@ $border-color-list: $border-color-base;
 $border-color-heading: #414141;
 
 // font-family
-$font-family-base: 'Noto Serif JP', sans-serif !important;
+$font-family-base: sans-serif !important;
 $font-family-ja: $font-family-base;
 $font-family-en: sans-serif;
+$font-family-logo: 'Noto Serif JP';
 
 // FontSize
 $font_size_base: 1rem;
