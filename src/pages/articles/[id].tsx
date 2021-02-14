@@ -2,14 +2,17 @@ import ErrorPage from '@pages/404';
 import LayoutPost from '@/components/layouts/LayoutPost';
 import fetchConfig from '@utils/fetchConfig';
 import getExcerpt from '@utils/getExcerpt';
-import toHilight from '@utils/toHighlight';
+import toHighlight from '@utils/toHighlight';
 import { TArticle, TCategory, TTag, TConfig } from '@/types';
 import fetchTags from '@/utils/fetchTags';
 import fetchCategories from '@/utils/fetchCategories';
 import 'highlight.js/styles/stackoverflow-dark.css';
+import mdx2html from '@utils/mdx2html';
+import { MdxRemote } from 'next-mdx-remote/types';
 
 export type Props = {
   article: TArticle;
+  mdxSource: MdxRemote.Source;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
@@ -18,6 +21,7 @@ export type Props = {
 
 export const ArticleDetail = ({
   article,
+  mdxSource,
   categories: categoriesAtMenu,
   tags: tagsAtMenu,
   config,
@@ -28,7 +32,6 @@ export const ArticleDetail = ({
     image,
     imageOption,
     title,
-    body,
     category,
     tags,
     publishedAt,
@@ -40,7 +43,9 @@ export const ArticleDetail = ({
       image={image}
       imageOption={imageOption || undefined}
       title={title}
-      description={getExcerpt(body)}
+      description={getExcerpt(
+        article.excerpt || String(mdxSource.renderedOutput)
+      )}
       keywords={tags.map((item) => item.name)}
       date={isPreview ? new Date() : new Date(publishedAt)}
       tags={tags || []}
@@ -51,7 +56,7 @@ export const ArticleDetail = ({
     >
       <div
         dangerouslySetInnerHTML={{
-          __html: `${body}`,
+          __html: `${mdxSource}`,
         }}
       />
     </LayoutPost>
@@ -115,12 +120,14 @@ export const getStaticPropsFactory = () => {
       .then((res) => res.json())
       .catch(() => null);
 
+    let mdxSource = await mdx2html(article.body);
     // シンタックスハイライトの付与
-    article.body = toHilight(article.body);
+    mdxSource = toHighlight(mdxSource);
 
     return {
       props: {
         article,
+        mdxSource,
         tags,
         categories,
         config,

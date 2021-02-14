@@ -23,6 +23,7 @@ type Props = {
 
 const dynamicStyles = {
   elipsisLine2: multiLineTextStyle(2),
+  elipsisLine4: multiLineTextStyle(4),
 };
 
 export const ArticleList = ({ articles }: Props) => {
@@ -37,6 +38,9 @@ export const ArticleList = ({ articles }: Props) => {
         <Box key={article.id}>
           <LinkBox mb="3">
             <LinkOverlay href={`/articles/${article.id}`}>
+              <Text mb="1" px={{ base: '0', md: '3' }}>
+                <TextDate date={getSafeDate(article?.publishedAt)} />
+              </Text>
               <Flex
                 px={{ base: '0', md: '3' }}
                 direction={{ base: 'column-reverse', md: 'row' }}
@@ -47,9 +51,6 @@ export const ArticleList = ({ articles }: Props) => {
                   mr={{ base: '0', md: '3' }}
                   style={{ wordBreak: 'break-all' }}
                 >
-                  <Text mb="1">
-                    <TextDate date={getSafeDate(article?.publishedAt)} />
-                  </Text>
                   <Heading
                     as="h2"
                     size="md"
@@ -58,7 +59,9 @@ export const ArticleList = ({ articles }: Props) => {
                   >
                     {article.title}
                   </Heading>
-                  <Text>{getExcerpt(article.body)}</Text>
+                  <Text style={dynamicStyles.elipsisLine4}>
+                    {getExcerpt(article.excerpt || article.body)}
+                  </Text>
                 </Box>
                 <Box className={styles.image}>
                   <img

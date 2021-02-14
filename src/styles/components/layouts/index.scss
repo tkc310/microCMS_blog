@@ -54,6 +54,7 @@
 
 .l-footer {
   position: relative;
+  z-index: 1;
   padding: 8px 16px;
   background: $bg-color-footer;
   &_profile {

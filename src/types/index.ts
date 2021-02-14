@@ -33,6 +33,7 @@ export type TArticle = {
   id: string;
   image: TImage;
   title: string;
+  excerpt: string;
   body: string;
   category: TCategory;
   tags: TTag[];
