@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Heading, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 import LayoutRoot from '@/components/layouts/LayoutRoot';
 import MetaGroup from '@components/molecules/MetaGroup';
 import ButtonTag from '@components/atoms/buttons/ButtonTag';
