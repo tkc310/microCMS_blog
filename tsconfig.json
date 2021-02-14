@@ -7,8 +7,10 @@
       "@pages/*": ["src/pages/*"],
       "@types/*": ["src/types/*"],
       "@components/*": ["src/components/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@assets/*": ["src/assets/*"]
     },
+    "typeRoots": ["src/types", "node_modules/@types"],
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
