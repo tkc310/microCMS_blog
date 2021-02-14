@@ -47,10 +47,7 @@ export const LayoutPost = ({
   config,
 }: Props) => {
   const safeDate = getSafeDate(date);
-  const imgParams = getImageParam({
-    txt: '',
-    color: imageOption.fontColor,
-  });
+  const imgParams = getImageParam({});
 
   const black = '#292929';
   const white = '#ffffff';
