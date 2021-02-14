@@ -18,7 +18,7 @@ export const Profile = ({ profile }: Props) => {
     <div>
       <div className="l-footer_profile">
         <div className="l-footer_icon">
-          <img src={`${image.url}?w=180`} width="90" alt="プロフィール画像" />
+          <img src="/neko_3.png" width="90" alt="プロフィール画像" />
         </div>
         <div className="l-footer_text">
           <div className="l-footer_name">{name}</div>

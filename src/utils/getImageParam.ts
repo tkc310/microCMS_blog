@@ -10,6 +10,7 @@ type Props = {
   fit?: string;
   w?: number;
   h?: number;
+  q?: number;
 };
 
 export const getImageParam = ({
@@ -23,6 +24,7 @@ export const getImageParam = ({
   fit,
   w,
   h,
+  q,
 }: Props) => {
   const options = [
     `txt=${txt}`,
@@ -33,6 +35,7 @@ export const getImageParam = ({
     `txt-fit=${fit || 'max'}`,
     `txt-font=${font || 'Futura%20Condensed%20Medium'}`,
     `w=${w || 1360}`,
+    `q=${q || 60}`,
   ];
 
   if (h) {

@@ -65,7 +65,10 @@ export const ArticleList = ({ articles }: Props) => {
                 </Box>
                 <Box className={styles.image}>
                   <img
-                    src={article?.image?.url || `/neko_${(idx % 2) + 1}.png`}
+                    src={
+                      `${article?.image?.url}?w=480&q=60` ||
+                      `/neko_${(idx % 2) + 1}.png`
+                    }
                     alt={article.title}
                   />
                 </Box>
