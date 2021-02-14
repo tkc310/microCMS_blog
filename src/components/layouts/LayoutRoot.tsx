@@ -2,9 +2,8 @@ import { ReactNode, useState } from 'react';
 import Head from 'next/head';
 import MetaIcons from '@components/atoms/meta/MetaIcons';
 import Navigation from '@components/organisms/Navigation';
-import SideMenu from '@components/organisms/SideMenu';
-import Footer from '@components/organisms/Footer';
 import { TCategory, TConfig, TTag } from '@/types';
+import dynamic from 'next/dynamic';
 
 type Props = {
   children: ReactNode;
@@ -21,6 +20,9 @@ export const LayoutRoot = ({ children, categories, tags, config }: Props) => {
   const handleClose = () => {
     setIsOpen(false);
   };
+
+  const SideMenu = dynamic(import('@components/organisms/SideMenu'));
+  const Footer = dynamic(import('@components/organisms/Footer'));
 
   return (
     <div className="root">
