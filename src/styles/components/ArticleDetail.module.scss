@@ -4,23 +4,43 @@
 .article_header {
   position: relative;
   height: 320px;
-  margin-bottom: 24px;
+  backface-visibility: hidden;
 
   @include mobile {
     height: 240px;
-    margin-bottom: 16px;
   }
 }
 
 .capture {
-  height: 100%;
+  position: fixed;
+  left: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
   margin-bottom: 16px;
-  background-attachment: fixed;
+  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  // background-position: top;
-  // background-size: contain;
-  background-repeat: no-repeat;
+
+  top: 0;
+  height: 100vh;
+
+  // top: $height-header-pc;
+  // height: inherit;
+
+  &::before {
+    content: '';
+    background-color: rgba(0, 0, 0, 0.45);
+    width: 100%;
+    height: inherit;
+    z-index: 1;
+    position: absolute;
+  }
+
+  @include mobile {
+    top: $height-header-sp;
+    height: inherit;
+  }
 }
 
 .title {
@@ -29,13 +49,13 @@
   padding: 48px 24px;
   font-size: 1.7rem;
   font-weight: bold;
-  line-height: 1.2;
-  letter-spacing: 1px;
+  line-height: 1.25;
+  letter-spacing: 0.06rem;
   word-break: break-all;
 
   @include mobile {
-    font-size: 1.6rem;
-    line-height: 1.1;
+    padding: 48px 16px;
+    font-size: 1.3rem;
   }
 }
 .title_dark {
@@ -63,6 +83,14 @@
 .date_light {
   @extend .date;
   text-shadow: 2px 2px 2px rgb(0 0 0 / 75%);
+}
+
+.article_bg {
+  position: relative;
+  width: 100%;
+  padding: 24px 0 72px;
+  background-color: #fff;
+  // background: rgb(255 255 255 / 95%);
 }
 
 .article_meta {

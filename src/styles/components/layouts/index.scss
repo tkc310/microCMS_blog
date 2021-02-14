@@ -1,9 +1,6 @@
 @import '@styles/foundation/variable';
 @import '@styles/foundation/mixin';
 
-$height-header-pc: 72px;
-$height-header-sp: 56px;
-
 .l-container {
 }
 
@@ -56,6 +53,7 @@ $height-header-sp: 56px;
 }
 
 .l-footer {
+  position: relative;
   padding: 8px 16px;
   background: $bg-color-footer;
   &_profile {
@@ -95,6 +93,7 @@ $height-header-sp: 56px;
     color: #fff;
     text-decoration: none;
     text-align: center;
+
     @include mobile {
       transform: scale(0.85) translateX(-32px);
     }
@@ -133,12 +132,13 @@ $height-header-sp: 56px;
 
 @mixin l-content {
   overflow: hidden;
-  min-height: calc(100vh - 32px);
+  min-height: calc(100vh - 72px);
   margin: 0 auto;
   text-align: left;
 
   @include mobile {
     width: 100%;
+    min-height: calc(100vh - 32px);
   }
 }
 

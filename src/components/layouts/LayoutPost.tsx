@@ -53,7 +53,8 @@ export const LayoutPost = ({
   });
 
   const black = '#292929';
-  const color = imageOption.fontColor || black;
+  const white = '#ffffff';
+  const color = imageOption.fontColor || white;
   const isDark = color === black;
 
   return (
@@ -78,13 +79,12 @@ export const LayoutPost = ({
               }?${imgParams})`,
             }}
           />
-          <Heading
-            as="h1"
+          <h1
             className={isDark ? styles.title_dark : styles.title_light}
-            color={color}
+            style={{ color }}
           >
             {title}
-          </Heading>
+          </h1>
           <Text
             color={color}
             className={isDark ? styles.date_dark : styles.date_light}
@@ -93,26 +93,28 @@ export const LayoutPost = ({
           </Text>
         </section>
 
-        <section className={styles.article_meta}>
-          <div className={styles.category}>
-            <span className={styles.category_label}>Category:</span>
-            <ButtonCategory category={category} />
-          </div>
-          {tags.length && (
-            <div className={styles.tag}>
-              <div className={styles.tag_label}>Tags:</div>
-              <ul className={styles.tag_list}>
-                {tags.map((tag) => (
-                  <li className={styles.tag_item} key={tag.id}>
-                    <ButtonTag tag={tag} />
-                  </li>
-                ))}
-              </ul>
+        <div className={styles.article_bg}>
+          <section className={styles.article_meta}>
+            <div className={styles.category}>
+              <span className={styles.category_label}>Category:</span>
+              <ButtonCategory category={category} />
             </div>
-          )}
-        </section>
+            {tags.length && (
+              <div className={styles.tag}>
+                <div className={styles.tag_label}>Tags:</div>
+                <ul className={styles.tag_list}>
+                  {tags.map((tag) => (
+                    <li className={styles.tag_item} key={tag.id}>
+                      <ButtonTag tag={tag} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </section>
 
-        <section className={styles.article_body}>{children}</section>
+          <section className={styles.article_body}>{children}</section>
+        </div>
       </article>
     </LayoutRoot>
   );

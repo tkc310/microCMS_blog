@@ -14,7 +14,7 @@ type Props = {
 export const Custom404 = ({ categories, tags, config }: Props) => (
   <LayoutRoot categories={categories} tags={tags} config={config}>
     <div className="l-content">
-      <Box textAlign="center" style={{ marginTop: '30%' }}>
+      <Box textAlign="center" style={{ margin: '25% auto' }}>
         <Heading as="h1">404 - Not Found</Heading>
         <Text>ページが見つかりませんでした。</Text>
       </Box>
