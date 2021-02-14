@@ -34,7 +34,7 @@ export const getImageParam = ({
     // `txt-pad=${pad || 8}`,
     // `txt-fit=${fit || 'max'}`,
     // `txt-font=${font || 'Futura%20Condensed%20Medium'}`,
-    `w=${w || 1200}`,
+    `w=${w || 980}`,
     `q=${q || 50}`,
   ];
 
