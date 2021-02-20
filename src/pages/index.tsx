@@ -14,17 +14,21 @@ type Props = {
   config: TConfig;
 };
 
+export const config = {
+  amp: 'hybrid',
+};
+
 export const Home = ({
   articles,
   totalCount,
   categories,
   tags,
-  config,
+  config: appConfig,
 }: Props) => {
-  const { perPage } = config;
+  const { perPage } = appConfig;
 
   return (
-    <LayoutBase categories={categories} tags={tags} config={config}>
+    <LayoutBase categories={categories} tags={tags} config={appConfig}>
       <ArticleList articles={articles} />
       <Pagination totalCount={totalCount} perPage={perPage} />
     </LayoutBase>
@@ -35,8 +39,8 @@ export const getStaticProps = async () => {
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
-  const config = await fetchConfig();
-  const { perPage, apiHost } = config;
+  const appConfig = await fetchConfig();
+  const { perPage, apiHost } = appConfig;
   const categories = await fetchCategories();
   const tags = await fetchTags();
 
@@ -56,7 +60,7 @@ export const getStaticProps = async () => {
       totalCount,
       categories,
       tags,
-      config,
+      config: appConfig,
     },
   };
 };

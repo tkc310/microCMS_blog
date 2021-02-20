@@ -14,24 +14,28 @@ type Props = {
   config: TConfig;
 };
 
+export const config = {
+  amp: 'hybrid',
+};
+
 export const ArticleTags = ({
   articles,
   tag,
   categories,
   tags,
-  config,
+  config: appConfig,
 }: Props) => {
   return !tag || !articles.length ? (
-    <ErrorPage categories={categories} tags={tags} config={config} />
+    <ErrorPage categories={categories} tags={tags} config={appConfig} />
   ) : (
     <LayoutBase
-      url={`${config.host}articles/tags/${tag.slug}`}
+      url={`${appConfig.host}articles/tags/${tag.slug}`}
       title={tag.name}
       description={`${tag.name}の記事一覧`}
       keywords={[tag.name]}
       categories={categories}
       tags={tags}
-      config={config}
+      config={appConfig}
     >
       <Heading
         as="h1"
