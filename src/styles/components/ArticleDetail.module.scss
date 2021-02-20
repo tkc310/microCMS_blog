@@ -214,6 +214,7 @@ $padding-content-sp: 16px;
     padding: 0.5rem 1rem;
 
     @include mobile {
+      word-wrap: normal;
       margin-left: -$padding-content-sp;
       margin-right: -$padding-content-sp;
       font-size: 0.95rem;
