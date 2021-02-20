@@ -12,8 +12,7 @@ export const ButtonTag = ({ tag }: Props) => {
         <Tag
           size="md"
           key={tag.id}
-          borderRadius="full"
-          variant="solid"
+          variant="subtle"
           colorScheme={tag.color || undefined}
         >
           <TagLabel>{tag.name}</TagLabel>

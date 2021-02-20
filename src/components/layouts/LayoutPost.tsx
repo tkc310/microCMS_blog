@@ -96,7 +96,7 @@ export const LayoutPost = ({
               <span className={styles.category_label}>Category:</span>
               <ButtonCategory category={category} />
             </div>
-            {tags.length && (
+            {tags.length ? (
               <div className={styles.tag}>
                 <div className={styles.tag_label}>Tags:</div>
                 <ul className={styles.tag_list}>
@@ -107,7 +107,7 @@ export const LayoutPost = ({
                   ))}
                 </ul>
               </div>
-            )}
+            ) : null}
           </section>
 
           <section className={styles.article_body}>{children}</section>

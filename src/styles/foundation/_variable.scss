@@ -9,6 +9,7 @@ $height-header-sp: 56px;
 
 $color-accent: #ffc017;
 $color-dark: rgba(0, 0, 0, 0.9);
+$color-dark-untransparent: #0e0e0e;
 
 // color
 $color-font-base: #292929;
@@ -24,7 +25,7 @@ $color-font-heading-b: #353535;
 $bg-color-base: #fff;
 $bg-color-header: $bg-color-base;
 $bg-color-header-accent: $color-accent;
-$bg-color-footer: $color-dark;
+$bg-color-footer: $color-dark-untransparent;
 $bg-color-item: #1a1a1a;
 $bg-color-heading: #f8f8f8;
 $bg-color-menu: #1a1a1a;

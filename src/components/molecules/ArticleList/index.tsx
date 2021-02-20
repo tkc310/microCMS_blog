@@ -82,7 +82,7 @@ export const ArticleList = ({ articles }: Props) => {
               <ButtonCategory category={article.category} />
             </div>
 
-            {article.tags.length && (
+            {article.tags.length ? (
               <div className={styles.tag}>
                 <div className={styles.tag_label}>Tags:</div>
                 <ul className={styles.tag_list}>
@@ -93,7 +93,7 @@ export const ArticleList = ({ articles }: Props) => {
                   ))}
                 </ul>
               </div>
-            )}
+            ) : null}
           </Box>
         </Box>
       ))}
