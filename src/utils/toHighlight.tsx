@@ -1,10 +1,9 @@
 import cheerio from 'cheerio';
-import settingHljs from '@/lib/highlight';
+import hljs from '@/lib/highlight';
 import { MdxRemote } from 'next-mdx-remote/types';
 
 export const toHighlight = (body: string | MdxRemote.Source) => {
   const $ = cheerio.load(body);
-  const hljs = settingHljs();
 
   $('pre code').each((_, elm) => {
     // microcms上で特定の言語を選べないためAutoにしている
