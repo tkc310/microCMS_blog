@@ -2,6 +2,7 @@ import MetaBasic from '@components/atoms/meta/MetaBasic';
 import MetaJsonLd from '@components/atoms/meta/MetaJsonLd';
 import MetaOpenGraph from '@components/atoms/meta/MetaOpenGraph';
 import MetaTwitterCard from '@components/atoms/meta/MetaTwitterCard';
+import MetaPwa from '@/components/atoms/meta/MetaPwa';
 import { TImage, TConfig } from '@/types';
 import getSafeDate from '@/utils/getSafeDate';
 
@@ -61,6 +62,7 @@ export const MetaGroup = ({
         description={description}
         config={config}
       />
+      <MetaPwa />
     </>
   );
 };
