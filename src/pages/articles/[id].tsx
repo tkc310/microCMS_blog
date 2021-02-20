@@ -8,6 +8,7 @@ import getExcerpt from '@utils/getExcerpt';
 import mdx2html from '@utils/mdx2html';
 import toHighlight from '@utils/toHighlight';
 import addHeadingId from '@utils/addHeadingId';
+import addAnchorExternal from '@/utils/addAnchorExternal';
 import { MdxRemote } from 'next-mdx-remote/types';
 import 'highlight.js/styles/stackoverflow-dark.css';
 
@@ -126,6 +127,8 @@ export const getStaticPropsFactory = () => {
     mdxSource = toHighlight(mdxSource);
     // Heading要素にID付与
     mdxSource = addHeadingId(mdxSource, id);
+    // anchorにtarget=_blank付与
+    mdxSource = addAnchorExternal(mdxSource);
 
     return {
       props: {
