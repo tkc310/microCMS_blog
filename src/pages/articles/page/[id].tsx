@@ -15,24 +15,20 @@ type Props = {
   config: TConfig;
 };
 
-export const config = {
-  amp: 'hybrid',
-};
-
 export const ArticlePages = ({
   articles,
   totalCount,
   pageNum,
   categories,
   tags,
-  config: appConfig,
+  config,
 }: Props) => {
-  const { perPage } = appConfig;
+  const { perPage } = config;
 
   return (
     <LayoutBase
-      url={`${appConfig.host}articles/page/${pageNum}`}
-      config={appConfig}
+      url={`${config.host}articles/page/${pageNum}`}
+      config={config}
       categories={categories}
       tags={tags}
     >
@@ -46,10 +42,10 @@ export const getStaticPaths = async () => {
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
-  const appConfig = await fetchConfig();
-  const { perPage } = appConfig;
+  const config = await fetchConfig();
+  const { perPage } = config;
 
-  const url = `${appConfig.apiHost}articles`;
+  const url = `${config.apiHost}articles`;
   const data = await fetch(url, key)
     .then((res) => res.json())
     .catch(() => null);
@@ -70,13 +66,13 @@ export const getStaticProps = async (context) => {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
 
-  const appConfig = await fetchConfig();
-  const { perPage } = appConfig;
+  const config = await fetchConfig();
+  const { perPage } = config;
   const categories = await fetchCategories();
   const tags = await fetchTags();
 
   const offset = (pageNum - 1) * perPage;
-  const url = `${appConfig.apiHost}articles`;
+  const url = `${config.apiHost}articles`;
   const params = [`offset=${offset}`, `&limit=${perPage}`].join('&');
   const data = await fetch(`${url}?${params}`, key)
     .then((res) => res.json())
@@ -90,7 +86,7 @@ export const getStaticProps = async (context) => {
       pageNum,
       categories,
       tags,
-      config: appConfig,
+      config,
     },
   };
 };

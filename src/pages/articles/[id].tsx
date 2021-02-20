@@ -21,16 +21,12 @@ export type Props = {
   isPreview?: boolean;
 };
 
-export const config = {
-  amp: 'hybrid',
-};
-
 export const ArticleDetail = ({
   article,
   mdxSource,
   categories: categoriesAtMenu,
   tags: tagsAtMenu,
-  config: appConfig,
+  config,
   isPreview,
 }: Props) => {
   const {
@@ -45,7 +41,7 @@ export const ArticleDetail = ({
 
   return id ? (
     <LayoutPost
-      url={`${appConfig.host}articles/${id}`}
+      url={`${config.host}articles/${id}`}
       image={image}
       imageOption={imageOption || undefined}
       title={title}
@@ -58,7 +54,7 @@ export const ArticleDetail = ({
       category={category}
       categoriesAtMenu={categoriesAtMenu}
       tagsAtMenu={tagsAtMenu}
-      config={appConfig}
+      config={config}
     >
       <div
         dangerouslySetInnerHTML={{
@@ -68,7 +64,7 @@ export const ArticleDetail = ({
     </LayoutPost>
   ) : (
     <ErrorPage
-      config={appConfig}
+      config={config}
       categories={categoriesAtMenu}
       tags={tagsAtMenu}
     />
@@ -80,7 +76,7 @@ export const getStaticPathsFactory = (isPreview?: boolean) => {
     const key = {
       headers: { 'X-API-KEY': process.env.API_KEY },
     };
-    const appConfig = await fetchConfig();
+    const config = await fetchConfig();
     if (isPreview) {
       key.headers = {
         ...key.headers,
@@ -88,7 +84,7 @@ export const getStaticPathsFactory = (isPreview?: boolean) => {
       };
     }
 
-    const data = await fetch(`${appConfig.apiHost}articles`, key)
+    const data = await fetch(`${config.apiHost}articles`, key)
       .then((res) => res.json())
       .catch(() => null);
     const pageName = isPreview ? 'preview' : 'articles';
@@ -109,10 +105,10 @@ export const getStaticPropsFactory = () => {
       },
     };
 
-    const appConfig = await fetchConfig();
+    const config = await fetchConfig();
     const tags = await fetchTags();
     const categories = await fetchCategories();
-    let url = `${appConfig.apiHost}articles/${id}`;
+    let url = `${config.apiHost}articles/${id}`;
 
     if (preview) {
       url += `?draftKey=${previewData.draftKey}`;
@@ -140,7 +136,7 @@ export const getStaticPropsFactory = () => {
         mdxSource,
         tags,
         categories,
-        config: appConfig,
+        config,
       },
     };
   };

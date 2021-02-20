@@ -12,12 +12,8 @@ type Props = {
   config: TConfig;
 };
 
-export const config = {
-  amp: 'hybrid',
-};
-
-export const Error404 = ({ categories, tags, config: appConfig }: Props) => (
-  <LayoutRoot categories={categories} tags={tags} config={appConfig}>
+export const Error404 = ({ categories, tags, config }: Props) => (
+  <LayoutRoot categories={categories} tags={tags} config={config}>
     <MetaNoIndex />
 
     <div className="l-content">
@@ -30,7 +26,7 @@ export const Error404 = ({ categories, tags, config: appConfig }: Props) => (
 );
 
 export const getStaticProps = async () => {
-  const appConfig = await fetchConfig();
+  const config = await fetchConfig();
   const categories = await fetchCategories();
   const tags = await fetchTags();
 
@@ -38,7 +34,7 @@ export const getStaticProps = async () => {
     props: {
       categories,
       tags,
-      config: appConfig,
+      config,
     },
   };
 };
