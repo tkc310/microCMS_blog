@@ -23,9 +23,9 @@
     "body": [
       "import { memo } from 'react';",
       "",
-      "export const MetaNoIndex = () => ();",
+      "export const $1 = () => ();",
       "",
-      "export default memo(MetaNoIndex);",
+      "export default memo($1);",
       ""
     ],
     "description": "stateless functional component"
