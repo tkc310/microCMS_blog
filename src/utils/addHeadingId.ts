@@ -10,9 +10,7 @@ export const addHeadingId = (body: string | MdxRemote.Source, id: string) => {
       const text = $(elm).text();
       const uuid = `${id}_${text}`;
       $(elm).html('');
-      $(
-        `<a class="anchor" href="#${uuid}" aria-hidden="true">${svg}<span>${text}</span></a>`
-      ).prependTo($(elm));
+      $(`<a href="#${uuid}">${svg}<span>${text}</span></a>`).prependTo($(elm));
       $(
         `<div style="height: 32px;" id="${uuid}" name="${uuid}"></div>`
       ).insertBefore($(elm));
