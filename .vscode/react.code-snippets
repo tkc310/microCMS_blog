@@ -1,0 +1,33 @@
+// Created https://migi.me/vsc_snippet/
+{
+  "fc": {
+    "prefix": "fc",
+    "body": [
+      "type Props = {};",
+      "",
+      "const defaultProps = {};",
+      "",
+      "export const $1 = ({}: Props) => {",
+      "  return ();",
+      "};",
+      "",
+      "$1.defaultProps = defaultProps;",
+      "",
+      "export default $1;",
+      ""
+    ],
+    "description": "functional component"
+  },
+  "sfc": {
+    "prefix": "sfc",
+    "body": [
+      "import { memo } from 'react';",
+      "",
+      "export const MetaNoIndex = () => ();",
+      "",
+      "export default memo(MetaNoIndex);",
+      ""
+    ],
+    "description": "stateless functional component"
+  }
+}
