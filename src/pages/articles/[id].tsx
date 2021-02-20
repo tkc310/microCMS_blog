@@ -1,14 +1,15 @@
 import ErrorPage from '@pages/404';
 import LayoutPost from '@/components/layouts/LayoutPost';
-import fetchConfig from '@utils/fetchConfig';
-import getExcerpt from '@utils/getExcerpt';
-import toHighlight from '@utils/toHighlight';
 import { TArticle, TCategory, TTag, TConfig } from '@/types';
+import fetchConfig from '@utils/fetchConfig';
 import fetchTags from '@/utils/fetchTags';
 import fetchCategories from '@/utils/fetchCategories';
-import 'highlight.js/styles/stackoverflow-dark.css';
+import getExcerpt from '@utils/getExcerpt';
 import mdx2html from '@utils/mdx2html';
+import toHighlight from '@utils/toHighlight';
+import addHeadingId from '@utils/addHeadingId';
 import { MdxRemote } from 'next-mdx-remote/types';
+import 'highlight.js/styles/stackoverflow-dark.css';
 
 export type Props = {
   article: TArticle;
@@ -123,6 +124,8 @@ export const getStaticPropsFactory = () => {
     let mdxSource = await mdx2html(article.body);
     // シンタックスハイライトの付与
     mdxSource = toHighlight(mdxSource);
+    // Heading要素にID付与
+    mdxSource = addHeadingId(mdxSource, id);
 
     return {
       props: {
