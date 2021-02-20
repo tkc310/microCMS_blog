@@ -76,18 +76,20 @@ export const LayoutPost = ({
               }?${imgParams})`,
             }}
           />
-          <h1
-            className={isDark ? styles.title_dark : styles.title_light}
-            style={{ color }}
-          >
-            {title}
-          </h1>
-          <Text
-            color={color}
-            className={isDark ? styles.date_dark : styles.date_light}
-          >
-            <TextDate date={safeDate} />
-          </Text>
+          <div className={styles.title_wrap}>
+            <h1
+              className={isDark ? styles.title_dark : styles.title_light}
+              style={{ color }}
+            >
+              {title}
+            </h1>
+            <Text
+              color={color}
+              className={isDark ? styles.date_dark : styles.date_light}
+            >
+              <TextDate date={safeDate} />
+            </Text>
+          </div>
         </section>
 
         <div className={styles.article_bg}>

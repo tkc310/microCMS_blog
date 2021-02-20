@@ -11,7 +11,7 @@ export const addHeadingId = (body: string | MdxRemote.Source, id: string) => {
       const uuid = `${id}_${text}`;
       $(elm).html('');
       $(
-        `<a class="anchor" href="#${uuid}" aria-hidden="true">${svg}</a><span>${text}</span>`
+        `<a class="anchor" href="#${uuid}" aria-hidden="true">${svg}<span>${text}</span></a>`
       ).prependTo($(elm));
       $(
         `<div style="height: 32px;" id="${uuid}" name="${uuid}"></div>`

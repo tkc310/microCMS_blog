@@ -43,10 +43,23 @@
   }
 }
 
-.title {
+.title_wrap {
   position: absolute;
   bottom: 0;
-  padding: 48px 24px;
+  left: 50%;
+  right: 0;
+  margin-left: -($width-content-pc / 2);
+  width: $width-content-pc;
+
+  @include mobile {
+    left: 0;
+    width: 100%;
+    margin-left: 0;
+    padding: 0 16px;
+  }
+}
+
+.title {
   font-size: 1.7rem;
   font-weight: bold;
   line-height: 1.25;
@@ -54,7 +67,6 @@
   word-break: break-all;
 
   @include mobile {
-    padding: 48px 16px;
     font-size: 1.3rem;
   }
 }
@@ -68,9 +80,7 @@
 }
 
 .date {
-  position: absolute;
-  bottom: 0;
-  padding: 16px 24px;
+  padding: 16px 0;
   font-size: 1rem;
   font-weight: bold;
   letter-spacing: 0.05rem;
@@ -160,18 +170,33 @@ $padding-content-sp: 16px;
   // typography
   h1 {
     font-size: 2rem;
+    @include mobile {
+      font-size: 1.5rem;
+    }
   }
   h2 {
     font-size: 1.5rem;
+    @include mobile {
+      font-size: 1.3rem;
+    }
   }
   h3 {
     font-size: 1.3rem;
+    @include mobile {
+      font-size: 1.1rem;
+    }
   }
   h4 {
     font-size: 1.2rem;
+    @include mobile {
+      font-size: 1rem;
+    }
   }
   h5 {
     font-size: 1.1rem;
+    @include mobile {
+      font-size: 1rem;
+    }
   }
   h6 {
     font-size: 1rem;
@@ -253,6 +278,10 @@ $padding-content-sp: 16px;
   a {
     color: #4183c4;
 
+    &:hover {
+      text-decoration: underline;
+    }
+
     &.absent {
       color: #cc0000;
     }
@@ -268,14 +297,35 @@ $padding-content-sp: 16px;
     }
   }
 
-  svg {
-    margin: 8px 8px 8px 0;
-    &:hover {
-      fill: #4183c4;
+  // heading anchor
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    a {
+      display: flex;
+      align-items: baseline;
+      color: $color-font-base;
+
+      svg {
+        min-width: 16px;
+        margin: 8px 8px 8px 0;
+
+        @include mobile {
+          margin: 8px 8px 8px -4px;
+        }
+      }
     }
 
-    @include mobile {
-      margin: 8px 8px 8px -4px;
+    &:hover {
+      a {
+        text-decoration: none;
+        svg {
+          fill: #4183c4;
+        }
+      }
     }
   }
 
@@ -294,19 +344,5 @@ $padding-content-sp: 16px;
 
   img {
     max-width: 100%;
-  }
-
-  // heading anchor
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    display: flex;
-    align-items: center;
-    .heading_text {
-      margin-left: 8px;
-    }
   }
 }
