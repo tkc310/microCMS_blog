@@ -1,4 +1,4 @@
-import * as hljs from 'highlight.js';
+import * as hljs from 'highlight.js/lib/core';
 
 import css from 'highlight.js/lib/languages/css';
 import scss from 'highlight.js/lib/languages/scss';
