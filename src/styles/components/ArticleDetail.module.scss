@@ -175,31 +175,26 @@ $padding-content-sp: 16px;
     }
   }
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
+    border-bottom: 1px solid #292929;
     @include mobile {
       font-size: 1.3rem;
     }
   }
   h3 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     @include mobile {
       font-size: 1.1rem;
     }
   }
   h4 {
-    font-size: 1.2rem;
-    @include mobile {
-      font-size: 1rem;
-    }
+    font-size: 1rem;
   }
   h5 {
-    font-size: 1.1rem;
-    @include mobile {
-      font-size: 1rem;
-    }
+    font-size: 0.9rem;
   }
   h6 {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   p code {
     margin: 0 2px;
@@ -225,11 +220,12 @@ $padding-content-sp: 16px;
   ul,
   ol {
     padding: revert;
-    padding-left: 20px;
+    padding-left: 24px;
   }
 
   // table
   table {
+    margin-left: 4px !important;
     padding: 0;
   }
   table tr {
@@ -312,11 +308,7 @@ $padding-content-sp: 16px;
 
       svg {
         min-width: 16px;
-        margin: 8px 8px 8px 0;
-
-        @include mobile {
-          margin: 8px 8px 8px -4px;
-        }
+        margin: 8px 8px 8px -2px;
       }
     }
 
@@ -332,6 +324,7 @@ $padding-content-sp: 16px;
 
   // blockquote
   blockquote {
+    margin-left: 4px;
     border-left: 4px solid #dddddd;
     padding: 0 15px;
     color: #777777;
