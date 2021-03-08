@@ -9,6 +9,7 @@ import { TCategory, TTag, TConfig, TImage, TimageOption } from '@/types';
 import styles from '@styles/components/ArticleDetail.module.scss';
 import getSafeDate from '@utils/getSafeDate';
 import getImageParam from '@utils/getImageParam';
+import defaultImage from '@assets/neko_2.png';
 
 type Props = {
   children: ReactNode;
@@ -71,9 +72,7 @@ export const LayoutPost = ({
           <div
             className={styles.capture}
             style={{
-              backgroundImage: `url(${
-                image.url || '/neko_2.png'
-              }?${imgParams})`,
+              backgroundImage: `url(${image.url || defaultImage}?${imgParams})`,
             }}
           />
           <div className={styles.title_wrap}>

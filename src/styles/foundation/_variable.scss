@@ -23,7 +23,8 @@ $color-font-heading-b: #353535;
 
 // bg-color
 $bg-color-base: #fff;
-$bg-color-header: $bg-color-base;
+$bg-color-header: rgba(0, 0, 0, 0.75);
+$bg-color-header-scrolled: $bg-color-base;
 $bg-color-header-accent: $color-accent;
 $bg-color-footer: $color-dark-untransparent;
 $bg-color-item: #1a1a1a;

@@ -16,11 +16,11 @@
   border-bottom: 1px solid $border-color-header;
   box-sizing: border-box;
   transition: background-color 300ms linear;
-  background: $color-dark;
+  background-color: $bg-color-header;
   color: #fff;
 
   &.is-scrolled {
-    background: $bg-color-header;
+    background-color: $bg-color-header-scrolled;
     color: $color-font-base;
   }
 
@@ -69,9 +69,7 @@
     }
   }
   &_icon {
-    img {
-      margin: 0 auto;
-    }
+    text-align: center;
   }
   &_text {
     font-size: 0.8rem;

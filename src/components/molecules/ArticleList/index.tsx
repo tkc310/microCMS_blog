@@ -16,6 +16,7 @@ import multiLineTextStyle from '@utils/multiLineTextStyle';
 import getSafeDate from '@utils/getSafeDate';
 import { TArticle } from '@/types';
 import styles from '@styles/components/ArticleList.module.scss';
+import Image from '@components/atoms/Image';
 
 type Props = {
   articles: TArticle[];
@@ -64,7 +65,7 @@ export const ArticleList = ({ articles }: Props) => {
                   </Text>
                 </Box>
                 <Box className={styles.image}>
-                  <img
+                  <Image
                     src={
                       `${article?.image?.url}?w=480&q=60` ||
                       `/neko_${(idx % 2) + 1}.png`

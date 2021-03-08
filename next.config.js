@@ -16,6 +16,10 @@ const withImages = require('next-images');
 module.exports = withPreact(
   withBundleAnalyzer(
     withImages({
+      images: {
+        domains: ['images.microcms-assets.io', 'tkc310.com', 'localhost'],
+      },
+
       // inlineimage
       inlineImageLimit: 16384,
 
