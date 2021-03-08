@@ -9,7 +9,7 @@ export const useGTM = () => {
   }, []);
 
   useEffect(() => {
-    if (gtag.ENABLE_GTM) return;
+    if (!gtag.ENABLE_GTM) return;
     handleRouteChange(router.asPath);
 
     // CSR用

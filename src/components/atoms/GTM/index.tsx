@@ -1,9 +1,8 @@
 import { memo } from 'react';
-import { GA_ID } from '@/utils/gtm';
-import { isProd } from '@utils/getEnv';
+import { GA_ID, ENABLE_GTM } from '@/utils/gtm';
 
 export const GTM = () =>
-  isProd ? (
+  ENABLE_GTM ? (
     <>
       <script
         async
