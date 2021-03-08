@@ -2,19 +2,25 @@ import { useState, useEffect } from 'react';
 import { Flex, Box, LinkBox, LinkOverlay, IconButton } from '@chakra-ui/react';
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
 import useScrollPosition from '@react-hook/window-scroll';
+import { useDebouncedCallback } from 'use-debounce';
 
 type Props = {
   onSideMenuOpen: () => void;
   isSideMenuOpen: boolean;
 };
 
+const THROTTLE = 1000 as const;
+
 export const Navigation = ({ onSideMenuOpen, isSideMenuOpen }: Props) => {
   const [scrolled, setScrolled] = useState(false);
-  const scrollY = useScrollPosition(1);
+  const scrollY = useScrollPosition(THROTTLE);
+  const debounceScrolled = useDebouncedCallback(() => {
+    setScrolled(scrollY > 0);
+  }, THROTTLE);
 
   useEffect(() => {
-    setScrolled(scrollY > 0);
-  }, [scrollY]);
+    debounceScrolled();
+  }, [debounceScrolled, scrollY]);
 
   return (
     <nav className={`l-header${scrolled ? ' is-scrolled' : ''}`}>

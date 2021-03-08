@@ -4,6 +4,7 @@ import MetaIcons from '@components/atoms/meta/MetaIcons';
 import Navigation from '@components/organisms/Navigation';
 import { TCategory, TConfig, TTag } from '@/types';
 import dynamic from 'next/dynamic';
+import GTM from '@/components/atoms/GTM';
 
 type Props = {
   children: ReactNode;
@@ -36,6 +37,7 @@ export const LayoutRoot = ({ children, categories, tags, config }: Props) => {
           href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap&subset=japanese&text=tkc310_log"
           rel="stylesheet"
         />
+        <GTM />
       </Head>
 
       <div className="l-container">
