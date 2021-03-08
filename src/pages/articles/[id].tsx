@@ -12,9 +12,10 @@ import addHeadingId from '@utils/addHeadingId';
 import addAnchorExternal from '@utils/addAnchorExternal';
 import optimizeImage from '@utils/optimizeImage';
 import n2br from '@utils/n2br';
+import createTOC from '@utils/createTOC';
 import { MdxRemote } from 'next-mdx-remote/types';
-import LazyLoad from 'vanilla-lazyload';
 import 'highlight.js/styles/github-gist.css';
+import LazyLoad from 'vanilla-lazyload';
 
 export type Props = {
   article: TArticle;
@@ -144,8 +145,10 @@ export const getStaticPropsFactory = () => {
     mdxSource = addAnchorExternal(mdxSource);
     // img最適化
     mdxSource = optimizeImage(mdxSource);
-    // n2br
+    // 段落調整
     mdxSource = n2br(mdxSource);
+    // 目次作成
+    mdxSource = createTOC(mdxSource);
 
     return {
       props: {

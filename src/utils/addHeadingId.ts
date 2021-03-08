@@ -7,13 +7,14 @@ export const addHeadingId = (body: string | MdxRemote.Source, id: string) => {
 
   ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach((heading) => {
     $(heading).each((_, elm) => {
-      const text = $(elm).text();
+      const $elm = $(elm);
+      const text = $elm.text();
       const uuid = `${id}_${text}`;
-      $(elm).html('');
-      $(`<a href="#${uuid}">${svg}<span>${text}</span></a>`).prependTo($(elm));
+      $elm.html('');
+      $(`<a href="#${uuid}">${svg}<span>${text}</span></a>`).prependTo($elm);
       $(
         `<div style="height: 32px;" id="${uuid}" name="${uuid}"></div>`
-      ).insertBefore($(elm));
+      ).insertBefore($elm);
     });
   });
 

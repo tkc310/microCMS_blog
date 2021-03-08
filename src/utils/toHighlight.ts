@@ -6,10 +6,10 @@ export const toHighlight = (body: string | MdxRemote.Source) => {
   const $ = cheerio.load(body);
 
   $('pre code').each((_, elm) => {
-    // microcms上で特定の言語を選べないためAutoにしている
-    const result = hljs.highlightAuto($(elm).text());
-    $(elm).html(result.value);
-    $(elm).addClass('hljs');
+    const $elm = $(elm);
+    const result = hljs.highlightAuto($elm.text());
+    $elm.html(result.value);
+    $elm.addClass('hljs');
   });
 
   return $.html();
