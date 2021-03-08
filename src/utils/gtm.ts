@@ -16,8 +16,6 @@ export const pv = (path: string) => {
   window.gtag('config', GA_ID, {
     page_path: path,
   });
-
-  console.table({ action: 'pv', path });
 };
 
 export const event = ({ action, category, label, value = '' }: Event) => {
@@ -28,6 +26,4 @@ export const event = ({ action, category, label, value = '' }: Event) => {
     event_label: JSON.stringify(label),
     value,
   });
-
-  console.table({ action, category, label, value });
 };
