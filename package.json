@@ -41,7 +41,8 @@
     "react-youtube": "^7.13.1",
     "sass": "^1.32.5",
     "schema-dts": "^0.8.2",
-    "use-debounce": "^6.0.0"
+    "use-debounce": "^6.0.0",
+    "vanilla-lazyload": "^17.3.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.6",

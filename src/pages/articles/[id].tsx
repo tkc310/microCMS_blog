@@ -12,7 +12,8 @@ import addHeadingId from '@utils/addHeadingId';
 import addAnchorExternal from '@utils/addAnchorExternal';
 import optimizeImage from '@utils/optimizeImage';
 import { MdxRemote } from 'next-mdx-remote/types';
-import 'highlight.js/styles/stackoverflow-dark.css';
+import LazyLoad from 'vanilla-lazyload';
+import 'highlight.js/styles/github-gist.css';
 
 export type Props = {
   article: TArticle;
@@ -40,6 +41,15 @@ export const ArticleDetail = ({
     tags,
     publishedAt,
   } = article;
+
+  useEffect(() => {
+    const ll = new LazyLoad();
+    // SSGのみこの条件で有効
+    return () => {
+      // observer.disconnect
+      ll.destroy();
+    };
+  }, []);
 
   return id ? (
     <LayoutPost
