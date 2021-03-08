@@ -1,6 +1,7 @@
 import cheerio from 'cheerio';
+import { MdxRemote } from 'next-mdx-remote/types';
 
-export const optimizeImage = (body: string) => {
+export const optimizeImage = (body: string | MdxRemote.Source) => {
   const $ = cheerio.load(body);
 
   $('img').each((_, elm) => {

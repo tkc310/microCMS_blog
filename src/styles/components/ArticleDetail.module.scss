@@ -222,12 +222,11 @@ $padding-content-sp: 16px;
   ul,
   ol {
     padding: revert;
-    padding-left: 24px;
+    padding-left: 20px;
   }
 
   // table
   table {
-    margin-left: 4px !important;
     padding: 0;
   }
   table tr {

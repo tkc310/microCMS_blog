@@ -11,6 +11,7 @@ import toHighlight from '@utils/toHighlight';
 import addHeadingId from '@utils/addHeadingId';
 import addAnchorExternal from '@utils/addAnchorExternal';
 import optimizeImage from '@utils/optimizeImage';
+import n2br from '@utils/n2br';
 import { MdxRemote } from 'next-mdx-remote/types';
 import LazyLoad from 'vanilla-lazyload';
 import 'highlight.js/styles/github-gist.css';
@@ -143,6 +144,8 @@ export const getStaticPropsFactory = () => {
     mdxSource = addAnchorExternal(mdxSource);
     // img最適化
     mdxSource = optimizeImage(mdxSource);
+    // n2br
+    mdxSource = n2br(mdxSource);
 
     return {
       props: {
