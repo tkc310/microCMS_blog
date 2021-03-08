@@ -17,6 +17,7 @@ import getSafeDate from '@utils/getSafeDate';
 import { TArticle } from '@/types';
 import styles from '@styles/components/ArticleList.module.scss';
 import Image from '@components/atoms/Image';
+import LazyLoad from 'react-lazyload';
 
 type Props = {
   articles: TArticle[];
@@ -36,67 +37,69 @@ export const ArticleList = ({ articles }: Props) => {
       align="stretch"
     >
       {articles.map((article, idx) => (
-        <Box key={article.id}>
-          <LinkBox mb="3">
-            <LinkOverlay href={`/articles/${article.id}`}>
-              <Text mb="1" px={{ base: '0', md: '3' }}>
-                <TextDate date={getSafeDate(article?.publishedAt)} />
-              </Text>
-              <Flex
-                px={{ base: '0', md: '3' }}
-                direction={{ base: 'column-reverse', md: 'row' }}
-                className={styles.inner_link}
-              >
-                <Box
-                  flex="1"
-                  mr={{ base: '0', md: '3' }}
-                  style={{ wordBreak: 'break-all' }}
+        <LazyLoad height={250} key={article.id} once>
+          <Box>
+            <LinkBox mb="3">
+              <LinkOverlay href={`/articles/${article.id}`}>
+                <Text mb="1" px={{ base: '0', md: '3' }}>
+                  <TextDate date={getSafeDate(article?.publishedAt)} />
+                </Text>
+                <Flex
+                  px={{ base: '0', md: '3' }}
+                  direction={{ base: 'column-reverse', md: 'row' }}
+                  className={styles.inner_link}
                 >
-                  <Heading
-                    as="h2"
-                    size="md"
-                    mb="1"
-                    style={dynamicStyles.elipsisLine2}
+                  <Box
+                    flex="1"
+                    mr={{ base: '0', md: '3' }}
+                    style={{ wordBreak: 'break-all' }}
                   >
-                    {article.title}
-                  </Heading>
-                  <Text style={dynamicStyles.elipsisLine4}>
-                    {getExcerpt(article.excerpt || article.body)}
-                  </Text>
-                </Box>
-                <Box className={styles.image}>
-                  <Image
-                    src={
-                      `${article?.image?.url}?w=480&q=60` ||
-                      `/neko_${(idx % 2) + 1}.png`
-                    }
-                    alt={article.title}
-                  />
-                </Box>
-              </Flex>
-            </LinkOverlay>
-          </LinkBox>
+                    <Heading
+                      as="h2"
+                      size="md"
+                      mb="1"
+                      style={dynamicStyles.elipsisLine2}
+                    >
+                      {article.title}
+                    </Heading>
+                    <Text style={dynamicStyles.elipsisLine4}>
+                      {getExcerpt(article.excerpt || article.body)}
+                    </Text>
+                  </Box>
+                  <Box className={styles.image}>
+                    <Image
+                      src={
+                        `${article?.image?.url}?w=480&q=60&fit=crop` ||
+                        `/neko_${(idx % 2) + 1}.png`
+                      }
+                      alt={article.title}
+                    />
+                  </Box>
+                </Flex>
+              </LinkOverlay>
+            </LinkBox>
 
-          <Box px={{ base: '0', md: '3' }} className={styles.meta}>
-            <div className={styles.category}>
-              <span className={styles.category_label}>Category:</span>
-              <ButtonCategory category={article.category} />
-            </div>
-
-            {article.tags.length ? (
-              <div className={styles.tag}>
-                <div className={styles.tag_label}>Tags:</div>
-                <ul className={styles.tag_list}>
-                  {article.tags.map((tag) => (
-                    <li className={styles.tag_item} key={tag.id}>
-                      <ButtonTag tag={tag} />
-                    </li>
-                  ))}
-                </ul>
+            <Box px={{ base: '0', md: '3' }} className={styles.meta}>
+              <div className={styles.category}>
+                <span className={styles.category_label}>Category:</span>
+                <ButtonCategory category={article.category} />
               </div>
-            ) : null}
+
+              {article.tags.length ? (
+                <div className={styles.tag}>
+                  <div className={styles.tag_label}>Tags:</div>
+                  <ul className={styles.tag_list}>
+                    {article.tags.map((tag) => (
+                      <li className={styles.tag_item} key={tag.id}>
+                        <ButtonTag tag={tag} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </Box>
           </Box>
-        </Box>
+        </LazyLoad>
       ))}
     </VStack>
   );

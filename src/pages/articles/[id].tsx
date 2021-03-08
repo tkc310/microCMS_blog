@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import ErrorPage from '@pages/404';
 import LayoutPost from '@/components/layouts/LayoutPost';
 import { TArticle, TCategory, TTag, TConfig } from '@/types';
