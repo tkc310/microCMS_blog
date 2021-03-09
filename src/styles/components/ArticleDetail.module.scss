@@ -103,9 +103,11 @@
   background-color: #fff;
 
   &_inner {
-    display: flex;
-    width: 1080px;
-    margin: 0 auto;
+    @include desktop {
+      display: flex;
+      width: 1080px;
+      margin: 0 auto;
+    }
   }
 }
 
