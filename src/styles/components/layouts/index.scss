@@ -57,6 +57,8 @@
   z-index: 1;
   padding: 8px 16px;
   background: $bg-color-footer;
+  backface-visibility: hidden;
+
   &_profile {
     width: 480px;
     margin: 0 auto;
@@ -130,10 +132,11 @@
 }
 
 @mixin l-content {
-  overflow: hidden;
+  // overflow: hidden;
   min-height: calc(100vh - 72px);
   margin: 0 auto;
   text-align: left;
+  background-color: #fff;
 
   @include mobile {
     width: 100%;

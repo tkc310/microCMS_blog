@@ -15,6 +15,7 @@ export const addHeadingId = (body: string | MdxRemote.Source, id: string) => {
       $(
         `<div style="height: 32px;" id="${uuid}" name="${uuid}"></div>`
       ).insertBefore($elm);
+      $elm.attr('id', uuid);
     });
   });
 

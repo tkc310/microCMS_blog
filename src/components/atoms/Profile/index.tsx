@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Image from 'next/image';
 import { TProfile } from '@/types';
 import { SocialList } from '@components/molecules/SocialList';
@@ -40,4 +41,4 @@ export const Profile = ({ profile }: Props) => {
   );
 };
 
-export default Profile;
+export default memo(Profile);

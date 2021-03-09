@@ -23,7 +23,7 @@ export const Navigation = ({ onSideMenuOpen, isSideMenuOpen }: Props) => {
   }, [debounceScrolled, scrollY]);
 
   return (
-    <nav className={`l-header${scrolled ? ' is-scrolled' : ''}`}>
+    <nav id="js-nav" className={`l-header${scrolled ? ' is-scrolled' : ''}`}>
       <Flex align="center" justify="flex-start" w="100%">
         <Box>
           <LinkBox>

@@ -10,6 +10,7 @@ import styles from '@styles/components/ArticleDetail.module.scss';
 import getSafeDate from '@utils/getSafeDate';
 import getImageParam from '@utils/getImageParam';
 import defaultImage from '@assets/neko_2.png';
+import TOC from '@components/molecules/TOC';
 
 type Props = {
   children: ReactNode;
@@ -92,26 +93,32 @@ export const LayoutPost = ({
         </section>
 
         <div className={styles.article_bg}>
-          <section className={styles.article_meta}>
-            <div className={styles.category}>
-              <span className={styles.category_label}>Category:</span>
-              <ButtonCategory category={category} />
-            </div>
-            {tags.length ? (
-              <div className={styles.tag}>
-                <div className={styles.tag_label}>Tags:</div>
-                <ul className={styles.tag_list}>
-                  {tags.map((tag) => (
-                    <li className={styles.tag_item} key={tag.id}>
-                      <ButtonTag tag={tag} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </section>
+          <div className={styles.article_bg_inner}>
+            <div className={styles.article_main}>
+              <section className={styles.article_meta}>
+                <div className={styles.category}>
+                  <span className={styles.category_label}>Category:</span>
+                  <ButtonCategory category={category} />
+                </div>
+                {tags.length ? (
+                  <div className={styles.tag}>
+                    <div className={styles.tag_label}>Tags:</div>
+                    <ul className={styles.tag_list}>
+                      {tags.map((tag) => (
+                        <li className={styles.tag_item} key={tag.id}>
+                          <ButtonTag tag={tag} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </section>
 
-          <section className={styles.article_body}>{children}</section>
+              <section className={styles.article_body}>{children}</section>
+            </div>
+
+            <TOC isSide />
+          </div>
         </div>
       </article>
     </LayoutRoot>

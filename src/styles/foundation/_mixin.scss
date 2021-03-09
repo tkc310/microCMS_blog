@@ -1,4 +1,4 @@
-@import '@styles/foundation/_variable.scss';
+@import '@styles/foundation/variable';
 
 $breakpoint-max: (
   // スマホ alias
@@ -10,6 +10,11 @@ $breakpoint-max: (
   'tb-ho': 'screen and (max-width: 1023px)'
 ) !default;
 
+$breakpoint-min: (
+  // desktop
+  'desktop': 'screen and (min-width: 1080px)'
+) !default;
+
 // $breakpoint未満の場合
 @mixin media-max($breakpoint: mobile) {
   @media #{map-get($breakpoint-max, $breakpoint)} {
@@ -17,8 +22,21 @@ $breakpoint-max: (
   }
 }
 
+// $breakpointを超える場合
+@mixin media-min($breakpoint: desktop) {
+  @media #{map-get($breakpoint-min, $breakpoint)} {
+    @content;
+  }
+}
+
 @mixin mobile() {
   @include media-max('mobile') {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @include media-min('desktop') {
     @content;
   }
 }

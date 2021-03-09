@@ -9,13 +9,11 @@ type Props = {
 export const SocialList = ({
   githubAccountName,
 }: // twitterAccountName,
-Props) => {
-  return (
-    <>
-      <LinkGithub accountName={githubAccountName} />
-      {/* <LinkTwitter accountName={twitterAccountName} /> */}
-    </>
-  );
-};
+Props) => (
+  <>
+    <LinkGithub accountName={githubAccountName} />
+    {/* <LinkTwitter accountName={twitterAccountName} /> */}
+  </>
+);
 
 export default SocialList;

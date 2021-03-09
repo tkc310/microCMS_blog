@@ -1,0 +1,77 @@
+@import '@styles/foundation/variable';
+@import '@styles/foundation/mixin';
+
+.toc {
+  position: relative;
+  background-color: #f8f8f8;
+  padding: 16px 16px 8px;
+  margin: 8px 0 24px;
+  font-size: 0.8rem;
+
+  &::before {
+    content: 'TOC';
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 8px;
+    background-color: #ebecef;
+    font-size: 0.8rem;
+  }
+
+  @include mobile {
+    border: 1px solid #ebecef;
+    border-width: 1px 0;
+    margin: 8px -16px;
+    padding: 16px 8px 8px;
+  }
+
+  @include desktop {
+    position: -webkit-sticky;
+    position: sticky;
+    top: $height-header-pc + 16px;
+    left: 0;
+    margin: 8px 0 0 32px;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  &-list {
+    margin: 0;
+
+    @include desktop {
+      margin-left: 16px;
+    }
+
+    .toc-list {
+      margin: 0;
+
+      @include desktop {
+        margin-left: 16px;
+      }
+    }
+    .toc-list-item {
+      margin: 8px 0;
+      padding: 0;
+
+      @include desktop {
+        margin: 4px 0;
+      }
+
+      .toc-link {
+        color: #292929;
+        font-size: 0.9rem;
+
+        @include desktop {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
+  @include desktop {
+    .is-active-link {
+      color: #292929;
+      font-weight: 700;
+    }
+  }
+}

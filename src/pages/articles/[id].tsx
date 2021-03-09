@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo } from 'react';
 import ErrorPage from '@pages/404';
 import LayoutPost from '@/components/layouts/LayoutPost';
 import { TArticle, TCategory, TTag, TConfig } from '@/types';
@@ -12,10 +12,10 @@ import addHeadingId from '@utils/addHeadingId';
 import addAnchorExternal from '@utils/addAnchorExternal';
 import optimizeImage from '@utils/optimizeImage';
 import n2br from '@utils/n2br';
-import createTOC from '@utils/createTOC';
 import { MdxRemote } from 'next-mdx-remote/types';
 import 'highlight.js/styles/github-gist.css';
-import LazyLoad from 'vanilla-lazyload';
+import useLazyLoad from '@/hooks/useLazyLoad';
+import TOC from '@components/molecules/TOC';
 
 export type Props = {
   article: TArticle;
@@ -44,14 +44,7 @@ export const ArticleDetail = ({
     publishedAt,
   } = article;
 
-  useEffect(() => {
-    const ll = new LazyLoad();
-    // SSGのみこの条件で有効
-    return () => {
-      // observer.disconnect
-      ll.destroy();
-    };
-  }, []);
+  useLazyLoad();
 
   return id ? (
     <LayoutPost
@@ -70,7 +63,9 @@ export const ArticleDetail = ({
       tagsAtMenu={tagsAtMenu}
       config={config}
     >
+      <TOC />
       <div
+        id="js-toc-content"
         dangerouslySetInnerHTML={{
           __html: `${mdxSource}`,
         }}
@@ -148,7 +143,7 @@ export const getStaticPropsFactory = () => {
     // 段落調整
     mdxSource = n2br(mdxSource);
     // 目次作成
-    mdxSource = createTOC(mdxSource);
+    // mdxSource = createTOC(mdxSource);
 
     return {
       props: {
@@ -164,4 +159,4 @@ export const getStaticPropsFactory = () => {
 
 export const getStaticProps = getStaticPropsFactory();
 
-export default ArticleDetail;
+export default memo(ArticleDetail);

@@ -18,7 +18,7 @@
   display: block;
   width: 100%;
   margin-bottom: 16px;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-position: center;
   background-size: cover;
 
@@ -101,7 +101,19 @@
   width: 100%;
   padding: 24px 0 72px;
   background-color: #fff;
-  // background: rgb(255 255 255 / 95%);
+
+  &_inner {
+    display: flex;
+    width: 1080px;
+    margin: 0 auto;
+  }
+}
+
+.article_main {
+  @include desktop {
+    width: 680px;
+    margin: 0 auto;
+  }
 }
 
 .article_meta {

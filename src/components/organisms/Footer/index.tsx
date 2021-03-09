@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Profile from '@components/atoms/Profile';
 import Copyright from '@components/atoms/Copyright';
 import { TProfile } from '@/types';
@@ -15,4 +16,4 @@ export const Footer = ({ profile }: Props) => {
   );
 };
 
-export default Footer;
+export default memo(Footer);

@@ -1,9 +1,14 @@
+import { memo, useEffect, useState } from 'react';
+
 type Props = {
   name: string;
 };
 
 export const Copyright = ({ name }: Props) => {
-  const year = new Date().getFullYear();
+  const [year, setYear] = useState(null);
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, [year]);
 
   return (
     <>
@@ -14,4 +19,4 @@ export const Copyright = ({ name }: Props) => {
   );
 };
 
-export default Copyright;
+export default memo(Copyright);
