@@ -28,6 +28,7 @@ export const TOC = ({ isSide }: Props) => {
       hasInnerContainers: true,
       orderedList: false,
       headingsOffset: 100,
+      // @ts-ignore
       scrollSmoothOffset: -48,
     });
 
