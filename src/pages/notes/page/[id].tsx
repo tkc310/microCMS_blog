@@ -1,5 +1,5 @@
-import { TArticle, TCategory, TTag, TConfig } from '@/types';
-import ArticleList from '@components/molecules/ArticleList';
+import { TNote, TCategory, TTag, TConfig } from '@/types';
+import NoteList from '@components/molecules/NoteList';
 import { Pagination } from '@components/molecules/Pagination';
 import LayoutBase from '@components/layouts/LayoutBase';
 import MetaNoIndex from '@components/atoms/meta/MetaNoIndex';
@@ -8,7 +8,7 @@ import fetchCategories from '@/utils/fetchCategories';
 import fetchTags from '@/utils/fetchTags';
 
 type Props = {
-  articles: Array<TArticle>;
+  notes: TNote[];
   totalCount: number;
   pageNum: number;
   categories: TCategory[];
@@ -17,7 +17,7 @@ type Props = {
 };
 
 export const ArticlePages = ({
-  articles,
+  notes,
   totalCount,
   pageNum,
   categories,
@@ -28,13 +28,13 @@ export const ArticlePages = ({
 
   return (
     <LayoutBase
-      url={`${config.host}articles/page/${pageNum}`}
+      url={`${config.host}notes/page/${pageNum}`}
       config={config}
       categories={categories}
       tags={tags}
     >
       <MetaNoIndex />
-      <ArticleList articles={articles} />
+      <NoteList notes={notes} />
       <Pagination totalCount={totalCount} perPage={perPage} pageNum={pageNum} />
     </LayoutBase>
   );
@@ -47,7 +47,7 @@ export const getStaticPaths = async () => {
   const config = await fetchConfig();
   const { perPage } = config;
 
-  const url = `${config.apiHost}articles`;
+  const url = `${config.apiHost}notes`;
   const data = await fetch(url, key)
     .then((res) => res.json())
     .catch(() => null);
@@ -56,7 +56,7 @@ export const getStaticPaths = async () => {
   const range = (start, end) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
   const paths = range(1, Math.ceil(totalCount / perPage)).map(
-    (pageNum) => `/articles/page/${pageNum}`
+    (pageNum) => `/notes/page/${pageNum}`
   );
 
   return { paths, fallback: false };
@@ -74,16 +74,16 @@ export const getStaticProps = async (context) => {
   const tags = await fetchTags();
 
   const offset = (pageNum - 1) * perPage;
-  const url = `${config.apiHost}articles`;
+  const url = `${config.apiHost}notes`;
   const params = [`offset=${offset}`, `&limit=${perPage}`].join('&');
   const data = await fetch(`${url}?${params}`, key)
     .then((res) => res.json())
     .catch(() => null);
-  const { contents: articles, totalCount } = data;
+  const { contents: notes, totalCount } = data;
 
   return {
     props: {
-      articles,
+      notes,
       totalCount,
       pageNum,
       categories,
