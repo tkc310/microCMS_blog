@@ -16,7 +16,7 @@ export type TTag = {
   id: string;
   slug: string;
   name: string;
-  color: string[];
+  color: string;
 } & TDateCommon;
 
 export type TImage = {

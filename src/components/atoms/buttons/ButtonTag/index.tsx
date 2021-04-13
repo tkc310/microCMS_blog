@@ -11,15 +11,15 @@ const defaultProps = {
 };
 
 export const ButtonTag = ({ tag, resource }: Props) => {
-  let { color } = tag;
-  if (!color?.length) {
-    color = ['gray'];
-  }
-
   return (
     <LinkBox>
       <LinkOverlay href={`/${resource}s/tags/${tag.slug}`}>
-        <Tag size="md" key={tag.id} variant="subtle" colorScheme={color}>
+        <Tag
+          size="md"
+          key={tag.id}
+          variant="subtle"
+          colorScheme={tag.color || 'gray'}
+        >
           <TagLabel>{tag.name}</TagLabel>
         </Tag>
       </LinkOverlay>
