@@ -7,7 +7,7 @@ import getStaticPropsFactory from '@utils/getStaticPropsFactory/tagCategory';
 import { TArticle, TConfig, TCategory, TTag } from '@/types';
 
 type Props = {
-  articles: Array<TArticle>;
+  contents: TArticle[];
   category: TCategory | null;
   categories: TCategory[];
   tags: TTag[];
@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const ArticleCategories = ({
-  articles,
+  contents: articles,
   category,
   categories,
   tags,
@@ -27,7 +27,7 @@ export const ArticleCategories = ({
     <LayoutBase
       url={`${config.host}articles/categories/${category.slug}`}
       title={category.name}
-      description={`${category.name}の記事一覧`}
+      description={`カテゴリー「${category.name}」の記事一覧`}
       keywords={[category.name]}
       categories={categories}
       tags={tags}
@@ -40,7 +40,7 @@ export const ArticleCategories = ({
           marginBottom: '16px',
         }}
       >
-        「{category.name}」の記事一覧
+        {`カテゴリー「${category.name}」の記事一覧`}
       </Heading>
       <Divider style={{ marginBottom: '16px' }} />
       <ArticleList articles={articles} />
@@ -48,7 +48,13 @@ export const ArticleCategories = ({
   );
 };
 
-export const getStaticPaths = getStaticPathsFactory('category');
-export const getStaticProps = getStaticPropsFactory('category');
+export const getStaticPaths = getStaticPathsFactory({
+  type: 'category',
+  resource: 'article',
+});
+export const getStaticProps = getStaticPropsFactory({
+  type: 'category',
+  resource: 'article',
+});
 
 export default ArticleCategories;

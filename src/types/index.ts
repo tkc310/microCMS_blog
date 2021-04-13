@@ -16,7 +16,7 @@ export type TTag = {
   id: string;
   slug: string;
   name: string;
-  color: string;
+  color: string[];
 } & TDateCommon;
 
 export type TImage = {
@@ -38,6 +38,13 @@ export type TArticle = {
   category: TCategory;
   tags: TTag[];
   imageOption: TimageOption | null;
+} & TDateCommon;
+
+export type TNote = {
+  id: string;
+  title: string;
+  body: string;
+  tags: TTag[];
 } & TDateCommon;
 
 export type TProfile = {

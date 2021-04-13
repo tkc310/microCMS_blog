@@ -1,8 +1,18 @@
-export const fetchTags = async (slug?: string) => {
+type Args = {
+  slug?: string;
+  resource?: string;
+};
+
+export const fetchTags = async (props?: Args) => {
+  const { slug, resource } = props || {};
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
-  const url = 'https://tkc310.microcms.io/api/v1/tags';
+  let prefix = '';
+  if (resource && resource !== 'article') {
+    prefix = `${resource}_`;
+  }
+  const url = `https://tkc310.microcms.io/api/v1/${prefix}tags`;
   const data = await fetch(url, key)
     .then((res) => res.json())
     .catch(() => null);

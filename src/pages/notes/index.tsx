@@ -1,21 +1,22 @@
-import ArticleList from '@components/molecules/ArticleList';
-import { TArticle, TCategory, TTag, TConfig } from '@/types';
+import NoteList from '@components/molecules/NoteList';
+import { TCategory, TTag, TConfig, TNote } from '@/types';
 import Pagination from '@components/molecules/Pagination';
 import LayoutBase from '@components/layouts/LayoutBase';
+import MetaNoIndex from '@components/atoms/meta/MetaNoIndex';
 import fetchConfig from '@utils/fetchConfig';
 import fetchCategories from '@/utils/fetchCategories';
 import fetchTags from '@/utils/fetchTags';
 
 type Props = {
-  articles: TArticle[];
+  notes: TNote[];
   totalCount: number;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
 };
 
-export const Home = ({
-  articles,
+export const NoteIndex = ({
+  notes,
   totalCount,
   categories,
   tags,
@@ -25,7 +26,8 @@ export const Home = ({
 
   return (
     <LayoutBase categories={categories} tags={tags} config={config}>
-      <ArticleList articles={articles} />
+      <MetaNoIndex />
+      <NoteList notes={notes} />
       <Pagination totalCount={totalCount} perPage={perPage} />
     </LayoutBase>
   );
@@ -40,7 +42,7 @@ export const getStaticProps = async () => {
   const categories = await fetchCategories();
   const tags = await fetchTags();
 
-  const endPoint = `${apiHost}articles`;
+  const endPoint = `${apiHost}notes`;
   const pagingParams = [`offset=${0}`, `limit=${perPage}`];
   const params = pagingParams.join('&');
   const url = `${endPoint}?${params}`;
@@ -48,11 +50,11 @@ export const getStaticProps = async () => {
   const data = await fetch(url, key)
     .then((res) => res.json())
     .catch(() => null);
-  const { contents: articles, totalCount } = data;
+  const { contents: notes, totalCount } = data;
 
   return {
     props: {
-      articles,
+      notes,
       totalCount,
       categories,
       tags,
@@ -61,4 +63,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default Home;
+export default NoteIndex;

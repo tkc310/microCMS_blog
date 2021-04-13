@@ -3,23 +3,30 @@ import { Tag, TagLabel, LinkBox, LinkOverlay } from '@chakra-ui/react';
 
 type Props = {
   tag: TTag;
+  resource?: 'article' | 'note';
 };
 
-export const ButtonTag = ({ tag }: Props) => {
+const defaultProps = {
+  resource: 'article',
+};
+
+export const ButtonTag = ({ tag, resource }: Props) => {
+  let { color } = tag;
+  if (!color?.length) {
+    color = ['gray'];
+  }
+
   return (
     <LinkBox>
-      <LinkOverlay href={`/articles/tags/${tag.slug}`}>
-        <Tag
-          size="md"
-          key={tag.id}
-          variant="subtle"
-          colorScheme={tag.color || undefined}
-        >
+      <LinkOverlay href={`/${resource}s/tags/${tag.slug}`}>
+        <Tag size="md" key={tag.id} variant="subtle" colorScheme={color}>
           <TagLabel>{tag.name}</TagLabel>
         </Tag>
       </LinkOverlay>
     </LinkBox>
   );
 };
+
+ButtonTag.defaultProps = defaultProps;
 
 export default ButtonTag;

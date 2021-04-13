@@ -11,6 +11,16 @@
   }
 }
 
+.note_header {
+  width: $width-content-pc;
+  margin: 0 auto 16px;
+
+  @include mobile {
+    width: 100%;
+    padding: 0 16px;
+  }
+}
+
 .capture {
   position: fixed;
   left: 0;

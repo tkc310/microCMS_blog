@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState, useRef } from 'react';
 import * as tocbot from 'tocbot';
 import useWindowSize from '@/hooks/useWindowSize';
 
@@ -10,11 +10,27 @@ const defaultProps = {
   isSide: false,
 };
 
+const TARGET_NODES = 'h1, h2, h3, h4, h5, h6';
+
 // @see https://tscanlin.github.io/tocbot/
 export const TOC = ({ isSide }: Props) => {
+  const unmountRef = useRef(false);
   const size = useWindowSize();
   const isDesktop = size.width >= 1080;
-  const isHidden = (isDesktop && !isSide) || (!isDesktop && isSide);
+  const [isHidden, setIsHidden] = useState(true);
+
+  useEffect(() => {
+    const unnecessary = (isDesktop && !isSide) || (!isDesktop && isSide);
+    const exists = !!document.querySelectorAll('h2, h3, h4, h5, h6')?.length;
+
+    if (!unmountRef.current) {
+      setIsHidden(unnecessary || !exists);
+    }
+
+    return () => {
+      unmountRef.current = true;
+    };
+  }, [isDesktop, isSide]);
 
   useEffect(() => {
     if (isHidden) {
@@ -24,7 +40,7 @@ export const TOC = ({ isSide }: Props) => {
     tocbot.init({
       tocSelector: '#js-toc',
       contentSelector: '#js-toc-content',
-      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      headingSelector: TARGET_NODES,
       hasInnerContainers: true,
       orderedList: false,
       headingsOffset: 100,
@@ -35,7 +51,7 @@ export const TOC = ({ isSide }: Props) => {
     return () => {
       tocbot.destroy();
     };
-  });
+  }, [isHidden]);
 
   return isHidden ? null : <aside id="js-toc" className="toc" />;
 };

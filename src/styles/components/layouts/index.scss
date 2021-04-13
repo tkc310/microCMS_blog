@@ -153,7 +153,8 @@
     padding: ($height-header-sp + 16px) 16px 32px;
   }
 
-  &--article {
+  &--article,
+  &--note {
     @include l-content;
     padding: $height-header-pc 0 56px;
 

@@ -1,38 +1,40 @@
 import { Heading, Divider } from '@chakra-ui/react';
 import ErrorPage from '@pages/404';
-import ArticleList from '@components/molecules/ArticleList';
+import NoteList from '@components/molecules/NoteList';
 import LayoutBase from '@components/layouts/LayoutBase';
+import MetaNoIndex from '@components/atoms/meta/MetaNoIndex';
 import getStaticPathsFactory from '@utils/getStaticPathsFactory/tagCategory';
 import getStaticPropsFactory from '@utils/getStaticPropsFactory/tagCategory';
-import { TArticle, TConfig, TTag, TCategory } from '@/types';
+import { TNote, TConfig, TTag, TCategory } from '@/types';
 
 type Props = {
-  contents: TArticle[];
+  contents: TNote[];
   tag: TTag | null;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
 };
 
-export const ArticleTags = ({
-  contents: articles,
+export const NoteTags = ({
+  contents: notes,
   tag,
   categories,
   tags,
   config,
 }: Props) => {
-  return !tag || !articles.length ? (
+  return !tag || !notes.length ? (
     <ErrorPage categories={categories} tags={tags} config={config} />
   ) : (
     <LayoutBase
-      url={`${config.host}articles/tags/${tag.slug}`}
+      url={`${config.host}notes/tags/${tag.slug}`}
       title={tag.name}
-      description={`タグ「${tag.name}」の記事一覧`}
+      description={`タグ「${tag.name}」のノート一覧`}
       keywords={[tag.name]}
       categories={categories}
       tags={tags}
       config={config}
     >
+      <MetaNoIndex />
       <Heading
         as="h1"
         size="md"
@@ -40,21 +42,21 @@ export const ArticleTags = ({
           marginBottom: '16px',
         }}
       >
-        {`タグ「${tag.name}」の記事一覧`}
+        {`タグ「${tag.name}」のノート一覧`}
       </Heading>
       <Divider style={{ marginBottom: '16px' }} />
-      <ArticleList articles={articles} />
+      <NoteList notes={notes} />
     </LayoutBase>
   );
 };
 
 export const getStaticPaths = getStaticPathsFactory({
   type: 'tag',
-  resource: 'article',
+  resource: 'note',
 });
 export const getStaticProps = getStaticPropsFactory({
   type: 'tag',
-  resource: 'article',
+  resource: 'note',
 });
 
-export default ArticleTags;
+export default NoteTags;
