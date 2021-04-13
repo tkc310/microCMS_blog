@@ -1,9 +1,9 @@
-import { TTag } from '@/types';
+import { TTag, TResources } from '@/types';
 import { Tag, TagLabel, LinkBox, LinkOverlay } from '@chakra-ui/react';
 
 type Props = {
   tag: TTag;
-  resource?: 'article' | 'note';
+  resource?: TResources;
 };
 
 const defaultProps = {

@@ -66,3 +66,5 @@ export type TConfig = {
   siteImage: TImage;
   profile: TProfile;
 } & TDateCommon;
+
+export type TResources = 'article' | 'note';

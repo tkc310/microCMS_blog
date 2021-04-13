@@ -1,13 +1,14 @@
 import fetchConfig from '@utils/fetchConfig';
 import fetchTags from '@utils/fetchTags';
 import fetchCategories from '@utils/fetchCategories';
+import { TResources } from '@/types';
 
 export const getStaticPropsFactory = ({
   type,
   resource,
 }: {
   type: 'tag' | 'category';
-  resource: 'article' | 'note';
+  resource: TResources;
 }) => {
   const isTag = type === 'tag';
 
@@ -23,7 +24,7 @@ export const getStaticPropsFactory = ({
 
     const typeResult = isTag
       ? await fetchTags({ slug, resource })
-      : await fetchCategories(slug);
+      : await fetchCategories({ slug });
 
     const filterName = isTag ? 'tags' : 'category';
     const filterType = isTag ? 'contains' : 'equals';

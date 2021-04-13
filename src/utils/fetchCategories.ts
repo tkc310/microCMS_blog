@@ -1,4 +1,9 @@
-export const fetchCategories = async (slug?: string) => {
+type Args = {
+  slug?: string;
+};
+
+export const fetchCategories = async (props?: Args) => {
+  const { slug } = props || {};
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };

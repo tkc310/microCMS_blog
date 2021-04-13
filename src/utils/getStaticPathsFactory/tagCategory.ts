@@ -1,12 +1,13 @@
 import fetchTags from '@utils/fetchTags';
 import fetchCategories from '@utils/fetchCategories';
+import { TResources } from '@/types';
 
 export const getStaticPathsFactory = ({
   type,
   resource,
 }: {
   type: 'tag' | 'category';
-  resource: 'article' | 'note';
+  resource: TResources;
 }) => {
   const isTag = type === 'tag';
 
