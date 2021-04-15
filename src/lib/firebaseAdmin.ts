@@ -24,4 +24,5 @@ if (!admin.apps?.length) {
   admin.app();
 }
 
+export { admin };
 export default admin;
