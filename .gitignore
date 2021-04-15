@@ -37,4 +37,4 @@ yarn-error.log*
 firebase-adminsdk.json
 
 # firebase auth api
-pages/api/auth/
+src/pages/api/auth
