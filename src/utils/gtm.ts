@@ -2,7 +2,7 @@
 import Event from '@/types/gtm-event';
 import { isProd } from '@utils/getEnv';
 
-export const GA_ID = process.env.PUBLIC_GOOGLE_ANALYTICS_ID;
+export const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
 export const ENABLE_GTM = isProd && GA_ID;
 

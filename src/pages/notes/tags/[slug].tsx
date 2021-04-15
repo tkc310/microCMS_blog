@@ -6,6 +6,8 @@ import MetaNoIndex from '@components/atoms/meta/MetaNoIndex';
 import getStaticPathsFactory from '@utils/getStaticPathsFactory/tagCategory';
 import getStaticPropsFactory from '@utils/getStaticPropsFactory/tagCategory';
 import { TNote, TConfig, TTag, TCategory } from '@/types';
+import useAuth from '@/hooks/useAuth';
+import Spinner from '@components/atoms/Spinner';
 
 type Props = {
   contents: TNote[];
@@ -22,30 +24,30 @@ export const NoteTags = ({
   tags,
   config,
 }: Props) => {
+  const currentUser = useAuth();
+
   return !tag || !notes.length ? (
     <ErrorPage categories={categories} tags={tags} config={config} />
   ) : (
-    <LayoutBase
-      url={`${config.host}notes/tags/${tag.slug}`}
-      title={tag.name}
-      description={`タグ「${tag.name}」のノート一覧`}
-      keywords={[tag.name]}
-      categories={categories}
-      tags={tags}
-      config={config}
-    >
+    <LayoutBase categories={categories} tags={tags} config={config}>
       <MetaNoIndex />
-      <Heading
-        as="h1"
-        size="md"
-        style={{
-          marginBottom: '16px',
-        }}
-      >
-        {`タグ「${tag.name}」のノート一覧`}
-      </Heading>
-      <Divider style={{ marginBottom: '16px' }} />
-      <NoteList notes={notes} />
+      {currentUser ? (
+        <>
+          <Heading
+            as="h1"
+            size="md"
+            style={{
+              marginBottom: '16px',
+            }}
+          >
+            {`タグ「${tag.name}」のノート一覧`}
+          </Heading>
+          <Divider style={{ marginBottom: '16px' }} />
+          <NoteList notes={notes} />
+        </>
+      ) : (
+        <Spinner />
+      )}
     </LayoutBase>
   );
 };

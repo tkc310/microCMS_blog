@@ -132,7 +132,7 @@
 }
 
 @mixin l-content {
-  // overflow: hidden;
+  position: relative;
   min-height: calc(100vh - 72px);
   margin: 0 auto;
   text-align: left;
@@ -160,6 +160,17 @@
 
     @include mobile {
       padding: $height-header-sp 0 32px;
+    }
+  }
+
+  &--auth {
+    @include l-content;
+    width: 320px;
+    padding: ($height-header-pc + 32px) 0 56px;
+
+    @include mobile {
+      width: 100%;
+      padding: ($height-header-sp + 16px) 16px 32px;
     }
   }
 }

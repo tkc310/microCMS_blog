@@ -32,3 +32,10 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# firebase env
+firebase-adminsdk.json
+
+# firebase auth api
+pages/api/auth/
+lib/firebaseAdmin.ts

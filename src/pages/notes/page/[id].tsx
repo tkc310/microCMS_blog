@@ -6,11 +6,12 @@ import MetaNoIndex from '@components/atoms/meta/MetaNoIndex';
 import fetchConfig from '@utils/fetchConfig';
 import fetchCategories from '@/utils/fetchCategories';
 import fetchTags from '@/utils/fetchTags';
+import useAuth from '@/hooks/useAuth';
+import Spinner from '@components/atoms/Spinner';
 
 type Props = {
   notes: TNote[];
   totalCount: number;
-  pageNum: number;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
@@ -19,23 +20,25 @@ type Props = {
 export const ArticlePages = ({
   notes,
   totalCount,
-  pageNum,
   categories,
   tags,
   config,
 }: Props) => {
   const { perPage } = config;
+  const currentUser = useAuth();
 
   return (
-    <LayoutBase
-      url={`${config.host}notes/page/${pageNum}`}
-      config={config}
-      categories={categories}
-      tags={tags}
-    >
+    <LayoutBase config={config} categories={categories} tags={tags}>
       <MetaNoIndex />
-      <NoteList notes={notes} />
-      <Pagination totalCount={totalCount} perPage={perPage} pageNum={pageNum} />
+
+      {currentUser ? (
+        <>
+          <NoteList notes={notes} />
+          <Pagination totalCount={totalCount} perPage={perPage} />
+        </>
+      ) : (
+        <Spinner />
+      )}
     </LayoutBase>
   );
 };

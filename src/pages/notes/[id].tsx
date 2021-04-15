@@ -15,6 +15,8 @@ import { MdxRemote } from 'next-mdx-remote/types';
 import 'highlight.js/styles/github-gist.css';
 import useLazyLoad from '@/hooks/useLazyLoad';
 import TOC from '@components/molecules/TOC';
+import useAuth from '@/hooks/useAuth';
+import Spinner from '@components/atoms/Spinner';
 
 export type Props = {
   note: TNote;
@@ -32,7 +34,7 @@ export const NoteDetail = ({
   config,
 }: Props) => {
   const { id, title, tags, publishedAt } = note;
-
+  const currentUser = useAuth();
   useLazyLoad();
 
   return id ? (
@@ -44,13 +46,19 @@ export const NoteDetail = ({
       tagsAtMenu={tagsAtMenu}
       config={config}
     >
-      <TOC />
-      <div
-        id="js-toc-content"
-        dangerouslySetInnerHTML={{
-          __html: `${mdxSource}`,
-        }}
-      />
+      {currentUser ? (
+        <>
+          <TOC />
+          <div
+            id="js-toc-content"
+            dangerouslySetInnerHTML={{
+              __html: `${mdxSource}`,
+            }}
+          />
+        </>
+      ) : (
+        <Spinner />
+      )}
     </LayoutNote>
   ) : (
     <ErrorPage
