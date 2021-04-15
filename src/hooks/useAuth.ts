@@ -1,4 +1,4 @@
-import { firebase } from '@/lib/firebase';
+import { auth } from '@/lib/firebase';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -7,7 +7,7 @@ export const useAuth = () => {
   const router = useRouter();
 
   useEffect(() => {
-    let listnner = firebase.auth().onAuthStateChanged((u) => {
+    let listnner = auth.onAuthStateChanged((u) => {
       if (u) {
         setUser(u);
       } else {

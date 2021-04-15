@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { firebase } from '@/lib/firebase';
+import { auth } from '@/lib/firebase';
 import { TCategory, TTag, TConfig } from '@/types';
 import {
   useToast,
@@ -45,7 +45,7 @@ export const SignIn = ({ categories, tags, config }: Props) => {
     }
 
     try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password);
       localStorage.setItem(FAIL_COUNT_KEY, '0');
 
       const { callback } = router.query;
@@ -56,7 +56,7 @@ export const SignIn = ({ categories, tags, config }: Props) => {
       }
     } catch (error) {
       localStorage.setItem(FAIL_COUNT_KEY, String(failCount + 1));
-      await firebase.auth().signOut();
+      await auth.signOut();
 
       toast({
         title: 'サインインに失敗しました',
