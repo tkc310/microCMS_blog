@@ -38,4 +38,3 @@ firebase-adminsdk.json
 
 # firebase auth api
 pages/api/auth/
-lib/firebaseAdmin.ts
