@@ -8,6 +8,8 @@ import { TCategory, TTag, TConfig } from '@/types';
 import styles from '@styles/components/ArticleDetail.module.scss';
 import getSafeDate from '@utils/getSafeDate';
 import TOC from '@components/molecules/TOC';
+import useAuth from '@/hooks/useAuth';
+import Spinner from '@components/atoms/Spinner';
 
 type Props = {
   children: ReactNode;
@@ -31,43 +33,48 @@ export const LayoutNote = ({
   config,
 }: Props) => {
   const safeDate = getSafeDate(date);
+  const currentUser = useAuth();
 
   return (
     <LayoutRoot categories={categoriesAtMenu} tags={tagsAtMenu} config={config}>
       <MetaNoIndex />
 
       <article className="l-content--note">
-        <div className={styles.article_bg}>
-          <div className={styles.article_bg_inner}>
-            <div className={styles.article_main}>
-              <section className={styles.note_header}>
-                <h1 className={styles.title}>{title}</h1>
-                <Text className={styles.date}>
-                  <TextDate date={safeDate} />
-                </Text>
-              </section>
+        {currentUser ? (
+          <div className={styles.article_bg}>
+            <div className={styles.article_bg_inner}>
+              <div className={styles.article_main}>
+                <section className={styles.note_header}>
+                  <h1 className={styles.title}>{title}</h1>
+                  <Text className={styles.date}>
+                    <TextDate date={safeDate} />
+                  </Text>
+                </section>
 
-              <section className={styles.article_meta}>
-                {tags.length ? (
-                  <div className={styles.tag}>
-                    <div className={styles.tag_label}>Tags:</div>
-                    <ul className={styles.tag_list}>
-                      {tags.map((tag) => (
-                        <li className={styles.tag_item} key={tag.id}>
-                          <ButtonTag tag={tag} resource="note" />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null}
-              </section>
+                <section className={styles.article_meta}>
+                  {tags.length ? (
+                    <div className={styles.tag}>
+                      <div className={styles.tag_label}>Tags:</div>
+                      <ul className={styles.tag_list}>
+                        {tags.map((tag) => (
+                          <li className={styles.tag_item} key={tag.id}>
+                            <ButtonTag tag={tag} resource="note" />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </section>
 
-              <section className={styles.article_body}>{children}</section>
+                <section className={styles.article_body}>{children}</section>
+              </div>
+
+              <TOC isSide />
             </div>
-
-            <TOC isSide />
           </div>
-        </div>
+        ) : (
+          <Spinner />
+        )}
       </article>
     </LayoutRoot>
   );
