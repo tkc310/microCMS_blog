@@ -194,16 +194,16 @@ $padding-content-sp: 16px;
 
   // typography
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     @include mobile {
       font-size: 1.5rem;
     }
   }
   h2 {
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     border-bottom: 1px solid #eaecef;
     @include mobile {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
   }
   h3 {
@@ -233,12 +233,13 @@ $padding-content-sp: 16px;
   pre code {
     padding: 0.5rem 1rem;
     background-color: #f8f8f8;
+    font-size: 0.85rem;
 
     @include mobile {
       word-wrap: normal;
       margin-left: -$padding-content-sp;
       margin-right: -$padding-content-sp;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
   }
 
@@ -252,6 +253,7 @@ $padding-content-sp: 16px;
   // table
   table {
     padding: 0;
+    font-size: 0.85rem;
   }
   table tr {
     border-top: 1px solid #cccccc;
