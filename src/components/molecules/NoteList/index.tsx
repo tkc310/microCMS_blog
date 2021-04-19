@@ -10,7 +10,6 @@ import {
 } from '@chakra-ui/react';
 import ButtonTag from '@components/atoms/buttons/ButtonTag';
 import TextDate from '@components/atoms/texts/TextDate';
-import getExcerpt from '@utils/getExcerpt';
 import multiLineTextStyle from '@utils/multiLineTextStyle';
 import getSafeDate from '@utils/getSafeDate';
 import { TNote } from '@/types';
@@ -59,9 +58,6 @@ export const NoteList = ({ notes }: Props) => {
                     >
                       {note.title}
                     </Heading>
-                    <Text style={dynamicStyles.elipsisLine4}>
-                      {getExcerpt(note.body)}
-                    </Text>
                   </Box>
                 </Flex>
               </LinkOverlay>

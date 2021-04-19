@@ -4,13 +4,20 @@ type Props = {
   totalCount: number;
   perPage: number;
   pageNum?: number;
+  resource?: 'articles' | 'notes';
 };
 
 const defaultProps = {
   pageNum: undefined,
+  resource: 'articles',
 };
 
-export const Pagination = ({ totalCount, perPage, pageNum }: Props) => {
+export const Pagination = ({
+  totalCount,
+  perPage,
+  pageNum,
+  resource,
+}: Props) => {
   const range = (start, end) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
 
@@ -18,13 +25,15 @@ export const Pagination = ({ totalCount, perPage, pageNum }: Props) => {
   const isPrev = pageNum && pageNum > 1;
   const isNext = !pageNum || totalPage > pageNum;
 
+  console.log(resource);
+
   return totalPage > 1 ? (
     <div
       style={{ display: 'flex', justifyContent: 'center', fontSize: '1.3rem' }}
     >
       {isPrev && (
         <Link
-          href={`/articles/page/${pageNum - 1}`}
+          href={`/${resource}/page/${pageNum - 1}`}
           style={{ marginRight: 16 }}
         >
           <span>Prev</span>
@@ -41,7 +50,7 @@ export const Pagination = ({ totalCount, perPage, pageNum }: Props) => {
                 {number}
               </span>
             ) : (
-              <Link href={`/articles/page/${number}`}>
+              <Link href={`/${resource}/page/${number}`}>
                 <span style={{ fontSize: '1.3rem' }}>{number}</span>
               </Link>
             )}
@@ -49,7 +58,7 @@ export const Pagination = ({ totalCount, perPage, pageNum }: Props) => {
         ))}
       </ul>
       {isNext && (
-        <Link href={`/articles/page/${pageNum > 1 ? pageNum + 1 : 2}`}>
+        <Link href={`/${resource}/page/${pageNum > 1 ? pageNum + 1 : 2}`}>
           <span>Next</span>
         </Link>
       )}

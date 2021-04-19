@@ -17,6 +17,8 @@ type Props = {
   config: TConfig;
 };
 
+const PER_PAGE = 10 as const;
+
 export const NoteIndex = ({
   notes,
   totalCount,
@@ -24,7 +26,6 @@ export const NoteIndex = ({
   tags,
   config,
 }: Props) => {
-  const { perPage } = config;
   const currentUser = useAuth();
 
   return (
@@ -34,7 +35,11 @@ export const NoteIndex = ({
       {currentUser ? (
         <>
           <NoteList notes={notes} />
-          <Pagination totalCount={totalCount} perPage={perPage} />
+          <Pagination
+            totalCount={totalCount}
+            perPage={PER_PAGE}
+            resource="notes"
+          />
         </>
       ) : (
         <Spinner />
@@ -48,12 +53,12 @@ export const getStaticProps = async () => {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
   const config = await fetchConfig();
-  const { perPage, apiHost } = config;
+  const { apiHost } = config;
   const categories = await fetchCategories();
   const tags = await fetchTags();
 
   const endPoint = `${apiHost}notes`;
-  const pagingParams = [`offset=${0}`, `limit=${perPage}`];
+  const pagingParams = [`offset=${0}`, `limit=${PER_PAGE}`];
   const params = pagingParams.join('&');
   const url = `${endPoint}?${params}`;
 

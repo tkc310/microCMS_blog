@@ -17,14 +17,15 @@ type Props = {
   config: TConfig;
 };
 
-export const ArticlePages = ({
+const PER_PAGE = 10 as const;
+
+export const NotePages = ({
   notes,
   totalCount,
   categories,
   tags,
   config,
 }: Props) => {
-  const { perPage } = config;
   const currentUser = useAuth();
 
   return (
@@ -34,7 +35,7 @@ export const ArticlePages = ({
       {currentUser ? (
         <>
           <NoteList notes={notes} />
-          <Pagination totalCount={totalCount} perPage={perPage} />
+          <Pagination totalCount={totalCount} perPage={PER_PAGE} />
         </>
       ) : (
         <Spinner />
@@ -48,7 +49,6 @@ export const getStaticPaths = async () => {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
   const config = await fetchConfig();
-  const { perPage } = config;
 
   const url = `${config.apiHost}notes`;
   const data = await fetch(url, key)
@@ -58,7 +58,7 @@ export const getStaticPaths = async () => {
 
   const range = (start, end) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
-  const paths = range(1, Math.ceil(totalCount / perPage)).map(
+  const paths = range(1, Math.ceil(totalCount / PER_PAGE)).map(
     (pageNum) => `/notes/page/${pageNum}`
   );
 
@@ -72,13 +72,12 @@ export const getStaticProps = async (context) => {
   };
 
   const config = await fetchConfig();
-  const { perPage } = config;
   const categories = await fetchCategories();
   const tags = await fetchTags();
 
-  const offset = (pageNum - 1) * perPage;
+  const offset = (pageNum - 1) * PER_PAGE;
   const url = `${config.apiHost}notes`;
-  const params = [`offset=${offset}`, `&limit=${perPage}`].join('&');
+  const params = [`offset=${offset}`, `&limit=${PER_PAGE}`].join('&');
   const data = await fetch(`${url}?${params}`, key)
     .then((res) => res.json())
     .catch(() => null);
@@ -96,4 +95,4 @@ export const getStaticProps = async (context) => {
   };
 };
 
-export default ArticlePages;
+export default NotePages;
