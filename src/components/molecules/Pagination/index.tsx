@@ -25,8 +25,6 @@ export const Pagination = ({
   const isPrev = pageNum && pageNum > 1;
   const isNext = !pageNum || totalPage > pageNum;
 
-  console.log(resource);
-
   return totalPage > 1 ? (
     <div
       style={{ display: 'flex', justifyContent: 'center', fontSize: '1.3rem' }}
