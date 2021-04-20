@@ -34,7 +34,7 @@ export const NoteIndex = ({
 
       {currentUser ? (
         <>
-          <NoteList notes={notes} />
+          <NoteList notes={notes} itemHeight={115} />
           <Pagination
             totalCount={totalCount}
             perPage={PER_PAGE}

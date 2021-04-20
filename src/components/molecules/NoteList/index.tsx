@@ -18,6 +18,11 @@ import LazyLoad from 'react-lazyload';
 
 type Props = {
   notes: TNote[];
+  itemHeight?: number;
+};
+
+const defaultProps = {
+  itemHeight: 250,
 };
 
 const dynamicStyles = {
@@ -25,7 +30,7 @@ const dynamicStyles = {
   elipsisLine4: multiLineTextStyle(4),
 };
 
-export const NoteList = ({ notes }: Props) => {
+export const NoteList = ({ notes, itemHeight }: Props) => {
   return (
     <VStack
       divider={<StackDivider borderColor="gray.200" />}
@@ -34,7 +39,7 @@ export const NoteList = ({ notes }: Props) => {
       align="stretch"
     >
       {notes.map((note) => (
-        <LazyLoad height={250} key={note.id} once>
+        <LazyLoad height={itemHeight} key={note.id} once>
           <Box>
             <LinkBox mb="3">
               <LinkOverlay href={`/notes/${note.id}`}>
@@ -83,5 +88,7 @@ export const NoteList = ({ notes }: Props) => {
     </VStack>
   );
 };
+
+NoteList.defaultProps = defaultProps;
 
 export default NoteList;
