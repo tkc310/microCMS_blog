@@ -1,32 +1,20 @@
 @import '@styles/foundation/variable';
 @import '@styles/foundation/mixin';
 
-.category {
+.section {
   margin-bottom: 24px;
-  &_title {
-    margin-bottom: 16px;
-  }
-  &_list {
-    list-style: none;
-  }
-  &_item {
-    display: inline-block;
-    margin-right: 8px;
-    margin-bottom: 8px;
-  }
 }
 
-.tag {
-  margin-bottom: 24px;
-  &_title {
-    margin-bottom: 16px;
-  }
-  &_list {
-    list-style: none;
-  }
-  &_item {
-    display: inline-block;
-    margin-right: 8px;
-    margin-bottom: 8px;
-  }
+.title {
+  margin-bottom: 16px;
+}
+
+.list {
+  list-style: none;
+}
+
+.item {
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 8px;
 }

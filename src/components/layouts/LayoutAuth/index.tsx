@@ -10,7 +10,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const LayoutBase = ({ children, categories, tags, config }: Props) => {
+export const LayoutAuth = ({ children, categories, tags, config }: Props) => {
   return (
     <LayoutRoot categories={categories} tags={tags} config={config}>
       <MetaNoIndex />
@@ -20,4 +20,4 @@ export const LayoutBase = ({ children, categories, tags, config }: Props) => {
   );
 };
 
-export default LayoutBase;
+export default LayoutAuth;

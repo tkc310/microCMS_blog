@@ -56,6 +56,11 @@ export type TProfile = {
   image: TImage;
 };
 
+export type TDonations = {
+  amazon: string;
+  crypto: string;
+};
+
 export type TConfig = {
   perPage: number;
   host: string;
@@ -65,6 +70,7 @@ export type TConfig = {
   siteKeywords: string[];
   siteImage: TImage;
   profile: TProfile;
+  donations: TDonations;
 } & TDateCommon;
 
 export type TResources = 'article' | 'note';

@@ -5,6 +5,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
+  Link,
 } from '@chakra-ui/react';
 import ButtonCategory from '@components/atoms/buttons/ButtonCategory';
 import ButtonTag from '@components/atoms/buttons/ButtonTag';
@@ -24,26 +25,34 @@ export const SideMenu = ({ onClose, isOpen, tags, categories }: Props) => {
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">Menu</DrawerHeader>
           <DrawerBody>
-            <section className={styles.category}>
-              <h3 className={styles.category_title}>Categories</h3>
-              <ul className={styles.category_list}>
+            <section className={styles.section}>
+              <h3 className={styles.title}>Categories</h3>
+              <ul className={styles.list}>
                 {categories.map((category) => (
-                  <li key={category.id} className={styles.category_item}>
+                  <li key={category.id} className={styles.item}>
                     <ButtonCategory category={category} />
                   </li>
                 ))}
               </ul>
             </section>
-            <section className={styles.tag}>
-              <h3 className={styles.tag_title}>Tags</h3>
 
-              <ul className={styles.tag_list}>
+            <section className={styles.section}>
+              <h3 className={styles.title}>Tags</h3>
+
+              <ul className={styles.list}>
                 {tags.map((tag) => (
-                  <li key={tag.id} className={styles.tag_item}>
+                  <li key={tag.id} className={styles.item}>
                     <ButtonTag tag={tag} />
                   </li>
                 ))}
               </ul>
+            </section>
+
+            <section className={styles.section}>
+              <h3 className={styles.title}>Donation</h3>
+              <Link color="teal.500" href="/donation">
+                寄付のお願い
+              </Link>
             </section>
           </DrawerBody>
         </DrawerContent>
