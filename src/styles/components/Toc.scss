@@ -5,7 +5,7 @@
   position: relative;
   background-color: #f8f8f8;
   width: 100%;
-  padding: 16px 16px 8px;
+  padding: 16px 32px 8px;
   margin: 8px 0 24px;
   font-size: 0.8rem;
 
@@ -20,10 +20,11 @@
   }
 
   @include mobile {
+    width: calc(100% + 32px);
     border: 1px solid #ebecef;
     border-width: 1px 0;
     margin: 8px -16px;
-    padding: 16px 8px 8px;
+    padding: 16px 16px 8px;
   }
 
   @include desktop {
@@ -32,6 +33,7 @@
     top: $height-header-pc + 16px;
     left: 0;
     margin: 8px 0 0 32px;
+    padding: 16px 16px 8px;
     height: 100%;
     backface-visibility: hidden;
   }

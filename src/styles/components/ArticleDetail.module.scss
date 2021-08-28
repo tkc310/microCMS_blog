@@ -203,13 +203,13 @@ $padding-content-sp: 16px;
     font-size: 1.2rem;
     border-bottom: 1px solid #eaecef;
     @include mobile {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   }
   h3 {
     font-size: 1.1rem;
     @include mobile {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
   }
   h4 {
@@ -335,8 +335,11 @@ $padding-content-sp: 16px;
 
       svg {
         min-width: 16px;
-        margin: 8px 8px 8px -2px;
+        margin: 0 8px 0 -2px;
         fill: #24292e;
+        @include mobile {
+          min-width: 10px;
+        }
       }
     }
 
