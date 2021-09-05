@@ -56,12 +56,6 @@ export const ArticleDetail = ({
     >
       <TOC />
       <div id="js-toc-content">{content}</div>
-      <div
-        id="js-toc-content"
-        dangerouslySetInnerHTML={{
-          __html: `${mdxSource.renderedOutput}`,
-        }}
-      />
     </LayoutPost>
   ) : (
     <ErrorPage
