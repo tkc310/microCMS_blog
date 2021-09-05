@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import useSafeState from '@/hooks/useSafeState';
 import { useRouter } from 'next/router';
 import { auth } from '@/lib/firebase';
 import { TCategory, TTag, TConfig } from '@/types';
@@ -24,8 +24,8 @@ type Props = {
 const FAIL_COUNT_KEY = 'failCount' as const;
 
 export const SignIn = ({ categories, tags, config }: Props) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useSafeState<string>('');
+  const [password, setPassword] = useSafeState<string>('');
   const toast = useToast();
   const router = useRouter();
 

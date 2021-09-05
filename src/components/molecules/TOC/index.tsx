@@ -1,6 +1,7 @@
-import { memo, useEffect, useState, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import * as tocbot from 'tocbot';
 import useWindowSize from '@/hooks/useWindowSize';
+import useSafeState from '@/hooks/useSafeState';
 
 type Props = {
   isSide?: boolean;
@@ -17,7 +18,7 @@ export const TOC = ({ isSide }: Props) => {
   const unmountRef = useRef(false);
   const size = useWindowSize();
   const isDesktop = size.width >= 1080;
-  const [isHidden, setIsHidden] = useState(true);
+  const [isHidden, setIsHidden] = useSafeState(true);
 
   useEffect(() => {
     const unnecessary = (isDesktop && !isSide) || (!isDesktop && isSide);
@@ -30,7 +31,7 @@ export const TOC = ({ isSide }: Props) => {
     return () => {
       unmountRef.current = true;
     };
-  }, [isDesktop, isSide]);
+  }, [isDesktop, isSide, setIsHidden]);
 
   useEffect(() => {
     if (isHidden) {

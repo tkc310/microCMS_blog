@@ -7,19 +7,15 @@ import fetchTags from '@/utils/fetchTags';
 import fetchCategories from '@/utils/fetchCategories';
 import getExcerpt from '@utils/getExcerpt';
 import mdx2html from '@utils/mdx2html';
-import toHighlight from '@utils/toHighlight';
-import addHeadingId from '@utils/addHeadingId';
-import addAnchorExternal from '@utils/addAnchorExternal';
-import optimizeImage from '@utils/optimizeImage';
-import n2br from '@utils/n2br';
-import { MdxRemote } from 'next-mdx-remote/types';
 import 'highlight.js/styles/github-gist.css';
 import useLazyLoad from '@/hooks/useLazyLoad';
 import TOC from '@components/molecules/TOC';
+import mdxComponents from '@utils/mdxComponents';
+import hydrate from 'next-mdx-remote/hydrate';
 
 export type Props = {
   article: TArticle;
-  mdxSource: MdxRemote.Source;
+  mdxSource: any;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
@@ -34,15 +30,10 @@ export const ArticleDetail = ({
   config,
   isPreview,
 }: Props) => {
-  const {
-    id,
-    image,
-    imageOption,
-    title,
-    category,
-    tags,
-    publishedAt,
-  } = article;
+  const { id, image, imageOption, title, category, tags, publishedAt } =
+    article;
+
+  const content = hydrate(mdxSource, { components: mdxComponents });
 
   useLazyLoad();
 
@@ -64,10 +55,11 @@ export const ArticleDetail = ({
       config={config}
     >
       <TOC />
+      <div id="js-toc-content">{content}</div>
       <div
         id="js-toc-content"
         dangerouslySetInnerHTML={{
-          __html: `${mdxSource}`,
+          __html: `${mdxSource.renderedOutput}`,
         }}
       />
     </LayoutPost>
@@ -131,18 +123,24 @@ export const getStaticPropsFactory = () => {
       .then((res) => res.json())
       .catch(() => null);
 
-    let mdxSource = await mdx2html(article.body);
+    const mdxSource = await mdx2html(article.body);
+
     // シンタックスハイライトの付与
-    mdxSource = toHighlight(mdxSource);
+    // mdxSource = toHighlight(mdxSource);
+
     // Heading要素にID付与
-    mdxSource = addHeadingId(mdxSource, id);
+    // mdxSource = addHeadingId(mdxSource, id);
+
     // anchorにtarget=_blank付与
-    mdxSource = addAnchorExternal(mdxSource);
+    // mdxSource = addAnchorExternal(mdxSource);
+
     // img最適化
-    mdxSource = optimizeImage(mdxSource);
+    // mdxSource = optimizeImage(mdxSource);
+
     // 段落調整
-    mdxSource = n2br(mdxSource);
-    // 目次作成
+    // mdxSource = n2br(mdxSource);
+
+    // 目次作成 -> hydrateエラーが出るためcsrする
     // mdxSource = createTOC(mdxSource);
 
     return {

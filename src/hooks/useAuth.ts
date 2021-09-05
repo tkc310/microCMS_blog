@@ -1,9 +1,10 @@
 import { auth } from '@/lib/firebase';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import useSafeState from '@/hooks/useSafeState';
 
 export const useAuth = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useSafeState(null);
   const router = useRouter();
 
   useEffect(() => {

@@ -1,20 +1,19 @@
 import renderToString from 'next-mdx-remote/render-to-string';
-import hydrate from 'next-mdx-remote/hydrate';
-import { MdxRemote } from 'next-mdx-remote/types';
-import { PhoneIcon } from '@chakra-ui/icons';
+import imageSize from 'rehype-img-size';
+import mdxComponents from '@utils/mdxComponents';
+import rehypePrism from '@mapbox/rehype-prism';
 
-// MDXで利用可能なcomponent
-export const components: MdxRemote.Components = { PhoneIcon };
-
-export const mdx2html = async (source: string) => {
-  const { renderedOutput } = await renderToString(source, { components });
-  // const renderedOutput = await renderToString(source);
-  return renderedOutput;
+export const mdx2html = async (mdxText: string) => {
+  const mdxSource = await renderToString(mdxText, {
+    components: mdxComponents,
+    mdxOptions: {
+      rehypePlugins: [
+        [rehypePrism, {}],
+        [imageSize, { dir: 'public' }],
+      ],
+    },
+  });
+  return mdxSource;
 };
 
 export default mdx2html;
-
-// クライアント処理用
-export const mdx2htmlClient = (source: MdxRemote.Source) => {
-  return hydrate(source, { components });
-};

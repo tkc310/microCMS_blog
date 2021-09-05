@@ -1,14 +1,15 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect } from 'react';
+import useSafeState from '@/hooks/useSafeState';
 
 type Props = {
   name: string;
 };
 
 export const Copyright = ({ name }: Props) => {
-  const [year, setYear] = useState(null);
+  const [year, setYear] = useSafeState(null);
   useEffect(() => {
     setYear(new Date().getFullYear());
-  }, [year]);
+  }, [year, setYear]);
 
   return (
     <>

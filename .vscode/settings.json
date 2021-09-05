@@ -2,6 +2,7 @@
   /* Linter and Formatter */
   // linter
   "eslint.packageManager": "yarn", // ESLintライブラリ解決時に使うパッケージマネージャ
+  "editor.rulers": [80],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true, // eslint
     "source.fixAll.stylelint": true // Stylelint
@@ -12,5 +13,6 @@
   "editor.formatOnPaste": true,
   "editor.formatOnType": true,
   // Prettier対象外言語
-  "prettier.disableLanguages": ["markdown"]
+  "prettier.disableLanguages": ["markdown"],
+  "prettier.configPath": ".prettierrc"
 }

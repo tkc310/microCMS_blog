@@ -1,4 +1,5 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
+import useSafeState from '@/hooks/useSafeState';
 import Head from 'next/head';
 import MetaIcons from '@components/atoms/meta/MetaIcons';
 import Navigation from '@components/organisms/Navigation';
@@ -14,7 +15,7 @@ type Props = {
 };
 
 export const LayoutRoot = ({ children, categories, tags, config }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useSafeState(false);
   const handleOpen = () => {
     setIsOpen(true);
   };

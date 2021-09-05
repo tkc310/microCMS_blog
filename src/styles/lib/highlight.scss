@@ -1,0 +1,262 @@
+/**
+ * One Light theme for prism.js
+ * Based on Atom's One Light theme: https://github.com/atom/atom/tree/master/packages/one-light-syntax
+ */
+
+/**
+ * One Light colours in terms of RGB (accurate as of commit eb064bf on 19 Feb 2021)
+ * @mono-1: #383a42
+ * @mono-2: #696c77
+ * @mono-3: #a0a1a7
+ * @hue-1: #0184bc <- cyan
+ * @hue-2: #4078f2 <- blue
+ * @hue-3: #a626a4 <- purple
+ * @hue-4: #50a14f <- green
+ * @hue-5: #e45649 <- red 1
+ * @hue-5-2: #ca1243 <- red 2
+ * @hue-6: #b76b01 <- orange 1
+ * @hue-6-2: #cb7701 <- orange 2
+ * @syntax-fg: #383a42
+ * @syntax-bg: #fafafa
+ * @syntax-gutter: #9d9d9f
+ * @syntax-guide: #383a4233
+ * @syntax-accent: #526eff
+ * @syntax-selection-color: #e5e5e6
+ */
+.l-content--article {
+  code[class*='language-'],
+  pre[class*='language-'] {
+    background: #f8f8f8;
+    color: #383a42;
+    font-family: 'Fira Code', 'Fira Mono', Menlo, Consolas, 'DejaVu Sans Mono',
+      monospace;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 2;
+    -o-tab-size: 2;
+    tab-size: 2;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  /* Selection */
+  code[class*='language-']::-moz-selection,
+  pre[class*='language-'] *::-moz-selection {
+    background: #e5e5e6;
+  }
+
+  code[class*='language-']::selection,
+  pre[class*='language-'] *::selection {
+    background: #e5e5e6;
+  }
+
+  /* Code blocks */
+  pre[class*='language-'] {
+    padding: 1em !important;
+    margin: 0.5em 0;
+    overflow: auto;
+    border-radius: 0.3em;
+    code[class*='language-'] {
+      padding: auto;
+    }
+  }
+
+  /* Inline code */
+  :not(pre) > code[class*='language-'] {
+    padding: 0.2em 0.3em !important;
+    border-radius: 0.3em;
+    white-space: normal;
+  }
+
+  .token {
+    &.comment,
+    &.prolog,
+    &.cdata {
+      color: #a0a1a7;
+    }
+    &.doctype,
+    &.punctuation,
+    &.entity {
+      color: #383a42;
+    }
+
+    &.attr-name,
+    &.class-name,
+    &.boolean,
+    &.constant,
+    &.number,
+    &.atrule {
+      color: #b76b01;
+    }
+
+    &.keyword {
+      color: #a626a4;
+    }
+
+    &.property,
+    &.tag,
+    &.symbol,
+    &.deleted,
+    &.important {
+      color: #e45649;
+    }
+
+    &.selector,
+    &.string,
+    &.char,
+    &.builtin,
+    &.inserted,
+    &.regex,
+    &.attr-value,
+    &.attr-value > &.punctuation {
+      color: #50a14f;
+    }
+
+    &.variable,
+    &.operator,
+    &.function {
+      color: #4078f2;
+    }
+
+    &.url {
+      color: #0184bc;
+      text-decoration: underline;
+    }
+
+    /* HTML overrides */
+    &.attr-value > &.punctuation.attr-equals,
+    &.special-attr > &.attr-value > &.value.css {
+      color: #383a42;
+    }
+
+    /* General */
+    &.bold {
+      font-weight: bold;
+    }
+
+    &.comment,
+    &.italic {
+      font-style: italic;
+    }
+
+    &.entity {
+      cursor: help;
+    }
+
+    &.namespace {
+      opacity: 0.8;
+    }
+  }
+
+  /* CSS overrides */
+  .language-css {
+    .token {
+      &.selector {
+        color: #e45649;
+      }
+
+      &.property {
+        color: #383a42;
+      }
+
+      &.url {
+        text-decoration: none;
+      }
+
+      &.function,
+      &.url > &.function {
+        color: #0184bc;
+      }
+
+      &.url > &.string.url {
+        color: #50a14f;
+      }
+
+      &.important,
+      &.atrule &.rule {
+        color: #a626a4;
+      }
+    }
+  }
+
+  /* JS overrides */
+  .language-javascript {
+    .token {
+      &.operator {
+        color: #a626a4;
+      }
+      &.template-string
+        > &.interpolation
+        > &.interpolation-punctuation.punctuation {
+        color: #ca1243;
+      }
+    }
+  }
+
+  /* JSON overrides */
+  .language-json {
+    &.operator {
+      color: #383a42;
+    }
+
+    &.null.keyword {
+      color: #b76b01;
+    }
+  }
+
+  /* MD overrides */
+  .language-markdown {
+    .token {
+      &.url,
+      &.url > &.operator,
+      &.url-reference.url > &.string {
+        color: #383a42;
+        text-decoration: none;
+      }
+
+      &.url > &.content {
+        color: #4078f2;
+        text-decoration: none;
+      }
+
+      &.url > &.url,
+      &.url-reference.url {
+        color: #0184bc;
+        text-decoration: underline;
+      }
+
+      &.blockquote.punctuation,
+      &.hr.punctuation {
+        color: #a0a1a7;
+        font-style: italic;
+      }
+
+      &.code-snippet {
+        color: #50a14f;
+      }
+
+      &.bold &.content {
+        color: #b76b01;
+      }
+
+      &.italic &.content {
+        color: #a626a4;
+      }
+
+      &.strike &.content,
+      &.strike &.punctuation,
+      &.list.punctuation,
+      &.title.important > &.punctuation {
+        color: #e45649;
+      }
+    }
+  }
+}

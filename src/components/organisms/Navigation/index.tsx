@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import useSafeState from '@/hooks/useSafeState';
 import { Flex, Box, LinkBox, LinkOverlay, IconButton } from '@chakra-ui/react';
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
 import useScrollPosition from '@react-hook/window-scroll';
@@ -12,7 +13,7 @@ type Props = {
 const THROTTLE = 1000 as const;
 
 export const Navigation = ({ onSideMenuOpen, isSideMenuOpen }: Props) => {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useSafeState(false);
   const scrollY = useScrollPosition(THROTTLE);
   const debounceScrolled = useDebouncedCallback(() => {
     setScrolled(scrollY > 0);

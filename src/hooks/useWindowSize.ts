@@ -1,4 +1,5 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback } from 'react';
+import useSafeState from '@/hooks/useSafeState';
 
 export const useWindowSize = () => {
   const isClient = typeof window === 'object';
@@ -10,7 +11,7 @@ export const useWindowSize = () => {
     };
   }, [isClient]);
 
-  const [windowSize, setWindowSize] = useState(getWindowSize());
+  const [windowSize, setWindowSize] = useSafeState(getWindowSize());
 
   useEffect(() => {
     const onResize = () => {
@@ -18,7 +19,7 @@ export const useWindowSize = () => {
     };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, [getWindowSize]);
+  }, [getWindowSize, setWindowSize]);
 
   return windowSize;
 };
