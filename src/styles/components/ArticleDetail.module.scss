@@ -233,9 +233,11 @@ $padding-content-sp: 16px;
     border-radius: 2px;
   }
   pre code {
-    padding: 0.5rem 1rem;
     background-color: #f8f8f8;
     font-size: 0.85rem;
+    &:not([class*='language-']) {
+      padding: 0.5rem 1rem;
+    }
 
     @include mobile {
       word-wrap: normal;
