@@ -1,7 +1,6 @@
 import cheerio from 'cheerio';
-import { MdxRemote } from 'next-mdx-remote/types';
 
-export const n2br = (body: string | MdxRemote.Source) => {
+export const n2br = (body: string) => {
   const $ = cheerio.load(body);
 
   let ret = $.html();

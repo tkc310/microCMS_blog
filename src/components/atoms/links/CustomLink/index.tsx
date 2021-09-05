@@ -56,8 +56,6 @@ export const CustomLink: FC<Props> = ({ href: _href }) => {
     getMeta();
   }, [getMeta]);
 
-  console.log({ image: data.image });
-
   return (
     <div className={styles.customLink}>
       <LinkBox

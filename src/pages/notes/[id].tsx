@@ -6,15 +6,11 @@ import fetchConfig from '@utils/fetchConfig';
 import fetchTags from '@/utils/fetchTags';
 import fetchCategories from '@/utils/fetchCategories';
 import mdx2html from '@utils/mdx2html';
-import toHighlight from '@utils/toHighlight';
-import addHeadingId from '@utils/addHeadingId';
-import addAnchorExternal from '@utils/addAnchorExternal';
-import optimizeImage from '@utils/optimizeImage';
-import n2br from '@utils/n2br';
 import { MdxRemote } from 'next-mdx-remote/types';
 import 'highlight.js/styles/github-gist.css';
-import useLazyLoad from '@/hooks/useLazyLoad';
 import TOC from '@components/molecules/TOC';
+import mdxComponents from '@utils/mdxComponents';
+import hydrate from 'next-mdx-remote/hydrate';
 
 export type Props = {
   note: TNote;
@@ -33,7 +29,7 @@ export const NoteDetail = ({
 }: Props) => {
   const { id, title, tags, publishedAt } = note;
 
-  useLazyLoad();
+  const content = hydrate(mdxSource, { components: mdxComponents });
 
   return id ? (
     <LayoutNote
@@ -45,12 +41,7 @@ export const NoteDetail = ({
       config={config}
     >
       <TOC />
-      <div
-        id="js-toc-content"
-        dangerouslySetInnerHTML={{
-          __html: `${mdxSource}`,
-        }}
-      />
+      <div id="js-toc-content">{content}</div>
     </LayoutNote>
   ) : (
     <ErrorPage
@@ -108,19 +99,7 @@ export const getStaticPropsFactory = () => {
       .then((res) => res.json())
       .catch(() => null);
 
-    let mdxSource = await mdx2html(note.body);
-    // シンタックスハイライトの付与
-    mdxSource = toHighlight(mdxSource);
-    // Heading要素にID付与
-    mdxSource = addHeadingId(mdxSource, id);
-    // anchorにtarget=_blank付与
-    mdxSource = addAnchorExternal(mdxSource);
-    // img最適化
-    mdxSource = optimizeImage(mdxSource);
-    // 段落調整
-    mdxSource = n2br(mdxSource);
-    // 目次作成
-    // mdxSource = createTOC(mdxSource);
+    const mdxSource = await mdx2html(note.body);
 
     return {
       props: {

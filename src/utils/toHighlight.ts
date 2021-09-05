@@ -1,8 +1,7 @@
 import cheerio from 'cheerio';
 import hljs from '@/lib/highlight';
-import { MdxRemote } from 'next-mdx-remote/types';
 
-export const toHighlight = (body: string | MdxRemote.Source) => {
+export const toHighlight = (body: string) => {
   const $ = cheerio.load(body);
 
   $('pre code').each((_, elm) => {

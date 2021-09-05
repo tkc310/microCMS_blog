@@ -22,6 +22,7 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     'import/order': 0,
+    'import/extensions': 0,
     '@typescript-eslint/no-unused-vars': 0,
     'react/jsx-filename-extension': [
       2,

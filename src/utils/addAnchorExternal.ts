@@ -1,7 +1,6 @@
 import cheerio from 'cheerio';
-import { MdxRemote } from 'next-mdx-remote/types';
 
-export const addAnchorExternal = (body: string | MdxRemote.Source) => {
+export const addAnchorExternal = (body: string) => {
   const $ = cheerio.load(body);
 
   $("a[href^='http']").each((_, elm) => {

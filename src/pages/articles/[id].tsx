@@ -7,15 +7,15 @@ import fetchTags from '@/utils/fetchTags';
 import fetchCategories from '@/utils/fetchCategories';
 import getExcerpt from '@utils/getExcerpt';
 import mdx2html from '@utils/mdx2html';
+import { MdxRemote } from 'next-mdx-remote/types';
 import 'highlight.js/styles/github-gist.css';
-import useLazyLoad from '@/hooks/useLazyLoad';
 import TOC from '@components/molecules/TOC';
 import mdxComponents from '@utils/mdxComponents';
 import hydrate from 'next-mdx-remote/hydrate';
 
 export type Props = {
   article: TArticle;
-  mdxSource: any;
+  mdxSource: MdxRemote.Source;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
@@ -34,8 +34,6 @@ export const ArticleDetail = ({
     article;
 
   const content = hydrate(mdxSource, { components: mdxComponents });
-
-  useLazyLoad();
 
   return id ? (
     <LayoutPost
@@ -119,17 +117,8 @@ export const getStaticPropsFactory = () => {
 
     const mdxSource = await mdx2html(article.body);
 
-    // シンタックスハイライトの付与
-    // mdxSource = toHighlight(mdxSource);
-
     // Heading要素にID付与
     // mdxSource = addHeadingId(mdxSource, id);
-
-    // anchorにtarget=_blank付与
-    // mdxSource = addAnchorExternal(mdxSource);
-
-    // img最適化
-    // mdxSource = optimizeImage(mdxSource);
 
     // 段落調整
     // mdxSource = n2br(mdxSource);
