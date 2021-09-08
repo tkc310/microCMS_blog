@@ -1,3 +1,6 @@
+@import '@styles/foundation/variable';
+@import '@styles/foundation/mixin';
+
 /**
  * One Light theme for prism.js
  * Based on Atom's One Light theme: https://github.com/atom/atom/tree/master/packages/one-light-syntax
@@ -64,6 +67,15 @@
     margin: 0.5em 0;
     overflow: auto;
     border-radius: 0.3em;
+
+    $padding-content-sp: 16px;
+    @include mobile {
+      word-wrap: normal;
+      margin-left: -$padding-content-sp;
+      margin-right: -$padding-content-sp;
+      font-size: 0.9rem;
+    }
+
     code[class*='language-'] {
       padding: auto;
     }
