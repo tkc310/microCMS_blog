@@ -1,5 +1,4 @@
 import { FC, ReactNode, memo } from 'react';
-import { Heading as ChakraHeading } from '@chakra-ui/react';
 import styles from '@styles/components/ArticleDetail.module.scss';
 import classNames from 'classnames/bind';
 
