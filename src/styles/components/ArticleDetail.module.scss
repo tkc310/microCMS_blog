@@ -202,8 +202,6 @@ $padding-content-sp: 16px;
   }
   h2 {
     font-size: 1.2rem;
-    border-bottom: 1px solid #eaecef;
-    padding-bottom: 4px;
     @include mobile {
       font-size: 1rem;
     }
@@ -237,13 +235,13 @@ $padding-content-sp: 16px;
     font-size: 0.85rem;
     &:not([class*='language-']) {
       padding: 0.5rem 1rem;
-    }
 
-    @include mobile {
-      word-wrap: normal;
-      margin-left: -$padding-content-sp;
-      margin-right: -$padding-content-sp;
-      font-size: 0.9rem;
+      @include mobile {
+        word-wrap: normal;
+        margin-left: -$padding-content-sp;
+        margin-right: -$padding-content-sp;
+        font-size: 0.9rem;
+      }
     }
   }
 
@@ -325,38 +323,6 @@ $padding-content-sp: 16px;
     }
   }
 
-  // heading anchor
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    a {
-      display: flex;
-      align-items: baseline;
-      color: $color-font-base;
-
-      svg {
-        min-width: 16px;
-        margin: 0 8px 0 -2px;
-        fill: #24292e;
-        @include mobile {
-          min-width: 10px;
-        }
-      }
-    }
-
-    &:hover {
-      a {
-        text-decoration: none;
-        svg {
-          fill: #4183c4;
-        }
-      }
-    }
-  }
-
   // blockquote
   blockquote {
     margin-left: 4px;
@@ -420,6 +386,37 @@ $padding-content-sp: 16px;
       &_wrap {
         width: $rich_link_size;
         height: $rich_link_size;
+      }
+    }
+  }
+
+  .customHeading {
+    &.h2 {
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: 4px;
+    }
+
+    .padding {
+      height: 32px;
+    }
+    .link {
+      display: flex;
+      align-items: baseline;
+      color: $color-font-base;
+      &:hover {
+        text-decoration: none;
+        svg {
+          fill: #4183c4;
+        }
+      }
+
+      svg {
+        min-width: 16px;
+        margin: 0 8px 0 -2px;
+        fill: #24292e;
+        @include mobile {
+          min-width: 10px;
+        }
       }
     }
   }
