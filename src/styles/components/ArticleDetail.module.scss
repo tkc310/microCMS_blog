@@ -233,11 +233,14 @@ $padding-content-sp: 16px;
   pre code {
     background-color: #f8f8f8;
     font-size: 0.85rem;
+    @include mobile {
+      word-wrap: normal;
+    }
+
     &:not([class*='language-']) {
       padding: 0.5rem 1rem;
 
       @include mobile {
-        word-wrap: normal;
         margin-left: -$padding-content-sp;
         margin-right: -$padding-content-sp;
         font-size: 0.9rem;
