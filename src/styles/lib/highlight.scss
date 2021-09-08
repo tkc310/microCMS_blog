@@ -63,6 +63,9 @@
 
   /* Code blocks */
   pre[class*='language-'] {
+    // iphone safariで文字折り返しさせずに横スクロール可能にする
+    display: grid;
+
     padding: 1em !important;
     margin: 0.5em 0;
     overflow: auto;
