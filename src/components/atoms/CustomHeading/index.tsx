@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const CustomHeading: FC<Props> = ({ as, children }) => {
-  const uuid = String(children);
+  const uuid = encodeURI(String(children));
   const cn = classNames.bind(styles);
   const CustomTag = as;
 
