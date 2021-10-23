@@ -8,6 +8,7 @@ export const useAuth = () => {
   const router = useRouter();
 
   useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
     let listnner = auth.onAuthStateChanged((u) => {
       if (u) {
         setUser(u);

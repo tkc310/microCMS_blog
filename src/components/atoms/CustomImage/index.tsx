@@ -7,8 +7,8 @@ import LazyLoad from 'react-lazyload';
 type Props = {
   src: string;
   alt: string;
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
 };
 
 const defaultProps = {
@@ -19,8 +19,8 @@ const defaultProps = {
 export const CustomImage: FC<Props> = ({ ...rest }) => {
   const [loaded, setLoaded] = useSafeState(false);
   const [info, setInfo] = useSafeState({
-    width: rest.width || 0,
-    height: rest.height || 0,
+    width: rest.width || 'auto',
+    height: rest.height || 'auto',
   });
 
   const getInfo = useCallback(async () => {
