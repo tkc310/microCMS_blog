@@ -3,6 +3,7 @@
 import { PhoneIcon } from '@chakra-ui/icons';
 import CustomLink from '@/components/atoms/links/CustomLink';
 import CustomHeading from '@/components/atoms/CustomHeading';
+import CustomParagraph from '@/components/atoms/CustomParagraph';
 import CustomImage from '@/components/atoms/CustomImage';
 
 // MDXで利用可能なcomponent
@@ -10,6 +11,7 @@ const mdxComponents: any = {
   PhoneIcon,
 
   img: (props) => <CustomImage {...props} />,
+  p: (props) => <CustomParagraph {...props} />,
   a: (props) => <CustomLink {...props} />,
   h1: (props) => <CustomHeading as="h1" {...props} />,
   h2: (props) => <CustomHeading as="h2" {...props} />,

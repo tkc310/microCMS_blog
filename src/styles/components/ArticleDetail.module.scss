@@ -221,14 +221,17 @@ $padding-content-sp: 16px;
   h6 {
     font-size: 0.8rem;
   }
-  p code {
-    margin: 0 2px;
-    border: 1px solid #cecece;
-    background-color: #fff;
-    color: #ff357f;
-    font-size: 0.9rem;
-    padding: 1px 4px;
-    border-radius: 2px;
+  p,
+  div {
+    code {
+      margin: 0 2px;
+      border: 1px solid #cecece;
+      background-color: #fff;
+      color: #ff357f;
+      font-size: 0.9rem;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
   }
   pre code {
     background-color: #f8f8f8;
@@ -300,7 +303,14 @@ $padding-content-sp: 16px;
   li,
   table,
   pre {
-    margin: 15px 0;
+    margin: 16px 0;
+  }
+
+  // br
+  br {
+    height: 8px;
+    display: block;
+    content: '';
   }
 
   // anchor
