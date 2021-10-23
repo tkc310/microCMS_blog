@@ -35,7 +35,7 @@ export const CustomImage: FC<Props> = ({ ...rest }) => {
   }, [rest.src]);
 
   useEffect(() => {
-    if (!rest.width || !rest.height) {
+    if (rest.width === 'auto' || rest.height === 'auto') {
       getInfo();
     }
   }, [getInfo]);
