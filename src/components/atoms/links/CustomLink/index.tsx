@@ -1,4 +1,12 @@
-import { FC, ReactNode, memo, useEffect, useCallback } from 'react';
+/* eslint-disable camelcase */
+import {
+  FC,
+  ReactElement,
+  ReactNode,
+  memo,
+  useEffect,
+  useCallback,
+} from 'react';
 import useSafeState from '@/hooks/useSafeState';
 import {
   Image,
@@ -14,7 +22,7 @@ import LazyLoad from 'react-lazyload';
 import Link, { LinkProps } from 'next/link';
 
 type Props = LinkProps & {
-  href: LinkProps['href'];
+  href: string;
 };
 
 type State = {
@@ -143,7 +151,7 @@ export const CustomLink: FC<Props> = ({ href: _href }) => {
 CustomLink.defaultProps = defaultProps;
 
 type SwitchedLinkProps = {
-  href: Props['href'];
+  href: string;
   external: boolean;
   children: ReactNode;
 };
@@ -164,11 +172,44 @@ export const SwitchedLink: FC<SwitchedLinkProps> = ({
   );
 };
 
-// eslint-disable-next-line react/display-name
-const CustomLinkWrap: FC<Props> = memo(({ href, ...rest }: Props) => (
-  <LazyLoad height={120} once>
-    <CustomLink href={href} {...rest} />
-  </LazyLoad>
-));
+type CustomLinkWrapProps = {
+  href: string;
+  data_origin: boolean | undefined;
+  data_inline: boolean | undefined;
+  data_block: boolean | undefined;
+  target: string | undefined;
+};
 
-export default CustomLinkWrap;
+const CustomLinkWrap: FC<CustomLinkWrapProps> = ({
+  href,
+  data_origin,
+  data_inline,
+  target,
+  ...rest
+}) => {
+  if (data_origin) {
+    const linkNode: ReactElement = (
+      <a href={href} target={target} rel="noreferrer">
+        {rest?.children}
+      </a>
+    );
+    return data_inline ? (
+      linkNode
+    ) : (
+      <div style={{ margin: '16px 0px' }}>
+        {linkNode}
+        <br />
+      </div>
+    );
+  }
+
+  return (
+    <LazyLoad height={120} once>
+      <CustomLink href={href} {...rest} />
+    </LazyLoad>
+  );
+};
+
+CustomLinkWrap.displayName = 'CustomLinkWrap';
+
+export default memo(CustomLinkWrap);
