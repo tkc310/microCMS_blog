@@ -5,6 +5,7 @@ type TscrapeReturn = {
   title: string;
   description: string;
   image: string;
+  getable: boolean;
 };
 
 const scrape = async (url: string): Promise<TscrapeReturn> => {
@@ -17,11 +18,13 @@ const scrape = async (url: string): Promise<TscrapeReturn> => {
   const image =
     $('meta[property="og:image"]').attr('content') ||
     $('img').first().attr('src');
+  const getable = !!image.match(/\.(png|jpeg|jpg|webp|svg)/)?.[0];
 
   const result = {
     title,
     description,
     image,
+    getable,
   };
 
   return result;

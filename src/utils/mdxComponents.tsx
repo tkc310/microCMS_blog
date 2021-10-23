@@ -3,13 +3,13 @@
 import { PhoneIcon } from '@chakra-ui/icons';
 import CustomLink from '@/components/atoms/links/CustomLink';
 import CustomHeading from '@/components/atoms/CustomHeading';
-import Image from '@/components/atoms/Image';
+import CustomImage from '@/components/atoms/CustomImage';
 
 // MDXで利用可能なcomponent
 const mdxComponents: any = {
   PhoneIcon,
 
-  img: (props) => <Image {...props} />,
+  img: (props) => <CustomImage {...props} />,
   a: (props) => <CustomLink {...props} />,
   h1: (props) => <CustomHeading as="h1" {...props} />,
   h2: (props) => <CustomHeading as="h2" {...props} />,

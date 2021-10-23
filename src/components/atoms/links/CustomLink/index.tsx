@@ -21,6 +21,7 @@ type State = {
   title: string;
   description: string;
   image: string;
+  getable: boolean;
 };
 
 const defaultProps = {};
@@ -32,6 +33,7 @@ export const CustomLink: FC<Props> = ({ href: _href }) => {
     title: '',
     description: '',
     image: '',
+    getable: false,
   });
   const href = _href as string;
   const { host } = new URL(href);
@@ -41,12 +43,13 @@ export const CustomLink: FC<Props> = ({ href: _href }) => {
   const getMeta = useCallback(async () => {
     const res = await fetch(`/api/meta?url=${href}`);
     const result = await res.json();
-    const { title, description, image } = result;
+    const { title, description, image, getable } = result;
 
     setData({
       title,
       description,
       image,
+      getable,
     });
     setLoaded(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +72,7 @@ export const CustomLink: FC<Props> = ({ href: _href }) => {
           <Box flex={1} p="3">
             {loaded ? (
               <>
-                <SwichedLink href={href} external={external}>
+                <SwitchedLink href={href} external={external}>
                   <Text
                     as="h5"
                     size="xs"
@@ -79,7 +82,7 @@ export const CustomLink: FC<Props> = ({ href: _href }) => {
                   >
                     {data.title}
                   </Text>
-                </SwichedLink>
+                </SwitchedLink>
                 {data.description ? (
                   <Text
                     className={styles.desc}
@@ -91,15 +94,22 @@ export const CustomLink: FC<Props> = ({ href: _href }) => {
                   </Text>
                 ) : null}
                 <Flex className={styles.domain} align="center" mt="2">
-                  <Image
-                    className={styles.icon}
-                    shrink={0}
-                    width="12px"
-                    height="12px"
-                    mr="2"
-                    src={favicon}
-                  />
-                  <Text flex="1" fontSize="xs" className={styles.url}>
+                  {favicon && (
+                    <Image
+                      className={styles.icon}
+                      shrink={0}
+                      width="12px"
+                      height="12px"
+                      mr="2"
+                      src={favicon}
+                    />
+                  )}
+                  <Text
+                    flex="1"
+                    fontSize="xs"
+                    className={styles.url}
+                    display={host ? 'block' : 'none'}
+                  >
                     {host}
                   </Text>
                 </Flex>
@@ -112,13 +122,18 @@ export const CustomLink: FC<Props> = ({ href: _href }) => {
               </>
             )}
           </Box>
-          {data.image ? (
-            <Box className={styles.img_wrap}>
-              <Skeleton height="120px" isLoaded={loaded}>
+          {loaded ? (
+            data.getable &&
+            data.image && (
+              <Box className={styles.img_wrap}>
                 <Image className={styles.img} shrink={0} src={data.image} />
-              </Skeleton>
+              </Box>
+            )
+          ) : (
+            <Box className={styles.img_wrap}>
+              <Skeleton height="120px" />
             </Box>
-          ) : null}
+          )}
         </Flex>
       </LinkBox>
     </div>
@@ -127,17 +142,17 @@ export const CustomLink: FC<Props> = ({ href: _href }) => {
 
 CustomLink.defaultProps = defaultProps;
 
-type SwichedLinkProps = {
+type SwitchedLinkProps = {
   href: Props['href'];
   external: boolean;
   children: ReactNode;
 };
 
-export const SwichedLink: FC<SwichedLinkProps> = ({
+export const SwitchedLink: FC<SwitchedLinkProps> = ({
   href: _href,
   external,
   children,
-}: SwichedLinkProps) => {
+}: SwitchedLinkProps) => {
   const href = _href as string;
 
   return external ? (
