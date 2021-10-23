@@ -10,7 +10,7 @@ body {
   color: $color-font-base;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  font-size: 18px;
+  font-size: 16px;
   @include mobile {
     font-size: 1rem;
   }
