@@ -3,7 +3,7 @@ import styles from '@styles/components/ArticleDetail.module.scss';
 import classNames from 'classnames/bind';
 
 type Props = {
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  as: 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   children: ReactNode;
 };
 
@@ -20,7 +20,7 @@ export const CustomHeading: FC<Props> = ({ as, children }) => {
       })}
       id={uuid}
     >
-      <div className={styles.padding} id={uuid} />
+      <div className={styles.padding} />
       <a href={`#${uuid}`} className={styles.link}>
         <Icon />
         <span className={styles.text}>{children}</span>

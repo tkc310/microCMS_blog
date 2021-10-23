@@ -11,7 +11,7 @@ const defaultProps = {
   isSide: false,
 };
 
-const TARGET_NODES = 'h1, h2, h3, h4, h5, h6';
+const TARGET_NODES = 'h2, h3, h4, h5, h6';
 
 // @see https://tscanlin.github.io/tocbot/
 export const TOC = ({ isSide }: Props) => {
