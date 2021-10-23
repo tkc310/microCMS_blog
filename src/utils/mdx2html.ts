@@ -5,7 +5,6 @@ import rehypePrism from '@mapbox/rehype-prism';
 
 export const mdx2html = async (mdxText: string) => {
   const formatted = mdxText
-    .replace(/\n\n/g, '\n\n<br />\n\n')
     .replace(/\[.+\]\(http.+\)/g, (str) => {
       const result = str.match(/\[(.+)\]\((.+)\)/);
       const url = result[2];
