@@ -234,6 +234,10 @@ $padding-content-sp: 16px;
     }
   }
   pre code {
+    border: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
     background-color: #f8f8f8;
     font-size: 0.85rem;
     @include mobile {
