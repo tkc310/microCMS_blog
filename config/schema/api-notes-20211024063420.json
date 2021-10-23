@@ -1,0 +1,21 @@
+{
+  "apiFields": [
+    {
+      "idValue": "vLxzaVAUX",
+      "fieldId": "title",
+      "name": "タイトル",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "body",
+      "name": "本文",
+      "kind": "textArea",
+      "required": true,
+      "isUnique": false
+    },
+    { "fieldId": "tags", "name": "タグ", "kind": "relationList" }
+  ],
+  "customFields": []
+}

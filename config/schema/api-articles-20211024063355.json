@@ -1,0 +1,124 @@
+{
+  "apiFields": [
+    {
+      "idValue": "Gm74h3a-Z",
+      "fieldId": "image",
+      "name": "アイキャッチ画像",
+      "kind": "media"
+    },
+    {
+      "fieldId": "imageOption",
+      "name": "画像の加工オプション",
+      "kind": "custom",
+      "customFieldCreatedAt": "2021-02-07T15:08:06.914Z"
+    },
+    {
+      "fieldId": "title",
+      "name": "タイトル",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    { "fieldId": "excerpt", "name": "概要", "kind": "textArea" },
+    {
+      "fieldId": "category",
+      "name": "カテゴリー",
+      "kind": "relation",
+      "required": true
+    },
+    { "fieldId": "tags", "name": "タグ", "kind": "relationList" },
+    {
+      "fieldId": "body",
+      "name": "本文 (MDX)",
+      "kind": "textArea",
+      "required": true
+    }
+  ],
+  "customFields": [
+    {
+      "createdAt": "2021-02-07T15:08:06.914Z",
+      "fieldId": "imageOption",
+      "name": "画像の加工オプション",
+      "fields": [
+        {
+          "idValue": "tviFbhbkD",
+          "fieldId": "fontColor",
+          "name": "画像上の文字色",
+          "kind": "select",
+          "selectItems": [
+            { "id": "88WbABsUO", "value": "#292929" },
+            { "id": "TeuySoTNY", "value": "#ffffff" }
+          ],
+          "multipleSelect": false
+        }
+      ],
+      "position": [["tviFbhbkD"]],
+      "updatedAt": "2021-02-13T18:11:49.512Z",
+      "viewerGroup": "kGe"
+    },
+    {
+      "createdAt": "2021-02-14T10:42:24.384Z",
+      "fieldId": "editorRich",
+      "name": "リッチエディタ",
+      "fields": [
+        {
+          "idValue": "EMmJVqYXZ",
+          "fieldId": "editorRich",
+          "name": "リッチエディタ",
+          "kind": "richEditor"
+        }
+      ],
+      "position": [["EMmJVqYXZ"]],
+      "updatedAt": "2021-02-14T11:10:50.514Z",
+      "viewerGroup": "kGe"
+    },
+    {
+      "createdAt": "2021-02-14T10:43:46.765Z",
+      "fieldId": "editorHtml",
+      "name": "HTMLエディタ",
+      "fields": [
+        {
+          "idValue": "I6O8V-U5b",
+          "fieldId": "editorHtml",
+          "name": "HTMLエディタ",
+          "kind": "textArea"
+        }
+      ],
+      "position": [["I6O8V-U5b"]],
+      "updatedAt": "2021-02-14T11:11:10.134Z",
+      "viewerGroup": "kGe"
+    },
+    {
+      "createdAt": "2021-02-14T10:47:42.658Z",
+      "fieldId": "editorMd",
+      "name": "Markdownエディタ",
+      "fields": [
+        {
+          "idValue": "b-WBoE_8V",
+          "fieldId": "editorMd",
+          "name": "Markdownエディタ",
+          "kind": "textArea"
+        }
+      ],
+      "position": [["b-WBoE_8V"]],
+      "updatedAt": "2021-02-14T11:11:32.093Z",
+      "viewerGroup": "kGe"
+    },
+    {
+      "createdAt": "2021-02-14T10:48:22.989Z",
+      "fieldId": "editorMdx",
+      "name": "MDXエディタ",
+      "fields": [
+        {
+          "idValue": "zvkdkPFR7",
+          "fieldId": "editorMdx",
+          "name": "MDXエディタ",
+          "kind": "textArea"
+        }
+      ],
+      "position": [["zvkdkPFR7"]],
+      "updatedAt": "2021-02-14T11:11:47.751Z",
+      "viewerGroup": "kGe"
+    }
+  ]
+}

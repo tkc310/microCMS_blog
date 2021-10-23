@@ -1,0 +1,148 @@
+{
+  "apiFields": [
+    {
+      "idValue": "xe-CAw1fT",
+      "fieldId": "perPage",
+      "name": "1ページあたりの記事数",
+      "kind": "number",
+      "required": true
+    },
+    {
+      "fieldId": "host",
+      "name": "クライアントホスト",
+      "kind": "text",
+      "required": true
+    },
+    {
+      "fieldId": "apiHost",
+      "name": "microCMSのエンドポイント",
+      "kind": "text",
+      "required": true
+    },
+    {
+      "fieldId": "siteTitle",
+      "name": "サイト名",
+      "kind": "text",
+      "required": true
+    },
+    {
+      "fieldId": "siteDescription",
+      "name": "サイト概要",
+      "kind": "textArea",
+      "required": true
+    },
+    {
+      "fieldId": "siteKeywords",
+      "name": "サイトキーワード",
+      "kind": "text",
+      "required": true
+    },
+    {
+      "fieldId": "siteImage",
+      "name": "サイトイメージ",
+      "kind": "media",
+      "required": true
+    },
+    {
+      "fieldId": "profile",
+      "name": "プロフィール",
+      "kind": "custom",
+      "required": true,
+      "customFieldCreatedAt": "2021-02-06T15:48:48.963Z"
+    },
+    {
+      "fieldId": "donations",
+      "name": "寄付",
+      "kind": "custom",
+      "required": true,
+      "customFieldCreatedAt": "2021-07-17T11:37:19.447Z"
+    }
+  ],
+  "customFields": [
+    {
+      "createdAt": "2021-02-06T15:48:48.963Z",
+      "fieldId": "profile",
+      "name": "プロフィール",
+      "fields": [
+        {
+          "idValue": "S9BdIQOvW",
+          "fieldId": "image",
+          "name": "プロフィール画像",
+          "kind": "media",
+          "required": true
+        },
+        {
+          "idValue": "8giDYU_w6",
+          "fieldId": "name",
+          "name": "名前",
+          "kind": "text",
+          "required": true
+        },
+        {
+          "idValue": "WmqWQR67m",
+          "fieldId": "fullName",
+          "name": "フルネーム",
+          "kind": "text",
+          "required": true
+        },
+        {
+          "idValue": "oXm-pAUUc",
+          "fieldId": "description",
+          "name": "自己紹介",
+          "kind": "textArea",
+          "required": true
+        },
+        {
+          "idValue": "6Xy2aEgRq",
+          "fieldId": "githubAccountName",
+          "name": "githubアカウント名",
+          "kind": "text",
+          "required": true
+        },
+        {
+          "idValue": "1mn3KhRvM",
+          "fieldId": "twitterAccountName",
+          "name": "twitterアカウント名",
+          "kind": "text",
+          "required": true
+        }
+      ],
+      "position": [
+        [
+          "8giDYU_w6",
+          "6Xy2aEgRq",
+          "1mn3KhRvM",
+          "WmqWQR67m",
+          "oXm-pAUUc",
+          "S9BdIQOvW"
+        ]
+      ],
+      "updatedAt": "2021-02-07T08:37:32.632Z",
+      "viewerGroup": "3EJ"
+    },
+    {
+      "createdAt": "2021-07-17T11:37:19.447Z",
+      "fieldId": "donations",
+      "name": "寄付リスト",
+      "fields": [
+        {
+          "idValue": "YO-17Kl_qZ",
+          "fieldId": "amazon",
+          "name": "ほしい物リストのURL",
+          "kind": "text",
+          "required": true
+        },
+        {
+          "idValue": "P0HvMeSp4E",
+          "fieldId": "crypto",
+          "name": "暗号通貨のwalletアドレス",
+          "kind": "text",
+          "required": true
+        }
+      ],
+      "position": [["YO-17Kl_qZ", "P0HvMeSp4E"]],
+      "updatedAt": "2021-07-17T11:37:19.447Z",
+      "viewerGroup": "3EJ"
+    }
+  ]
+}

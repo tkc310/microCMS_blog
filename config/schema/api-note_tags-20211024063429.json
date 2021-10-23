@@ -1,0 +1,37 @@
+{
+  "apiFields": [
+    {
+      "idValue": "90el_0h_f",
+      "fieldId": "name",
+      "name": "名称",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "slug",
+      "name": "スラッグ",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "color",
+      "name": "色",
+      "kind": "select",
+      "required": true,
+      "selectItems": [
+        { "id": "Z7EHV1khi", "value": "red" },
+        { "id": "oO6oplM03", "value": "blue" },
+        { "id": "ZjZ8Ngmgb", "value": "gray" },
+        { "id": "AzXcc_TFG", "value": "green" },
+        { "id": "K-s8r1Qow", "value": "orange" },
+        { "id": "vwIGHfx0O", "value": "teal" },
+        { "id": "-7PvQQrpw", "value": "purple" },
+        { "id": "Yc2e0duMq", "value": "yellow" }
+      ],
+      "multipleSelect": false
+    }
+  ],
+  "customFields": []
+}
