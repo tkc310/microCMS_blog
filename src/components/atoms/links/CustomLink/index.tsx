@@ -204,7 +204,7 @@ const CustomLinkWrap: FC<CustomLinkWrapProps> = ({
   }
 
   return (
-    <LazyLoad height={120} once>
+    <LazyLoad height={120} style={{ margin: '16px auto' }} once>
       <CustomLink href={href} {...rest} />
     </LazyLoad>
   );
