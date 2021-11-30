@@ -5,16 +5,15 @@ import { TNote, TCategory, TTag, TConfig } from '@/types';
 import fetchConfig from '@utils/fetchConfig';
 import fetchTags from '@/utils/fetchTags';
 import fetchCategories from '@/utils/fetchCategories';
-import mdx2html from '@utils/mdx2html';
-import { MdxRemote } from 'next-mdx-remote/types';
 import 'highlight.js/styles/github-gist.css';
 import TOC from '@components/molecules/TOC';
+import mdx2html from '@utils/mdx2html';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import mdxComponents from '@utils/mdxComponents';
-import hydrate from 'next-mdx-remote/hydrate';
 
 export type Props = {
   note: TNote;
-  mdxSource: MdxRemote.Source;
+  mdxSource: MDXRemoteSerializeResult;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
@@ -29,8 +28,6 @@ export const NoteDetail = ({
 }: Props) => {
   const { id, title, tags, publishedAt } = note;
 
-  const content = hydrate(mdxSource, { components: mdxComponents });
-
   return id ? (
     <LayoutNote
       title={title}
@@ -41,7 +38,9 @@ export const NoteDetail = ({
       config={config}
     >
       <TOC />
-      <div id="js-toc-content">{content}</div>
+      <div id="js-toc-content">
+        <MDXRemote {...mdxSource} components={mdxComponents} />
+      </div>
     </LayoutNote>
   ) : (
     <ErrorPage

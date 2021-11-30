@@ -6,16 +6,15 @@ import fetchConfig from '@utils/fetchConfig';
 import fetchTags from '@/utils/fetchTags';
 import fetchCategories from '@/utils/fetchCategories';
 import getExcerpt from '@utils/getExcerpt';
-import mdx2html from '@utils/mdx2html';
-import { MdxRemote } from 'next-mdx-remote/types';
 import 'highlight.js/styles/github-gist.css';
 import TOC from '@components/molecules/TOC';
+import mdx2html from '@utils/mdx2html';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import mdxComponents from '@utils/mdxComponents';
-import hydrate from 'next-mdx-remote/hydrate';
 
 export type Props = {
   article: TArticle;
-  mdxSource: MdxRemote.Source;
+  mdxSource: MDXRemoteSerializeResult;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
@@ -33,8 +32,6 @@ export const ArticleDetail = ({
   const { id, image, imageOption, title, category, tags, publishedAt } =
     article;
 
-  const content = hydrate(mdxSource, { components: mdxComponents });
-
   return id ? (
     <LayoutPost
       url={`${config.host}articles/${id}`}
@@ -42,7 +39,7 @@ export const ArticleDetail = ({
       imageOption={imageOption || undefined}
       title={title}
       description={getExcerpt(
-        article.excerpt || String(mdxSource.renderedOutput)
+        article.excerpt || String(mdxSource.compiledSource)
       )}
       keywords={tags.map((item) => item.name)}
       date={isPreview ? new Date() : new Date(publishedAt)}
@@ -53,7 +50,9 @@ export const ArticleDetail = ({
       config={config}
     >
       <TOC />
-      <div id="js-toc-content">{content}</div>
+      <div id="js-toc-content">
+        <MDXRemote {...mdxSource} components={mdxComponents} />
+      </div>
     </LayoutPost>
   ) : (
     <ErrorPage
