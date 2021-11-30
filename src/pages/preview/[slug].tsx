@@ -4,11 +4,11 @@ import ArticleDetail, {
 } from '@pages/articles/[id]';
 import MetaNoIndex from '@components/atoms/meta/MetaNoIndex';
 import { TArticle, TCategory, TTag, TConfig } from '@/types';
-import { MdxRemote } from 'next-mdx-remote/types';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 export type Props = {
   article: TArticle;
-  mdxSource: MdxRemote.Source;
+  mdxSource: MDXRemoteSerializeResult;
   categories: TCategory[];
   tags: TTag[];
   config: TConfig;
