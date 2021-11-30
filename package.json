@@ -1,7 +1,6 @@
 {
   "private": true,
   "engines": {
-    "node": "14.x",
     "npm": "8.1.4"
   },
   "husky": {
