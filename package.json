@@ -1,8 +1,5 @@
 {
   "private": true,
-  "engines": {
-    "npm": "8.1.4"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
