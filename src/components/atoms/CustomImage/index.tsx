@@ -70,7 +70,7 @@ CustomImage.displayName = 'CustomImage';
 
 // eslint-disable-next-line react/display-name
 const ImageWrap: FC<Props> = memo((props) => (
-  <LazyLoad height="30vh" once>
+  <LazyLoad height="30vh" offset={500} once>
     <CustomImage {...props} />
   </LazyLoad>
 ));
