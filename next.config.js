@@ -10,6 +10,12 @@ const nextConfig = {
     domains: ['images.microcms-assets.io', 'tkc310.com', 'localhost'],
   },
 
+  swcMinify: true,
+  experimental: {
+    swcLoader: true,
+    cpus: 4,
+  },
+
   webpack: (config, { isServer }) => {
     // エラーを抑制
     if (!isServer) {
