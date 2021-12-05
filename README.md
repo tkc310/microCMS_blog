@@ -1,11 +1,13 @@
-# next.js x maicroCMS x vercel
+# JAMstack blog
 
-## Development Env
+## 技術スタック
 
-| name | version  |
-| :--- | :------- |
-| node | v14.15.3 |
-| npm  | 6.14.8   |
+- Next.js
+- TypeScript
+- microCMS
+- vercel
+- Chakra UI
+- next-mdx-remote
 
 ## Usage
 
