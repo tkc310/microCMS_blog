@@ -1,4 +1,4 @@
-import { TArticle, TCategory } from '@/types';
+import { TArticle, TCategory, TTag } from '@/types';
 import fetchCategories from '@/utils/fetchCategories';
 import fetchConfig from '@/utils/fetchConfig';
 import fetchTags from '@/utils/fetchTags';
@@ -43,7 +43,7 @@ const generateSitemap = async (): Promise<string> => {
   `
   );
   const tagRows = tags.map(
-    (item: TCategory) => `
+    (item: TTag) => `
     <url>
       <loc>${config.host}articles/tags/${item.slug}</loc>
       <lastmod>${new Date(item.updatedAt).toISOString()}</lastmod>
