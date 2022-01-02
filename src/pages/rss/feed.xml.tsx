@@ -1,9 +1,7 @@
 import generateRssFeed from '@/lib/feed';
-import { GetServerSidePropsContext, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
-export const getServerSideProps: GetStaticProps = async ({
-  res,
-}: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const feed = await generateRssFeed({
     type: 'xml',
   });
