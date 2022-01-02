@@ -1,9 +1,7 @@
 import { TArticle } from '@/types';
 import fetchConfig from '@/utils/fetchConfig';
-import { GetServerSideProps } from 'next';
-import { getServerSideSitemap } from 'next-sitemap';
 
-const generateSitemap: GetServerSideProps = async (ctx) => {
+const generateSitemap = async (): Promise<string> => {
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
@@ -13,14 +11,23 @@ const generateSitemap: GetServerSideProps = async (ctx) => {
   const data = await res.json();
   const { contents: articles } = data;
 
-  const fields = articles.map((item: TArticle) => ({
-    loc: `${config.host}articles/${item.id}`,
-    lastmod: new Date(item.updatedAt).toISOString(),
-  }));
+  let rows = [
+    `<?xml version="1.0" encoding="UTF-8"?>`,
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+  ];
+  const urls = articles.map(
+    (item: TArticle) => `
+    <url>
+      <loc>${config.host}${item.id}</loc>
+      <lastmod>${new Date(item.updatedAt).toISOString()}</lastmod>
+    </url>
+  `
+  );
+  rows = rows.concat(urls);
+  rows.push(`</urlset>`);
+  const xml = rows.join('');
 
-  const sitemap = getServerSideSitemap(ctx, fields);
-
-  return sitemap;
+  return xml;
 };
 
 export default generateSitemap;

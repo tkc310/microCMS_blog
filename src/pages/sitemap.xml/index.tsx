@@ -1,17 +1,18 @@
 import generateSitemap from '@/lib/sitemap';
 import { GetServerSideProps } from 'next';
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { res } = ctx;
-  const sitemap = generateSitemap(ctx);
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+  const sitemap = await generateSitemap();
 
   res.statusCode = 200;
   // 24時間キャッシュ
   res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
   res.setHeader('Content-Type', 'text/xml');
-  res.end(await sitemap);
+  res.end(sitemap);
 
-  return sitemap;
+  return {
+    props: {},
+  };
 };
 
 const SitemapPage = () => null;
