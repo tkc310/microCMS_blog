@@ -1,13 +1,15 @@
-// analize
+const { ANALYZE, NEXT_PUBLIC_ALLOWED_ASSET_DOMAINS } = process.env;
+
+// analyze
 // <distDir>/analyze/
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
+  enabled: ANALYZE === 'true',
 });
 
 const nextConfig = {
   // @see https://nextjs.org/docs/messages/next-image-unconfigured-host
   images: {
-    domains: ['images.microcms-assets.io', 'tkc310.com', 'localhost'],
+    domains: NEXT_PUBLIC_ALLOWED_ASSET_DOMAINS.split(','),
   },
 
   swcMinify: true,
