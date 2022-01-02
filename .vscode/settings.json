@@ -2,17 +2,16 @@
   /* Linter and Formatter */
   // linter
   "eslint.packageManager": "yarn", // ESLintライブラリ解決時に使うパッケージマネージャ
+  "eslint.workingDirectories": [{ "mode": "auto" }],
   "editor.rulers": [80],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true, // eslint
-    "source.fixAll.stylelint": true // Stylelint
+    "source.fixAll.stylelint": true, // Stylelint
+    "source.organizeImports": true // import sort
   },
   // formatter
   "editor.defaultFormatter": "esbenp.prettier-vscode", // デフォルトフォーマッターをPrettier
   "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
-  "editor.formatOnType": true,
   // Prettier対象外言語
-  "prettier.disableLanguages": ["markdown"],
-  "prettier.configPath": ".prettierrc"
+  "prettier.disableLanguages": ["markdown"]
 }
