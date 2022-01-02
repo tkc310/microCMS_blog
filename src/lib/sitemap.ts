@@ -18,7 +18,7 @@ const generateSitemap: GetServerSideProps = async (ctx) => {
     lastmod: new Date(item.updatedAt).toISOString(),
   }));
 
-  const sitemap = await getServerSideSitemap(ctx, fields);
+  const sitemap = getServerSideSitemap(ctx, fields);
 
   return sitemap;
 };
