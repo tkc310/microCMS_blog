@@ -35,6 +35,18 @@ export const MetaBasic = ({
       <meta name="keywords" content={keywords} />
       <meta name="author" content={profile.name} />
       <link rel="canonical" href={url || host} />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        href={`${host}rss/feed.xml`}
+        title="RSS2.0"
+      />
+      <link
+        rel="alternate"
+        type="application/atom+xml"
+        href={`${host}rss/atom.xml`}
+        title="Atom"
+      />
     </Head>
   );
 };
