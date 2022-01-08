@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   res.statusCode = 200;
   // 24時間キャッシュ
   res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
-  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.end(feed);
 
   return { props: {} };
