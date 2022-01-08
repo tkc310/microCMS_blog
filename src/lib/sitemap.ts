@@ -29,7 +29,7 @@ const generateSitemap = async (): Promise<string> => {
   const articleRows = articles.map(
     (item: TArticle) => `
     <url>
-      <loc>${config.host}${item.id}</loc>
+      <loc>${config.host}articles/${item.id}</loc>
       <lastmod>${new Date(item.updatedAt).toISOString()}</lastmod>
     </url>
   `
