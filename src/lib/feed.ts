@@ -40,8 +40,8 @@ const generateRssFeed = async ({ type }: TArgs): Promise<string> => {
     feed.addItem({
       title: item.title,
       description: item.excerpt,
-      id: `${config.host}${item.id}`,
-      link: `${config.host}${item.id}`,
+      id: `${config.host}articles/${item.id}`,
+      link: `${config.host}articles/${item.id}`,
       image: item.image.url,
       date: new Date(item.updatedAt),
     });
