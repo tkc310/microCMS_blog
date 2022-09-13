@@ -1,7 +1,7 @@
+import useSafeState from '@/hooks/useSafeState';
+import useWindowSize from '@/hooks/useWindowSize';
 import { memo, useEffect, useRef } from 'react';
 import * as tocbot from 'tocbot';
-import useWindowSize from '@/hooks/useWindowSize';
-import useSafeState from '@/hooks/useSafeState';
 
 type Props = {
   isSide?: boolean;
@@ -45,7 +45,7 @@ export const TOC = ({ isSide }: Props) => {
       hasInnerContainers: true,
       orderedList: false,
       headingsOffset: 100,
-      // @ts-ignore
+      scrollSmoothDuration: 0,
       scrollSmoothOffset: -48,
     });
 
