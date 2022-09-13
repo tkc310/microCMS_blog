@@ -1,6 +1,10 @@
 @import '@styles/foundation/variable';
 @import '@styles/foundation/mixin';
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   background: $color-dark;

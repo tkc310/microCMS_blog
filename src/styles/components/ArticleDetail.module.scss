@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 @import '@styles/foundation/variable';
 @import '@styles/foundation/mixin';
 
@@ -408,6 +408,11 @@ $padding-content-sp: 16px;
   }
 
   .customHeading {
+    scroll-margin-top: $height-header-pc;
+    @include mobile {
+      scroll-margin-top: $height-header-sp;
+    }
+
     &.h2 {
       border-bottom: 1px solid #eaecef;
       padding-bottom: 4px;
