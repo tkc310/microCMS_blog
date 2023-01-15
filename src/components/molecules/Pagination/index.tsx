@@ -15,21 +15,22 @@ const defaultProps = {
 export const Pagination = ({
   totalCount,
   perPage,
-  pageNum,
+  pageNum: _pageNum = 0,
   resource,
 }: Props) => {
   const range = (start, end) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
 
+  const pageNum = Number(_pageNum);
   const totalPage = Math.ceil(totalCount / perPage);
-  const isPrev = pageNum && pageNum > 1;
-  const isNext = !pageNum || totalPage > pageNum;
+  const hasPrev = pageNum > 1;
+  const hasNext = totalPage > pageNum;
 
   return totalPage > 1 ? (
     <div
       style={{ display: 'flex', justifyContent: 'center', fontSize: '1.3rem' }}
     >
-      {isPrev && (
+      {hasPrev && (
         <Link
           href={`/${resource}/page/${pageNum - 1}`}
           style={{ marginRight: 16 }}
@@ -55,7 +56,7 @@ export const Pagination = ({
           </li>
         ))}
       </ul>
-      {isNext && (
+      {hasNext && (
         <Link href={`/${resource}/page/${pageNum > 1 ? pageNum + 1 : 2}`}>
           <span>Next</span>
         </Link>
