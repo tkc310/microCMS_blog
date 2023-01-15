@@ -34,6 +34,7 @@ export const Pagination = ({
         <Link
           href={`/${resource}/page/${pageNum - 1}`}
           style={{ marginRight: 16 }}
+          data-testid="pagerPrev"
         >
           <span>Prev</span>
         </Link>
@@ -57,7 +58,10 @@ export const Pagination = ({
         ))}
       </ul>
       {hasNext && (
-        <Link href={`/${resource}/page/${pageNum > 1 ? pageNum + 1 : 2}`}>
+        <Link
+          href={`/${resource}/page/${pageNum > 1 ? pageNum + 1 : 2}`}
+          data-testid="pagerNext"
+        >
           <span>Next</span>
         </Link>
       )}
