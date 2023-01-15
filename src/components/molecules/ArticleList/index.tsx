@@ -1,22 +1,22 @@
+import { TArticle } from '@/types';
 import {
-  Heading,
-  Text,
-  VStack,
-  StackDivider,
-  Flex,
   Box,
+  Flex,
+  Heading,
   LinkBox,
   LinkOverlay,
+  StackDivider,
+  Text,
+  VStack,
 } from '@chakra-ui/react';
-import ButtonTag from '@components/atoms/buttons/ButtonTag';
 import ButtonCategory from '@components/atoms/buttons/ButtonCategory';
-import TextDate from '@components/atoms/texts/TextDate';
-import getExcerpt from '@utils/getExcerpt';
-import multiLineTextStyle from '@utils/multiLineTextStyle';
-import getSafeDate from '@utils/getSafeDate';
-import { TArticle } from '@/types';
-import styles from '@styles/components/ArticleList.module.scss';
+import ButtonTag from '@components/atoms/buttons/ButtonTag';
 import Image from '@components/atoms/Image';
+import TextDate from '@components/atoms/texts/TextDate';
+import styles from '@styles/components/ArticleList.module.scss';
+import getExcerpt from '@utils/getExcerpt';
+import getSafeDate from '@utils/getSafeDate';
+import multiLineTextStyle from '@utils/multiLineTextStyle';
 import LazyLoad from 'react-lazyload';
 
 type Props = {
@@ -24,8 +24,8 @@ type Props = {
 };
 
 const dynamicStyles = {
-  elipsisLine2: multiLineTextStyle(2),
-  elipsisLine4: multiLineTextStyle(4),
+  ellipsisLine2: multiLineTextStyle(2),
+  ellipsisLine4: multiLineTextStyle(4),
 };
 
 export const ArticleList = ({ articles }: Props) => {
@@ -58,11 +58,11 @@ export const ArticleList = ({ articles }: Props) => {
                       as="h2"
                       size="md"
                       mb="1"
-                      style={dynamicStyles.elipsisLine2}
+                      style={dynamicStyles.ellipsisLine2}
                     >
                       {article.title}
                     </Heading>
-                    <Text style={dynamicStyles.elipsisLine4}>
+                    <Text style={dynamicStyles.ellipsisLine4}>
                       {getExcerpt(article.excerpt || article.body)}
                     </Text>
                   </Box>

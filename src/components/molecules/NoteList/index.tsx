@@ -1,19 +1,19 @@
+import { TNote } from '@/types';
 import {
-  Heading,
-  Text,
-  VStack,
-  StackDivider,
-  Flex,
   Box,
+  Flex,
+  Heading,
   LinkBox,
   LinkOverlay,
+  StackDivider,
+  Text,
+  VStack,
 } from '@chakra-ui/react';
 import ButtonTag from '@components/atoms/buttons/ButtonTag';
 import TextDate from '@components/atoms/texts/TextDate';
-import multiLineTextStyle from '@utils/multiLineTextStyle';
-import getSafeDate from '@utils/getSafeDate';
-import { TNote } from '@/types';
 import styles from '@styles/components/ArticleList.module.scss';
+import getSafeDate from '@utils/getSafeDate';
+import multiLineTextStyle from '@utils/multiLineTextStyle';
 import LazyLoad from 'react-lazyload';
 
 type Props = {
@@ -26,8 +26,8 @@ const defaultProps = {
 };
 
 const dynamicStyles = {
-  elipsisLine2: multiLineTextStyle(2),
-  elipsisLine4: multiLineTextStyle(4),
+  ellipsisLine2: multiLineTextStyle(2),
+  ellipsisLine4: multiLineTextStyle(4),
 };
 
 export const NoteList = ({ notes, itemHeight }: Props) => {
@@ -59,7 +59,7 @@ export const NoteList = ({ notes, itemHeight }: Props) => {
                       as="h2"
                       size="md"
                       mb="1"
-                      style={dynamicStyles.elipsisLine2}
+                      style={dynamicStyles.ellipsisLine2}
                     >
                       {note.title}
                     </Heading>
