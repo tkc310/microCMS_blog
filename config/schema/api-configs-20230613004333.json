@@ -93,6 +93,13 @@
           "required": true
         },
         {
+          "idValue": "wlRY3Ugpz8",
+          "fieldId": "pr",
+          "name": "自己PR (aboutページ)",
+          "kind": "textArea",
+          "required": true
+        },
+        {
           "idValue": "6Xy2aEgRq",
           "fieldId": "githubAccountName",
           "name": "githubアカウント名",
@@ -105,6 +112,27 @@
           "name": "twitterアカウント名",
           "kind": "text",
           "required": true
+        },
+        {
+          "idValue": "hOL_Ma8MX2",
+          "fieldId": "zennAccountName",
+          "name": "zennアカウント名",
+          "kind": "text",
+          "required": true
+        },
+        {
+          "idValue": "ViWTogAhAv",
+          "fieldId": "qiitaAccountName",
+          "name": "qiitaアカウント名",
+          "kind": "text",
+          "required": true
+        },
+        {
+          "idValue": "5ubqXyjwMh",
+          "fieldId": "laprasAccountName",
+          "name": "laprasアカウント名",
+          "kind": "text",
+          "required": true
         }
       ],
       "position": [
@@ -112,12 +140,16 @@
           "8giDYU_w6",
           "6Xy2aEgRq",
           "1mn3KhRvM",
+          "hOL_Ma8MX2",
+          "ViWTogAhAv",
+          "5ubqXyjwMh",
           "WmqWQR67m",
           "oXm-pAUUc",
+          "wlRY3Ugpz8",
           "S9BdIQOvW"
         ]
       ],
-      "updatedAt": "2021-02-07T08:37:32.632Z",
+      "updatedAt": "2023-06-12T14:32:13.788Z",
       "viewerGroup": "3EJ"
     },
     {
