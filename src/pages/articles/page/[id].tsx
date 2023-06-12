@@ -1,10 +1,10 @@
-import { TArticle, TCategory, TTag, TConfig } from '@/types';
-import ArticleList from '@components/molecules/ArticleList';
-import { Pagination } from '@components/molecules/Pagination';
-import LayoutBase from '@components/layouts/LayoutBase';
-import fetchConfig from '@utils/fetchConfig';
+import { TArticle, TCategory, TConfig, TTag } from '@/types';
 import fetchCategories from '@/utils/fetchCategories';
 import fetchTags from '@/utils/fetchTags';
+import LayoutBase from '@components/layouts/LayoutBase';
+import ArticleList from '@components/molecules/ArticleList';
+import { Pagination } from '@components/molecules/Pagination';
+import fetchConfig from '@utils/fetchConfig';
 
 type Props = {
   articles: Array<TArticle>;
@@ -45,7 +45,13 @@ export const getStaticPaths = async () => {
   const config = await fetchConfig();
   const { perPage } = config;
 
-  const url = `${config.apiHost}articles`;
+  const query = [
+    // デフォルト10件
+    // totalCountのみ参照したいためコンテンツは不要
+    'limit=0',
+  ].join('&');
+  const url = `${config.apiHost}articles?${query}`;
+
   const data = await fetch(url, key)
     .then((res) => res.json())
     .catch(() => null);

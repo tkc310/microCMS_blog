@@ -1,16 +1,16 @@
-import { memo } from 'react';
-import ErrorPage from '@pages/404';
 import LayoutPost from '@/components/layouts/LayoutPost';
-import { TArticle, TCategory, TTag, TConfig } from '@/types';
-import fetchConfig from '@utils/fetchConfig';
-import fetchTags from '@/utils/fetchTags';
+import { TArticle, TCategory, TConfig, TTag } from '@/types';
 import fetchCategories from '@/utils/fetchCategories';
-import getExcerpt from '@utils/getExcerpt';
-import 'highlight.js/styles/github-gist.css';
+import fetchTags from '@/utils/fetchTags';
 import TOC from '@components/molecules/TOC';
+import ErrorPage from '@pages/404';
+import fetchConfig from '@utils/fetchConfig';
+import getExcerpt from '@utils/getExcerpt';
 import mdx2html from '@utils/mdx2html';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import mdxComponents from '@utils/mdxComponents';
+import 'highlight.js/styles/github-gist.css';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { memo } from 'react';
 
 export type Props = {
   article: TArticle;
@@ -76,9 +76,18 @@ export const getStaticPathsFactory = (isPreview?: boolean) => {
       };
     }
 
-    const data = await fetch(`${config.apiHost}articles`, key)
+    const query = [
+      // デフォルト10件
+      // @refs: https://document.microcms.io/content-api/get-list-contents#h4cd61f9fa1
+      'limit=9999',
+      'fields=id',
+    ].join('&');
+    const url = `${config.apiHost}articles?${query}`;
+
+    const data = await fetch(url, key)
       .then((res) => res.json())
       .catch(() => null);
+
     const pageName = isPreview ? 'preview' : 'articles';
     const paths = data.contents.map((article) => `/${pageName}/${article.id}`);
 
