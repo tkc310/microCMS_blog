@@ -1,20 +1,20 @@
-import { memo } from 'react';
-import {
-  useClipboard,
-  Button,
-  Input,
-  Flex,
-  Heading,
-  Text,
-  Box,
-  Link,
-} from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
-import LayoutRoot from '@components/layouts/LayoutRoot';
-import fetchConfig from '@utils/fetchConfig';
 import { TCategory, TConfig, TTag } from '@/types';
 import fetchCategories from '@/utils/fetchCategories';
 import fetchTags from '@/utils/fetchTags';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Link,
+  Text,
+  useClipboard,
+} from '@chakra-ui/react';
+import LayoutRoot from '@components/layouts/LayoutRoot';
+import fetchConfig from '@utils/fetchConfig';
+import { memo } from 'react';
 
 type Props = {
   categories: TCategory[];
@@ -34,7 +34,7 @@ export const Donation = ({ categories, tags, config }: Props) => {
             お恵みください
           </Heading>
           <Text align="left">
-            趣味でOSSや無料ツールを公開しています。
+            趣味で各所にツールを公開しています。
             <br />
             利用してみて便利だなと感じるものがありましたら、お気持ち寄付をいただけると今後の活動の励みになります。
             <br />
