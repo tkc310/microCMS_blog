@@ -6,7 +6,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged && npm run lint:fix",
+      "pre-push": "npm run lint && npm run lint:ts"
     }
   },
   "scripts": {
@@ -14,7 +15,7 @@
     "build": "next build",
     "start": "next start",
     "analize": "ANALYZE=true next build",
-    "lint": "eslint ./src --ext .ts,.tsx",
+    "lint": "eslint ./src --ext .ts,.tsx --max-warnings=0",
     "lint:ts": "tsc --pretty --noEmit",
     "lint:fix": "npm run lint --fix",
     "prettier:quick": "pretty-quick --staged"
