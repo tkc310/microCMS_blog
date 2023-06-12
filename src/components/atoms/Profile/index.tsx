@@ -1,8 +1,8 @@
-import { memo } from 'react';
-import Image from 'next/image';
 import { TProfile } from '@/types';
-import { SocialList } from '@components/molecules/SocialList';
 import image from '@assets/neko_3.png';
+import { SocialList } from '@components/molecules/SocialList';
+import Image from 'next/image';
+import { memo } from 'react';
 
 type Props = {
   profile: TProfile;
@@ -13,6 +13,9 @@ export const Profile = ({ profile }: Props) => {
     name,
     description,
     githubAccountName,
+    zennAccountName,
+    qiitaAccountName,
+    laprasAccountName,
     // twitterAccountName,
   } = profile;
 
@@ -34,6 +37,9 @@ export const Profile = ({ profile }: Props) => {
       <div className="l-footer_sns">
         <SocialList
           githubAccountName={githubAccountName}
+          zennAccountName={zennAccountName}
+          qiitaAccountName={qiitaAccountName}
+          laprasAccountName={laprasAccountName}
           // twitterAccountName={twitterAccountName}
         />
       </div>

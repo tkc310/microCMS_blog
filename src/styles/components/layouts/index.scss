@@ -86,6 +86,10 @@
     margin: 8px 0;
     text-align: center;
     color: rgba(255, 255, 255, 0.98);
+
+    > a:not(:last-child) {
+      margin-right: 8px;
+    }
   }
   &_copyright {
     font-family: $font-family-en;

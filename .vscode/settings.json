@@ -14,5 +14,5 @@
   "editor.formatOnSave": true,
   // Prettier対象外言語
   "prettier.disableLanguages": ["markdown"],
-  "cSpell.words": ["testid"]
+  "cSpell.words": ["Lapras", "Qiita", "testid", "Zenn"]
 }

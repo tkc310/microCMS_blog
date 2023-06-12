@@ -52,6 +52,9 @@ export type TProfile = {
   fullName: string;
   description: string;
   githubAccountName: string;
+  zennAccountName: string;
+  qiitaAccountName: string;
+  laprasAccountName: string;
   twitterAccountName: string;
   image: TImage;
 };
