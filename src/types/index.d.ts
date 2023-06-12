@@ -78,3 +78,21 @@ export type TConfig = {
 } & TDateCommon;
 
 export type TResources = 'article' | 'note';
+
+// @refs: https://github.com/lapras-inc/public-api-schema#typescript-type
+export type TLaprasActivity = {
+  title: string;
+  url: string;
+  date: string;
+  type:
+    | 'github'
+    | 'speaker_deck'
+    | 'qiita'
+    | 'zenn'
+    | 'note'
+    | 'teratail'
+    | 'blog'
+    | 'connpass';
+};
+
+export type TLaprasActivities = TLaprasActivity[];

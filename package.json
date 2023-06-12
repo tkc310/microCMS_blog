@@ -15,6 +15,7 @@
     "start": "next start",
     "analize": "ANALYZE=true next build",
     "lint": "eslint ./src --ext .ts,.tsx",
+    "lint:ts": "tsc --pretty --noEmit",
     "lint:fix": "npm run lint --fix",
     "prettier:quick": "pretty-quick --staged"
   },
