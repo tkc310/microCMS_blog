@@ -2,9 +2,9 @@ import { TCategory, TTag } from '@/types';
 import {
   Drawer,
   DrawerBody,
+  DrawerContent,
   DrawerHeader,
   DrawerOverlay,
-  DrawerContent,
   Link,
 } from '@chakra-ui/react';
 import ButtonCategory from '@components/atoms/buttons/ButtonCategory';
@@ -46,6 +46,13 @@ export const SideMenu = ({ onClose, isOpen, tags, categories }: Props) => {
                   </li>
                 ))}
               </ul>
+            </section>
+
+            <section className={styles.section}>
+              <h3 className={styles.title}>About me</h3>
+              <Link color="teal.500" href="/about">
+                私について
+              </Link>
             </section>
 
             <section className={styles.section}>

@@ -51,6 +51,7 @@ export type TProfile = {
   name: string;
   fullName: string;
   description: string;
+  pr: string;
   githubAccountName: string;
   zennAccountName: string;
   qiitaAccountName: string;

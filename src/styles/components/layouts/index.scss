@@ -188,4 +188,15 @@
       padding: ($height-header-sp + 16px) 16px 32px;
     }
   }
+
+  &--about {
+    @include l-content;
+    width: $width-content-pc;
+    padding: ($height-header-pc + 32px) 0 56px;
+
+    @include mobile {
+      width: 100%;
+      padding: ($height-header-sp + 16px) 16px 32px;
+    }
+  }
 }
