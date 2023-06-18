@@ -13,6 +13,8 @@
 
 ```
 $ npm i
+// .git/hook追加・更新
+$ npx husky install
 $ npm run dev
 ```
 
