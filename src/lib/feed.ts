@@ -10,7 +10,13 @@ const generateRssFeed = async ({ type }: TArgs): Promise<string> => {
     headers: { 'X-API-KEY': process.env.API_KEY },
   };
   const config = await fetchConfig();
-  const url = `${config.apiHost}articles`;
+  const query = [
+    // デフォルト10件
+    // @refs: https://document.microcms.io/content-api/get-list-contents#h4cd61f9fa1
+    'limit=9999',
+    'fields=id,title,excerpt,image,updatedAt',
+  ].join('&');
+  const url = `${config.apiHost}articles?${query}`;
   const res = await fetch(url, key);
   const data = await res.json();
   const { contents: articles } = data;

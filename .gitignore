@@ -19,6 +19,7 @@
 .DS_Store
 *.pem
 .history
+tsconfig.tsbuildinfo
 
 # debug
 npm-debug.log*
