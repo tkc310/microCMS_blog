@@ -11,10 +11,16 @@
 
 ## Usage
 
-```
+```bash
 $ npm i
-// .git/hook追加・更新
+
+# .git/hook追加・更新
 $ npx husky install
+
+$ cp example.env.local .env.local
+# ドメイン / microCMSのAPIキーを入力
+$ vi .env.local
+
 $ npm run dev
 ```
 

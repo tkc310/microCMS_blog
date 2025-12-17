@@ -5,9 +5,9 @@
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "editor.rulers": [80],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true, // eslint
-    "source.fixAll.stylelint": true, // Stylelint
-    "source.organizeImports": true // import sort
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.organizeImports": "explicit"
   },
   // formatter
   "editor.defaultFormatter": "esbenp.prettier-vscode", // デフォルトフォーマッターをPrettier

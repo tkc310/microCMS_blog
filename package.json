@@ -1,9 +1,5 @@
 {
   "private": true,
-  "engines": {
-    "node": "18.x",
-    "npm": "9.x"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged && npm run lint:fix",
