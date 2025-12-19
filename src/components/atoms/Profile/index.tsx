@@ -1,5 +1,5 @@
 import { TProfile } from '@/types';
-import image from '@assets/neko_3.png';
+import image from '@assets/profile.png';
 import { SocialList } from '@components/molecules/SocialList';
 import Image from 'next/image';
 import { memo } from 'react';
@@ -23,7 +23,7 @@ export const Profile = ({ profile }: Props) => {
     <div>
       <div className="l-footer_profile">
         <div className="l-footer_icon">
-          <Image src={image} width="90" height="90" alt="プロフィール画像" />
+          <Image src={image} width="60" height="60" alt="プロフィール画像" />
         </div>
         <div className="l-footer_text">
           <div className="l-footer_name">{name}</div>
